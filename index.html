@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AYAN KHAN — Director of Photography</title>
+  <!-- Clean Luxury Cinema Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-surface: rgba(14, 15, 20, 0.72);
+      --bg-surface-elevated: rgba(20, 22, 29, 0.88);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-gold: rgba(212, 175, 55, 0.42);
+      --text-primary: #F5F5F7;
+      --text-secondary: rgba(245, 245, 247, 0.70);
+      --text-tertiary: rgba(245, 245, 247, 0.45);
+      --amber-key: #D4AF37;       /* Warm Cinema Gold */
+      --amber-soft: rgba(212, 175, 55, 0.12);
+      --radius-outer: 20px;
+      --radius-inner: 14px;
+      --bg-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=85');
+      --bg-opacity: 0.12;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-void);
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+      padding-bottom: 140px;
+    }
+
+    /* =====================================================================
+       CLEAN HOLLYWOOD ATMOSPHERE LAYERS
+       ===================================================================== */
+    .optical-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: var(--bg-opacity);
+      filter: contrast(1.2) saturate(0.4) blur(10px);
+      transform: scale(1.05);
+    }
+
+    .ambient-lighting {
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      background:
+        radial-gradient(900px circle at var(--cursor-x, 50vw) var(--cursor-y, 30vh), rgba(212, 175, 55, 0.06), transparent 60%),
+        radial-gradient(circle at 85% 15%, rgba(212, 175, 55, 0.07), transparent 50%),
+        linear-gradient(180deg, rgba(5, 5, 7, 0.45) 0%, rgba(5, 5, 7, 0.92) 70%, #050507 100%);
+    }
+
+    .optical-vignette {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.92);
+    }
+
+    /* Minimalist Glass Panel */
+    .spatial-panel {
+      position: relative;
+      background: var(--bg-surface);
+      backdrop-filter: blur(32px) saturate(160%);
+      -webkit-backdrop-filter: blur(32px) saturate(160%);
+      border: 1px solid var(--border-subtle);
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-outer);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.35s ease,
+                  background 0.35s ease,
+                  box-shadow 0.4s ease;
+    }
+
+    /* =====================================================================
+       1. MINIMALIST TOP HEADER BAR (CLEAN & EXECUTIVE)
+       ===================================================================== */
+    .header-wrap {
+      max-width: 1280px;
+      margin: 24px auto 40px auto;
+      padding: 0 24px;
+    }
+
+    .top-bar {
+      padding: 16px 30px;
+      border-radius: 100px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.25), rgba(0, 0, 0, 0.85));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--amber-key);
+      stroke-width: 1.7;
+    }
+
+    .brand-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title-group h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+
+    .brand-title-group span {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--amber-key);
+      margin-top: 2px;
+    }
+
+    .header-status-group {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+    }
+
+    .status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 14px;
+      border-radius: 100px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: #10B981;
+      box-shadow: 0 0 10px #10B981;
+    }
+
+    .header-cta-link {
+      color: var(--amber-key);
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      font-size: 11.5px;
+      transition: color 0.25s ease;
+    }
+
+    .header-cta-link:hover {
+      color: #FFFFFF;
+    }
+
+    /* =====================================================================
+       2. BOTTOM NAVIGATION DOCK (CLEAN LABELS)
+       ===================================================================== */
+    .spatial-dock-wrap {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .spatial-dock-wrap.scrolling-passive .spatial-dock-track:not(:hover):not(.is-dragging) {
+      opacity: 0.72;
+      transform: translateY(3px) scale(0.98);
+    }
+
+    .spatial-dock-track {
+      pointer-events: auto;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      background: rgba(8, 9, 13, 0.86);
+      backdrop-filter: blur(32px) saturate(190%);
+      -webkit-backdrop-filter: blur(32px) saturate(190%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.26);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.92);
+      padding: 5px;
+      border-radius: 100px;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: none;
+      cursor: grab;
+      max-width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+    }
+
+    .spatial-dock-track:hover,
+    .spatial-dock-track.is-dragging {
+      opacity: 1 !important;
+      transform: translateY(0) scale(1) !important;
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .spatial-dock-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .optical-dock-lens {
+      position: absolute;
+      top: 4px;
+      left: 5px;
+      height: calc(100% - 8px);
+      width: 90px;
+      border-radius: 100px;
+      background: linear-gradient(135deg,
+                  rgba(255, 255, 255, 0.2) 0%,
+                  rgba(212, 175, 55, 0.34) 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+      pointer-events: none;
+      z-index: 1;
+      transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  width 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .spatial-dock-track.is-dragging .optical-dock-lens {
+      transition: transform 0.03s linear, width 0.08s ease;
+    }
+
+    .dock-item {
+      position: relative;
+      z-index: 2;
+      color: var(--text-secondary);
+      padding: 9px 22px;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      transition: color 0.2s ease, transform 0.25s ease;
+    }
+
+    .dock-item.active {
+      color: #FFFFFF;
+      transform: scale(1.04);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85);
+    }
+
+    /* =====================================================================
+       MAIN CONTAINER & SECTIONS
+       ===================================================================== */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      scroll-margin-top: 32px;
+      margin-bottom: 96px;
+    }
+
+    /* =====================================================================
+       SECTION 1: PROFILE & OVERVIEW
+       ===================================================================== */
+    .hero-grid {
+      padding: 58px;
+      display: grid;
+      grid-template-columns: 1.45fr 1fr;
+      gap: 52px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.7), transparent);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.8px;
+      color: var(--amber-key);
+      margin-bottom: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--amber-key);
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(40px, 5.2vw, 64px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.02;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      color: #FFFFFF;
+    }
+
+    .hero-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--amber-key);
+      margin-bottom: 20px;
+      opacity: 0.95;
+    }
+
+    .hero-statement {
+      font-size: 15.5px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin-bottom: 30px;
+    }
+
+    .specialties-rack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .specialty-chip {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: all 0.25s ease;
+    }
+
+    .specialty-chip:hover {
+      border-color: var(--amber-key);
+      color: var(--amber-key);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .stats-matrix {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-box {
+      background: rgba(6, 7, 10, 0.72);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-inner);
+      padding: 28px 24px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .stat-box:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .stat-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      margin-top: 6px;
+    }
+
+    /* =====================================================================
+       MINIMALIST SECTION HEADERS & FILTER TABS
+       ===================================================================== */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 36px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-subtle);
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .section-eyebrow {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2.2px;
+      color: var(--amber-key);
+      margin-bottom: 6px;
+    }
+
+    .section-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      letter-spacing: 1px;
+    }
+
+    /* Interactive Category Filter Buttons for Posters */
+    .poster-filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-tab {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 8px 18px;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-tab:hover {
+      color: #FFFFFF;
+      border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    .filter-tab.active {
+      background: var(--amber-key);
+      color: #050507;
+      border-color: var(--amber-key);
+      box-shadow: 0 4px 18px rgba(212, 175, 55, 0.3);
+    }
+
+    /* =====================================================================
+       SECTION 2: FILM POSTERS & SELECTED WORKS SHOWCASE
+       CLEAN POSTER ON TOP + CLEAR TITLE, ROLE & CAPTION DIRECTLY BELOW
+       ===================================================================== */
+    .posters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    .poster-card {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-radius: var(--radius-outer);
+      background: rgba(11, 12, 17, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.35s ease,
+                  box-shadow 0.45s ease;
+    }
+
+    .poster-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-gold);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.12);
+    }
+
+    /* Theatrical Poster Frame (Supports Both Portrait & Widescreen Posters cleanly) */
+    .poster-image-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background: #07080C;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .poster-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .poster-card:hover .poster-image-frame img {
+      transform: scale(1.04);
+    }
+
+    .poster-top-tags {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .poster-category-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--amber-key);
+      background: rgba(5, 6, 10, 0.86);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 6px 13px;
+      border-radius: 100px;
+    }
+
+    .poster-year-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: rgba(5, 6, 10, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    /* Always-Visible Poster Details Below the Image */
+    .poster-caption-box {
+      padding: 26px 28px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      background: linear-gradient(180deg, rgba(14, 16, 22, 0.96) 0%, rgba(8, 9, 13, 0.99) 100%);
+    }
+
+    .poster-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.2px;
+    }
+
+    .poster-role-line {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--amber-key);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .poster-description {
+      font-size: 14.5px;
+      line-height: 1.72;
+      color: var(--text-secondary);
+    }
+
+    /* =====================================================================
+       SECTION 3: FILMOGRAPHY & CREDITS
+       ===================================================================== */
+    .credits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 26px;
+    }
+
+    .credit-panel {
+      padding: 34px;
+    }
+
+    .credit-panel:hover {
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+
+    .credit-category-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: var(--amber-key);
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .credit-ledger {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .credit-ledger li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+    }
+
+    .credit-ledger li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .work-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .work-role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+
+    /* =====================================================================
+       SECTION 4: AWARDS & RECOGNITION
+       ===================================================================== */
+    .laurels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .laurel-card {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .laurel-card:hover {
+      background: var(--bg-surface-elevated);
+      border-color: rgba(212, 175, 55, 0.45);
+      transform: translateY(-4px);
+    }
+
+    .laurel-year {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--amber-key);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .laurel-award {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.32;
+    }
+
+    .laurel-festival {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+    }
+
+    /* =====================================================================
+       SECTION 5: CONTACT (INSTAGRAM, PHONE, EMAIL)
+       ===================================================================== */
+    .booking-panel {
+      padding: 64px 44px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .booking-panel::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--amber-key), transparent);
+      opacity: 0.7;
+    }
+
+    .booking-panel h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+
+    .booking-subtext {
+      color: var(--text-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+      font-size: 15.5px;
+    }
+
+    .contact-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 960px;
+      margin-top: 16px;
+    }
+
+    .contact-channel-card {
+      background: rgba(6, 7, 11, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius-inner);
+      padding: 28px 22px;
+      text-decoration: none;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .contact-channel-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--amber-key);
+      background: rgba(212, 175, 55, 0.08);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+    }
+
+    .channel-icon-ring {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.12);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber-key);
+      margin-bottom: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .contact-channel-card:hover .channel-icon-ring {
+      background: var(--amber-key);
+      color: #050507;
+      transform: scale(1.08);
+    }
+
+    .channel-icon-ring svg {
+      width: 22px;
+      height: 22px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .channel-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      color: var(--amber-key);
+    }
+
+    .channel-value {
+      font-family: 'Syne', sans-serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+
+    .channel-action-hint {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    .return-top-wrap {
+      margin-top: 18px;
+    }
+
+    .precision-btn {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 12px 26px;
+      border-radius: 100px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.28s ease;
+    }
+
+    .precision-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 1.8;
+    }
+
+    .precision-btn:hover {
+      background: #FFFFFF;
+      color: #050507;
+      border-color: #FFFFFF;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 36px 26px;
+        gap: 34px;
+      }
+      .header-status-group {
+        display: none;
+      }
+      .posters-grid {
+        grid-template-columns: 1fr;
+      }
+      .dock-item {
+        padding: 8px 15px;
+        font-size: 11px;
+      }
+      .booking-panel {
+        padding: 44px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Clean Cinema Atmosphere Layers -->
+  <div class="optical-backdrop" id="optical-backdrop"></div>
+  <div class="ambient-lighting"></div>
+  <div class="optical-vignette"></div>
+
+  <!-- 1. TOP HEADER BAR (MINIMALIST & EXECUTIVE) -->
+  <header class="header-wrap">
+    <div class="spatial-panel top-bar">
+      <div class="brand-identity">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="14.31" y1="8" x2="20.05" y2="17.94"></line>
+            <line x1="9.69" y1="8" x2="21.17" y2="8"></line>
+            <line x1="7.38" y1="12" x2="13.12" y2="2.06"></line>
+            <line x1="9.69" y1="16" x2="3.95" y2="6.06"></line>
+            <line x1="14.31" y1="16" x2="2.83" y2="16"></line>
+            <line x1="16.62" y1="12" x2="10.88" y2="21.94"></line>
+          </svg>
+        </div>
+        <div class="brand-title-group">
+          <h1 id="header-name">AYAN KHAN</h1>
+          <span id="header-role">Director of Photography</span>
+        </div>
+      </div>
+
+      <div class="header-status-group">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span id="header-availability">Available for Bookings</span>
+        </div>
+        <span id="header-location">Mumbai • Worldwide</span>
+        <a href="#contact-section" class="header-cta-link">Get in Touch →</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. BOTTOM NAVIGATION DOCK -->
+  <div class="spatial-dock-wrap" id="spatial-dock-wrap">
+    <nav class="spatial-dock-track" id="spatial-dock-track" aria-label="Primary Portfolio Navigation">
+      <div class="optical-dock-lens" id="optical-dock-lens"></div>
+
+      <div class="dock-item active" data-target="about-section">About</div>
+      <div class="dock-item" data-target="works-section">Works</div>
+      <div class="dock-item" data-target="experience-section">Credits</div>
+      <div class="dock-item" data-target="awards-section">Awards</div>
+      <div class="dock-item" data-target="contact-section">Contact</div>
+    </nav>
+  </div>
+
+  <main class="container">
+
+    <!-- ================= ABOUT / PROFILE ================= -->
+    <section id="about-section">
+      <div class="spatial-panel hero-grid">
+        <div>
+          <div class="hero-eyebrow" id="hero-eyebrow">DIRECTOR OF PHOTOGRAPHY</div>
+          <h2 class="hero-name" id="hero-name">AYAN KHAN</h2>
+          <div class="hero-quote" id="hero-quote">"Crafting visual stories with emotion, scale, and timeless cinematic light."</div>
+          <p class="hero-statement" id="hero-bio"></p>
+          <div class="specialties-rack" id="specialties-container"></div>
+        </div>
+
+        <div class="stats-matrix" id="stats-container"></div>
+      </div>
+    </section>
+
+    <!-- ================= SELECTED WORKS & FILM POSTERS ================= -->
+    <section id="works-section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Portfolio Showcase</div>
+          <h2 class="section-heading">Selected Works &amp; Posters</h2>
+        </div>
+
+        <!-- Interactive Category Filter Tabs -->
+        <div class="poster-filter-bar" id="poster-filter-bar">
+          <button class="filter-tab active" data-filter="All">All Works</button>
+          <button class="filter-tab" data-filter="Music Video">Music Videos</button>
+          <button class="filter-tab" data-filter="Commercial">Commercials</button>
+          <button class="filter-tab" data-filter="Film & Series">Films &amp; Promos</button>
+        </div>
+      </div>
+
+      <div class="posters-grid" id="posters-container"></div>
+    </section>
+
+    <!-- ================= FILMOGRAPHY & CREDITS ================= -->
+    <section id="experience-section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Career Track Record</div>
+          <h2 class="section-heading">Filmography &amp; Credits</h2>
+        </div>
+        <div class="section-subtitle">Feature Films • Commercials • Television</div>
+      </div>
+      <div class="credits-grid" id="experience-container"></div>
+    </section>
+
+    <!-- ================= AWARDS & RECOGNITION ================= -->
+    <section id="awards-section">
+      <div class="section-header">
+        <div>
+          <div class="section-eyebrow">Recognition</div>
+          <h2 class="section-heading">Awards &amp; Honors</h2>
+        </div>
+        <div class="section-subtitle">Festival Selections &amp; Industry Accolades</div>
+      </div>
+      <div class="laurels-grid" id="awards-container"></div>
+    </section>
+
+    <!-- ================= CONTACT (INSTAGRAM + PHONE + EMAIL) ================= -->
+    <section id="contact-section">
+      <div class="spatial-panel booking-panel">
+        <div class="section-eyebrow">Direct Inquiries &amp; Bookings</div>
+        <h2>Work With <span id="contact-name">Ayan Khan</span></h2>
+        <p class="booking-subtext">
+          Available for feature films, commercial campaigns, music videos, and visual direction across India and internationally.
+        </p>
+
+        <div class="contact-cards-grid">
+          <!-- Instagram -->
+          <a id="contact-instagram" href="https://instagram.com/ayankhan.dop" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
+            <div class="channel-icon-ring">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </div>
+            <span class="channel-label">Instagram</span>
+            <span class="channel-value" id="instagram-text">@ayankhan.dop</span>
+            <span class="channel-action-hint">Follow &amp; View Latest Work →</span>
+          </a>
+
+          <!-- Phone -->
+          <a id="contact-phone" href="tel:+917722991272" class="contact-channel-card">
+            <div class="channel-icon-ring">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </div>
+            <span class="channel-label">Phone / WhatsApp</span>
+            <span class="channel-value" id="phone-text">+91 7722991272</span>
+            <span class="channel-action-hint">Direct Call for Bookings →</span>
+          </a>
+
+          <!-- Email -->
+          <a id="contact-email" href="mailto:ayan4040450@gmail.com" class="contact-channel-card">
+            <div class="channel-icon-ring">
+              <svg viewBox="0 0 24 24" fill="none">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </div>
+            <span class="channel-label">Email Address</span>
+            <span class="channel-value" id="email-text">ayan4040450@gmail.com</span>
+            <span class="channel-action-hint">Send Project Inquiry →</span>
+          </a>
+        </div>
+
+        <div class="return-top-wrap">
+          <a href="#about-section" class="precision-btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="m18 15-6-6-6 6"></path></svg>
+            <span>Back to Top</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ============================================================================
+       MASTER CONFIGURATION (यहाँ से अपने पोस्टर्स, नाम और डिटेल्स आसानी से बदलें)
+       ============================================================================ -->
+  <script>
+
+    // ============================================================================
+    // 0. PROFILE & CONTACT DETAILS
+    // ============================================================================
+    const SITE_CONFIG = {
+      name: "AYAN KHAN",
+      role: "Director of Photography",
+      eyebrow: "DIRECTOR OF PHOTOGRAPHY // CINEMATOGRAPHER",
+      availability: "Available for Bookings",
+      location: "Mumbai • Worldwide",
+      quote: "\"Crafting visual stories with emotion, scale, and timeless cinematic light.\"",
+      
+      backgroundImageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=85",
+      backgroundOpacity: "0.12",
+
+      bio: "Ayan Khan is an acclaimed Director of Photography with over a decade of experience across narrative films, major television promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
+
+      specialties: [
+        "Feature Films",
+        "Commercial Campaigns",
+        "Music Videos",
+        "Broadcast Promos",
+        "Visual Direction"
+      ],
+
+      stats: [
+        { number: "10+ Yrs", label: "Experience" },
+        { number: "11M+", label: "YouTube Views" },
+        { number: "15+", label: "Awards Won" },
+        { number: "20+", label: "Major Projects" }
+      ],
+
+      // अपना इंस्टाग्राम, ईमेल और फोन नंबर यहाँ बदलें:
+      instagramHandle: "@ayankhan.dop",
+      instagramUrl: "https://www.instagram.com/ayankhan.dop",
+      email: "ayan4040450@gmail.com",
+      phone: "+91 7722991272"
+    };
+
+
+    // ============================================================================
+    // 1. SELECTED WORKS & FILM POSTERS (अपने प्रोजेक्ट्स के पोस्टर और नाम यहाँ डालें)
+    // ============================================================================
+    const MY_POSTERS = [
+      {
+        posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85",
+        category: "Music Video",
+        year: "T-Series • 11M+ Views",
+        title: "Naman Tula",
+        role: "Director of Photography",
+        description: "Official T-Series music video crossing over 11 Million+ views, shot on a grand devotional scale with rich golden lighting and dynamic camera movement."
+      },
+      {
+        posterUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=85",
+        category: "Commercial",
+        year: "Automotive Campaign",
+        title: "Tata Safari & Hyundai Alcazar",
+        role: "DoP / Camera",
+        description: "High-speed commercial cinematography capturing dynamic road presence, dramatic terrain tracking shots, and natural golden-hour highlights."
+      },
+      {
+        posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85",
+        category: "Film & Series",
+        year: "Television Network",
+        title: "ZeeTV & StarPlus Promos",
+        role: "Cinematographer",
+        description: "Prime-time broadcast promos crafted with high-impact dramatic lighting, multi-camera setups, and rich theatrical production value."
+      },
+      {
+        posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85",
+        category: "Film & Series",
+        year: "Narrative Feature",
+        title: "Shadows of Mumbai",
+        role: "Director of Photography",
+        description: "An atmospheric narrative drama exploring the contrast of city nights and intimate human stories through expressive framing."
+      },
+      {
+        posterUrl: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=85",
+        category: "Film & Series",
+        year: "Mystery Thriller",
+        title: "Echoes in the Mist",
+        role: "Lead Cinematographer",
+        description: "Shot across misty forest locations, using natural depth and moody color tones to build suspense and visual intrigue."
+      },
+      {
+        posterUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1200&q=85",
+        category: "Commercial",
+        year: "Brand Film",
+        title: "Reliance Digital & Royal Enfield",
+        role: "Director of Photography",
+        description: "National brand campaigns combining crisp modern visuals with authentic storytelling and cinematic scale."
+      }
+      // नया पोस्टर जोड़ने के लिए ऊपर के { से }, तक कॉपी करें और यहाँ पेस्ट कर दें।
+    ];
+
+
+    // ============================================================================
+    // 2. FILMOGRAPHY & CREDITS
+    // ============================================================================
+    const MY_EXPERIENCE = [
+      {
+        category: "Commercials & Brands",
+        projects: [
+          { name: "Tata Safari Commercial", role: "DoP / Camera" },
+          { name: "Hyundai Alcazar Launch", role: "Cinematographer" },
+          { name: "Reliance Digital Campaign", role: "Director of Photography" },
+          { name: "Royal Enfield Ride Promo", role: "Second Unit DoP" }
+        ]
+      },
+      {
+        category: "Music Videos & Television",
+        projects: [
+          { name: "Naman Tula (T-Series)", role: "DoP • 11M+ Views" },
+          { name: "ZeeTV Prime Time Promo", role: "Lighting & Camera" },
+          { name: "StarPlus Mythological Promo", role: "Cinematographer" },
+          { name: "Indie Acoustic Sessions", role: "Visual Director" }
+        ]
+      },
+      {
+        category: "Films & Web Series",
+        projects: [
+          { name: "Shadows of Mumbai", role: "Director of Photography" },
+          { name: "The Last Monsoon", role: "Cinematographer" },
+          { name: "City of Dreams (Schedule)", role: "Additional Photography" },
+          { name: "Echoes in the Mist", role: "Lead DoP" }
+        ]
+      }
+    ];
+
+
+    // ============================================================================
+    // 3. AWARDS & HONORS
+    // ============================================================================
+    const MY_AWARDS = [
+      {
+        year: "2024 • WINNER",
+        title: "Best Cinematography (Short Film)",
+        festival: "Mumbai International Film Festival"
+      },
+      {
+        year: "2023 • OFFICIAL SELECTION",
+        title: "Best Visual Storytelling",
+        festival: "Dadasaheb Phalke International Film Festival"
+      },
+      {
+        year: "2022 • WINNER",
+        title: "Excellence in Commercial Lighting",
+        festival: "Indian Television & Broadcast Awards"
+      },
+      {
+        year: "2021 • NOMINEE",
+        title: "Best Music Video Cinematography",
+        festival: "Indie Music Video Awards"
+      }
+    ];
+
+
+    /* ============================================================================
+       RENDERING & INTERACTION ENGINE
+       ============================================================================ */
+
+    // 1. Apply Configuration
+    document.documentElement.style.setProperty('--bg-image', `url('${SITE_CONFIG.backgroundImageUrl}')`);
+    document.documentElement.style.setProperty('--bg-opacity', SITE_CONFIG.backgroundOpacity);
+    document.getElementById("header-name").textContent = SITE_CONFIG.name;
+    document.getElementById("header-role").textContent = SITE_CONFIG.role;
+    document.getElementById("header-availability").textContent = SITE_CONFIG.availability;
+    document.getElementById("header-location").textContent = SITE_CONFIG.location;
+    document.getElementById("hero-eyebrow").textContent = SITE_CONFIG.eyebrow;
+    document.getElementById("hero-name").textContent = SITE_CONFIG.name;
+    document.getElementById("hero-quote").textContent = SITE_CONFIG.quote;
+    document.getElementById("hero-bio").textContent = SITE_CONFIG.bio;
+    document.getElementById("contact-name").textContent = SITE_CONFIG.name;
+
+    // Contact Links
+    const instaEl = document.getElementById("contact-instagram");
+    instaEl.href = SITE_CONFIG.instagramUrl;
+    document.getElementById("instagram-text").textContent = SITE_CONFIG.instagramHandle;
+
+    const emailEl = document.getElementById("contact-email");
+    emailEl.href = `mailto:${SITE_CONFIG.email}`;
+    document.getElementById("email-text").textContent = SITE_CONFIG.email;
+
+    const phoneEl = document.getElementById("contact-phone");
+    phoneEl.href = `tel:${SITE_CONFIG.phone.replace(/\s+/g, '')}`;
+    document.getElementById("phone-text").textContent = SITE_CONFIG.phone;
+
+    const specialtiesContainer = document.getElementById("specialties-container");
+    SITE_CONFIG.specialties.forEach(item => {
+      specialtiesContainer.innerHTML += `<span class="specialty-chip">${item}</span>`;
+    });
+
+    const statsContainer = document.getElementById("stats-container");
+    SITE_CONFIG.stats.forEach(st => {
+      statsContainer.innerHTML += `
+        <div class="stat-box">
+          <div class="stat-value">${st.number}</div>
+          <div class="stat-label">${st.label}</div>
+        </div>
+      `;
+    });
+
+    // 2. Render Posters with Category Filtering
+    const postersContainer = document.getElementById("posters-container");
+
+    function renderPosters(selectedCategory) {
+      postersContainer.innerHTML = "";
+      const filtered = selectedCategory === "All"
+        ? MY_POSTERS
+        : MY_POSTERS.filter(p => p.category === selectedCategory);
+
+      filtered.forEach(item => {
+        postersContainer.innerHTML += `
+          <article class="spatial-panel poster-card">
+            <div class="poster-image-frame">
+              <img src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80'">
+              <div class="poster-top-tags">
+                <span class="poster-category-badge">${item.category}</span>
+                <span class="poster-year-badge">${item.year}</span>
+              </div>
+            </div>
+            <div class="poster-caption-box">
+              <h3 class="poster-title">${item.title}</h3>
+              <div class="poster-role-line">${item.role}</div>
+              <p class="poster-description">${item.description}</p>
+            </div>
+          </article>
+        `;
+      });
+    }
+
+    renderPosters("All");
+
+    // Filter Buttons Click Handler
+    const filterButtons = document.querySelectorAll(".filter-tab");
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderPosters(btn.getAttribute("data-filter"));
+      });
+    });
+
+    // 3. Render Credits
+    const expContainer = document.getElementById("experience-container");
+    MY_EXPERIENCE.forEach(function(group) {
+      let projectItems = "";
+      group.projects.forEach(function(proj) {
+        projectItems += `
+          <li>
+            <span class="work-title">${proj.name}</span>
+            <span class="work-role">${proj.role}</span>
+          </li>
+        `;
+      });
+      expContainer.innerHTML += `
+        <div class="spatial-panel credit-panel">
+          <div class="credit-category-title">${group.category}</div>
+          <ul class="credit-ledger">${projectItems}</ul>
+        </div>
+      `;
+    });
+
+    // 4. Render Awards
+    const awardsContainer = document.getElementById("awards-container");
+    MY_AWARDS.forEach(function(award) {
+      awardsContainer.innerHTML += `
+        <div class="spatial-panel laurel-card">
+          <div class="laurel-year">${award.year}</div>
+          <div class="laurel-award">${award.title}</div>
+          <div class="laurel-festival">${award.festival}</div>
+        </div>
+      `;
+    });
+
+    // 5. Subtle Cursor Ambient Glow
+    window.addEventListener("pointermove", (e) => {
+      document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
+    }, { passive: true });
+
+    /* ============================================================================
+       6. BOTTOM NAVIGATION DOCK ENGINE
+       ============================================================================ */
+    const dockTrack = document.getElementById("spatial-dock-track");
+    const dockLens = document.getElementById("optical-dock-lens");
+    const dockWrap = document.getElementById("spatial-dock-wrap");
+    const dockItems = Array.from(document.querySelectorAll(".dock-item"));
+
+    let isHoldingDock = false;
+    let activePointerId = null;
+    let autoScrollLock = false;
+    let currentActiveTarget = "about-section";
+    let scrollDimTimer = null;
+
+    dockTrack.addEventListener("dragstart", (e) => e.preventDefault());
+    dockTrack.addEventListener("selectstart", (e) => e.preventDefault());
+
+    function positionLensOnItem(item, magnify) {
+      if (!item) return;
+      dockItems.forEach(el => el.classList.remove("active"));
+      item.classList.add("active");
+
+      const trackRect = dockTrack.getBoundingClientRect();
+      const itemRect = item.getBoundingClientRect();
+      const offsetLeft = itemRect.left - trackRect.left + dockTrack.scrollLeft;
+
+      dockLens.style.width = `${itemRect.width}px`;
+      dockLens.style.transform = `translateX(${offsetLeft - 5}px) scale(${magnify ? 1.06 : 1})`;
+    }
+
+    function activateSectionFromItem(item) {
+      if (!item) return;
+      const targetId = item.getAttribute("data-target");
+      positionLensOnItem(item, false);
+
+      if (targetId) {
+        currentActiveTarget = targetId;
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          autoScrollLock = true;
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          setTimeout(() => { autoScrollLock = false; }, 750);
+        }
+      }
+    }
+
+    function getDockItemUnderX(clientX) {
+      let closestItem = dockItems[0];
+      let minDist = Infinity;
+      for (const item of dockItems) {
+        const rect = item.getBoundingClientRect();
+        if (clientX >= rect.left && clientX <= rect.right) {
+          return item;
+        }
+        const center = rect.left + rect.width / 2;
+        const dist = Math.abs(clientX - center);
+        if (dist < minDist) {
+          minDist = dist;
+          closestItem = item;
+        }
+      }
+      return closestItem;
+    }
+
+    dockTrack.addEventListener("pointerdown", function(e) {
+      e.preventDefault();
+      isHoldingDock = true;
+      activePointerId = e.pointerId;
+      dockTrack.classList.add("is-dragging");
+
+      try { dockTrack.setPointerCapture(e.pointerId); } catch (err) {}
+
+      const hovered = getDockItemUnderX(e.clientX);
+      if (hovered) {
+        positionLensOnItem(hovered, true);
+      }
+    });
+
+    window.addEventListener("pointermove", function(e) {
+      if (!isHoldingDock) return;
+      const hovered = getDockItemUnderX(e.clientX);
+      if (hovered) {
+        positionLensOnItem(hovered, true);
+      }
+    });
+
+    function releaseDockHold(e) {
+      if (!isHoldingDock) return;
+      isHoldingDock = false;
+      dockTrack.classList.remove("is-dragging");
+
+      if (activePointerId !== null) {
+        try { dockTrack.releasePointerCapture(activePointerId); } catch (err) {}
+        activePointerId = null;
+      }
+
+      const chosenItem = getDockItemUnderX(e.clientX);
+      if (chosenItem) {
+        activateSectionFromItem(chosenItem);
+      }
+    }
+
+    window.addEventListener("pointerup", releaseDockHold);
+    window.addEventListener("pointercancel", releaseDockHold);
+
+    window.addEventListener("scroll", function() {
+      dockWrap.classList.add("scrolling-passive");
+      clearTimeout(scrollDimTimer);
+      scrollDimTimer = setTimeout(() => {
+        dockWrap.classList.remove("scrolling-passive");
+      }, 400);
+
+      if (!isHoldingDock && !autoScrollLock) {
+        let detectedSection = "about-section";
+        dockItems.forEach(item => {
+          const secId = item.getAttribute("data-target");
+          const secEl = document.getElementById(secId);
+          if (secEl) {
+            const rect = secEl.getBoundingClientRect();
+            if (rect.top <= 260) {
+              detectedSection = secId;
+            }
+          }
+        });
+        const matchingItem = document.querySelector(`.dock-item[data-target="${detectedSection}"]`);
+        if (matchingItem && currentActiveTarget !== detectedSection) {
+          currentActiveTarget = detectedSection;
+          positionLensOnItem(matchingItem, false);
+        }
+      }
+    }, { passive: true });
+
+    window.addEventListener("load", () => {
+      const initialActive = document.querySelector(".dock-item.active");
+      positionLensOnItem(initialActive, false);
+    });
+
+    window.addEventListener("resize", () => {
+      const currentActive = document.querySelector(".dock-item.active");
+      positionLensOnItem(currentActive, false);
+    });
+  </script>
+</body>
+</html>
