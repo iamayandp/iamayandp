@@ -25,7 +25,7 @@
       --red-soft: rgba(229, 9, 20, 0.15);
       --radius-outer: 20px;
       --radius-inner: 14px;
-      --bg-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=85');
+      --bg-image: url('https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=75');
       --bg-opacity: 0.12;
     }
 
@@ -101,10 +101,10 @@
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-outer);
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.35s ease,
-                  background 0.35s ease,
-                  box-shadow 0.4s ease;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s ease,
+                  background 0.3s ease,
+                  box-shadow 0.35s ease;
     }
 
     /* =====================================================================
@@ -245,7 +245,7 @@
       align-items: center;
       width: 100%;
       max-width: 500px;
-      background: rgba(8, 8, 12, 0.88);
+      background: rgba(8, 8, 12, 0.9);
       backdrop-filter: blur(28px) saturate(190%);
       -webkit-backdrop-filter: blur(28px) saturate(190%);
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -290,7 +290,6 @@
                   width 0.24s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Zero lag during finger or mouse drag */
     .spatial-dock-track.is-dragging .optical-dock-lens {
       transition: none !important;
     }
@@ -549,9 +548,9 @@
       border-radius: var(--radius-outer);
       background: rgba(10, 10, 14, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.35s ease,
-                  box-shadow 0.45s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.3s ease,
+                  box-shadow 0.4s ease;
     }
 
     .poster-card.has-stills {
@@ -559,14 +558,14 @@
     }
 
     .poster-card:hover {
-      transform: translateY(-6px);
+      transform: translateY(-5px);
       border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.92);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.92);
     }
 
     .poster-card.has-stills:hover {
       border-color: var(--red-key);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 32px rgba(229, 9, 20, 0.22);
+      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.95), 0 0 30px rgba(229, 9, 20, 0.22);
     }
 
     .poster-image-frame {
@@ -583,11 +582,11 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.45s ease;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .poster-card:hover .poster-image-frame img {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .poster-top-tags {
@@ -636,11 +635,11 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(8, 8, 12, 0.9);
+      background: rgba(8, 8, 12, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       padding: 8px 15px;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -648,8 +647,8 @@
       font-weight: 700;
       letter-spacing: 1px;
       text-transform: uppercase;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
     }
 
     .stills-trigger-badge svg {
@@ -657,13 +656,13 @@
       height: 15px;
       stroke: var(--red-key);
       stroke-width: 2;
-      transition: stroke 0.3s ease;
+      transition: stroke 0.28s ease;
     }
 
     .poster-card.has-stills:hover .stills-trigger-badge {
       background: var(--red-key);
       border-color: #FFFFFF;
-      transform: translateY(-3px) scale(1.03);
+      transform: translateY(-2px) scale(1.03);
       box-shadow: 0 10px 25px rgba(229, 9, 20, 0.55);
     }
 
@@ -707,124 +706,369 @@
     }
 
     /* =====================================================================
-       CINEMATIC STILLS GALLERY MODAL (LIGHTBOX)
+       2-STAGE PROJECT & STILLS MODAL (OVERVIEW SHEET + FULLSCREEN SLIDER)
        ===================================================================== */
-    .stills-modal-overlay {
+    .project-modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(4, 4, 6, 0.94);
-      backdrop-filter: blur(26px) saturate(160%);
-      -webkit-backdrop-filter: blur(26px) saturate(160%);
+      background: rgba(4, 4, 7, 0.96);
+      backdrop-filter: blur(28px) saturate(165%);
+      -webkit-backdrop-filter: blur(28px) saturate(165%);
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 24px;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.38s ease;
+      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.32s ease;
     }
 
-    .stills-modal-overlay.active {
+    .project-modal-overlay.active {
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
     }
 
-    .stills-modal-header {
-      max-width: 1280px;
+    /* Top Sticky Navigation Bar with Prominent Back Button */
+    .modal-topbar {
+      width: 100%;
+      background: rgba(8, 8, 12, 0.9);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+
+    .modal-topbar-inner {
+      max-width: 1200px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      gap: 12px;
     }
 
-    .stills-modal-meta {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .stills-modal-eyebrow {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--red-key);
-    }
-
-    .stills-modal-title {
-      font-family: 'Syne', sans-serif;
-      font-size: clamp(18px, 2.5vw, 26px);
-      font-weight: 800;
-      color: #FFFFFF;
-    }
-
-    .stills-header-actions {
-      display: flex;
+    .modal-back-btn {
+      display: inline-flex;
       align-items: center;
-      gap: 14px;
-    }
-
-    .stills-counter-pill {
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      padding: 9px 18px;
+      border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 12px;
       font-weight: 700;
-      color: #FFFFFF;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 7px 14px;
-      border-radius: 100px;
+      text-transform: uppercase;
       letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.22s ease;
     }
 
-    .stills-close-btn {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
+    .modal-back-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      transition: transform 0.22s ease;
+    }
+
+    .modal-back-btn:hover {
       background: var(--red-key);
+      border-color: #FFFFFF;
+      box-shadow: 0 6px 20px rgba(229, 9, 20, 0.45);
+    }
+
+    .modal-back-btn:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .modal-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-step-indicator {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 6px 14px;
+      border-radius: 100px;
+      letter-spacing: 0.8px;
+    }
+
+    .modal-close-icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(229, 9, 20, 0.2);
+      border: 1px solid rgba(229, 9, 20, 0.55);
       color: #FFFFFF;
-      border: 1px solid rgba(255, 255, 255, 0.4);
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 6px 20px rgba(229, 9, 20, 0.5);
+      transition: all 0.22s ease;
     }
 
-    .stills-close-btn:hover {
-      background: #FFFFFF;
-      color: #050507;
-      transform: rotate(90deg) scale(1.06);
+    .modal-close-icon-btn:hover {
+      background: var(--red-key);
+      border-color: #FFFFFF;
+      transform: scale(1.06);
     }
 
-    .stills-close-btn svg {
-      width: 20px;
-      height: 20px;
+    .modal-close-icon-btn svg {
+      width: 18px;
+      height: 18px;
       stroke: currentColor;
       stroke-width: 2.2;
     }
 
-    /* Main Stage Image & Prev/Next Arrows */
+    /* ---------------- VIEW 1: PROJECT OVERVIEW (MINI POSTER + INFO + STILLS GRID) ---------------- */
+    .project-overview-view {
+      flex: 1;
+      overflow-y: auto;
+      padding: 32px 24px 60px 24px;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      animation: fadeSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Compact Poster on Left + Project Details on Right */
+    .project-summary-card {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 32px;
+      align-items: center;
+      background: rgba(14, 14, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-left: 4px solid var(--red-key);
+      border-radius: var(--radius-outer);
+      padding: 26px;
+      margin-bottom: 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+    }
+
+    .mini-poster-box {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: #07070B;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+    }
+
+    .mini-poster-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-summary-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .summary-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .summary-cat-pill {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      background: var(--red-key);
+      color: #FFFFFF;
+      padding: 5px 13px;
+      border-radius: 100px;
+    }
+
+    .summary-year-pill {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 5px 13px;
+      border-radius: 100px;
+    }
+
+    .summary-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 6px;
+      line-height: 1.15;
+    }
+
+    .summary-role {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--red-key);
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .summary-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+    }
+
+    /* Stills Thumbnail Grid Below Summary */
+    .stills-grid-section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stills-grid-heading {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stills-grid-heading::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--red-key);
+      box-shadow: 0 0 10px var(--red-key);
+    }
+
+    .stills-grid-hint {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .stills-thumbnails-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .still-grid-card {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #09090E;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      cursor: pointer;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.28s ease,
+                  box-shadow 0.28s ease;
+    }
+
+    .still-grid-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .still-grid-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: var(--red-key);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.35);
+    }
+
+    .still-grid-card:hover img {
+      transform: scale(1.07);
+    }
+
+    .still-grid-index-tag {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(5, 5, 8, 0.85);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 100px;
+      pointer-events: none;
+    }
+
+    /* ---------------- VIEW 2: FULL-SCREEN SLIDER VIEW ---------------- */
+    .project-slider-view {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px 24px 22px 24px;
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      min-height: 0;
+      animation: fadeSlideUp 0.25s ease;
+    }
+
+    .project-slider-view.active {
+      display: flex;
+    }
+
+    .project-overview-view.hidden {
+      display: none;
+    }
+
     .stills-stage-wrap {
       position: relative;
       flex: 1;
-      max-width: 1280px;
       width: 100%;
-      margin: 18px auto;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       min-height: 0;
+      user-select: none;
     }
 
     .stills-main-img-container {
@@ -838,15 +1082,15 @@
 
     .stills-main-img {
       max-width: 100%;
-      max-height: 64vh;
+      max-height: 68vh;
       object-fit: contain;
-      border-radius: 14px;
+      border-radius: 12px;
       border: 1px solid rgba(255, 255, 255, 0.22);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.95);
-      transform: scale(0.95);
+      transform: scale(0.96);
       opacity: 0;
-      transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1),
-                  opacity 0.3s ease;
+      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
+                  opacity 0.24s ease;
     }
 
     .stills-main-img.loaded {
@@ -859,17 +1103,17 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 10;
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: rgba(10, 10, 14, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(10, 10, 14, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.22s ease;
       backdrop-filter: blur(10px);
     }
 
@@ -880,8 +1124,8 @@
       box-shadow: 0 8px 25px rgba(229, 9, 20, 0.55);
     }
 
-    .stills-nav-btn.prev { left: 12px; }
-    .stills-nav-btn.next { right: 12px; }
+    .stills-nav-btn.prev { left: 10px; }
+    .stills-nav-btn.next { right: 10px; }
 
     .stills-nav-btn svg {
       width: 22px;
@@ -890,29 +1134,29 @@
       stroke-width: 2.2;
     }
 
-    /* Bottom Thumbnail Filmstrip */
+    /* Bottom Filmstrip inside Slider View */
     .stills-thumbs-bar {
-      max-width: 1280px;
       width: 100%;
-      margin: 0 auto;
+      margin-top: 14px;
       display: flex;
-      gap: 12px;
+      gap: 10px;
       overflow-x: auto;
-      padding: 10px 4px;
+      padding: 8px 4px;
       justify-content: center;
       scrollbar-width: thin;
+      flex-shrink: 0;
     }
 
     .still-thumb-item {
-      width: 92px;
-      height: 62px;
+      width: 82px;
+      height: 54px;
       border-radius: 8px;
       overflow: hidden;
       border: 2px solid rgba(255, 255, 255, 0.2);
       cursor: pointer;
       flex-shrink: 0;
-      opacity: 0.55;
-      transition: all 0.25s ease;
+      opacity: 0.5;
+      transition: all 0.22s ease;
       background: #09090D;
     }
 
@@ -925,13 +1169,12 @@
 
     .still-thumb-item:hover {
       opacity: 0.85;
-      transform: translateY(-2px);
     }
 
     .still-thumb-item.active {
       opacity: 1;
       border-color: var(--red-key);
-      box-shadow: 0 0 16px rgba(229, 9, 20, 0.7);
+      box-shadow: 0 0 14px rgba(229, 9, 20, 0.7);
       transform: scale(1.06);
     }
 
@@ -1218,8 +1461,44 @@
       .booking-panel {
         padding: 44px 22px;
       }
+      .project-summary-card {
+        grid-template-columns: 160px 1fr;
+        gap: 22px;
+        padding: 20px;
+      }
       .stills-thumbs-bar {
         justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .project-summary-card {
+        grid-template-columns: 115px 1fr;
+        gap: 16px;
+        padding: 16px;
+        align-items: start;
+      }
+      .summary-title {
+        font-size: 20px;
+      }
+      .summary-role {
+        font-size: 11px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+      }
+      .summary-description {
+        font-size: 13.5px;
+        line-height: 1.55;
+      }
+      .stills-thumbnails-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+      .modal-topbar {
+        padding: 12px 14px;
+      }
+      .project-overview-view {
+        padding: 20px 14px 50px 14px;
       }
     }
 
@@ -1235,9 +1514,6 @@
         font-size: 10px;
         letter-spacing: 0.3px;
         padding: 9px 2px;
-      }
-      .stills-modal-overlay {
-        padding: 14px;
       }
       .stills-nav-btn {
         width: 40px;
@@ -1318,7 +1594,7 @@
     <section id="works-section">
       <div class="section-header">
         <div>
-          <div class="section-eyebrow">Portfolio Showcase • Click Poster to View Stills</div>
+          <div class="section-eyebrow">Portfolio Showcase • Click Poster to Open Project &amp; Stills</div>
           <h2 class="section-heading">Selected Works &amp; Posters</h2>
         </div>
 
@@ -1382,14 +1658,14 @@
             <span class="channel-action-hint">Follow &amp; View Latest Work →</span>
           </a>
 
-          <!-- Phone -->
+          <!-- Phone (WhatsApp Removed) -->
           <a id="contact-phone" href="tel:+917722991272" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
             </div>
-            <span class="channel-label">Phone / WhatsApp</span>
+            <span class="channel-label">Phone</span>
             <span class="channel-value" id="phone-text">+91 7722991272</span>
             <span class="channel-action-hint">Direct Call for Bookings →</span>
           </a>
@@ -1419,37 +1695,73 @@
 
   </main>
 
-  <!-- ================= CINEMATIC STILLS GALLERY MODAL ================= -->
-  <div class="stills-modal-overlay" id="stills-modal" role="dialog" aria-modal="true" aria-labelledby="stills-modal-title">
-    <div class="stills-modal-header">
-      <div class="stills-modal-meta">
-        <span class="stills-modal-eyebrow" id="stills-modal-role">CINEMATOGRAPHY STILLS</span>
-        <h3 class="stills-modal-title" id="stills-modal-title">Project Title</h3>
-      </div>
-      <div class="stills-header-actions">
-        <span class="stills-counter-pill" id="stills-counter">1 / 4</span>
-        <button class="stills-close-btn" id="stills-close-btn" aria-label="Close Stills Gallery">
+  <!-- ================= 2-STAGE PROJECT & STILLS MODAL ================= -->
+  <div class="project-modal-overlay" id="project-modal" role="dialog" aria-modal="true">
+
+    <!-- Top Navigation Bar with Back Button -->
+    <div class="modal-topbar">
+      <div class="modal-topbar-inner">
+        <button class="modal-back-btn" id="modal-back-btn">
           <svg viewBox="0 0 24 24" fill="none">
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
+          <span id="modal-back-text">Back to Works</span>
+        </button>
+
+        <div class="modal-topbar-right">
+          <span class="modal-step-indicator" id="modal-step-indicator">Project Stills</span>
+          <button class="modal-close-icon-btn" id="modal-close-all-btn" aria-label="Close Viewer">
+            <svg viewBox="0 0 24 24" fill="none">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: OVERVIEW VIEW (COMPACT POSTER + RIGHT SIDE DETAILS + STILLS THUMBNAILS GRID) -->
+    <div class="project-overview-view" id="project-overview-view">
+      <div class="project-summary-card">
+        <div class="mini-poster-box">
+          <img src="" alt="Project Poster" id="overview-mini-poster">
+        </div>
+        <div class="project-summary-info">
+          <div class="summary-badges-row">
+            <span class="summary-cat-pill" id="overview-category">Category</span>
+            <span class="summary-year-pill" id="overview-year">Year</span>
+          </div>
+          <h3 class="summary-title" id="overview-title">Project Title</h3>
+          <div class="summary-role" id="overview-role">Role</div>
+          <p class="summary-description" id="overview-description">Description</p>
+        </div>
+      </div>
+
+      <div class="stills-grid-section-header">
+        <h4 class="stills-grid-heading">Project Stills Gallery</h4>
+        <span class="stills-grid-hint">Click any still below to open full-screen slider →</span>
+      </div>
+
+      <div class="stills-thumbnails-grid" id="overview-stills-grid"></div>
+    </div>
+
+    <!-- STEP 2: FULL-SCREEN SLIDER VIEW (WHEN A STILL IS CLICKED) -->
+    <div class="project-slider-view" id="project-slider-view">
+      <div class="stills-stage-wrap" id="stills-stage-wrap">
+        <button class="stills-nav-btn prev" id="stills-prev-btn" aria-label="Previous Still">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="stills-main-img-container">
+          <img src="" alt="Project Still" class="stills-main-img" id="stills-main-img">
+        </div>
+        <button class="stills-nav-btn next" id="stills-next-btn" aria-label="Next Still">
+          <svg viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
       </div>
+
+      <div class="stills-thumbs-bar" id="stills-thumbs-bar"></div>
     </div>
 
-    <div class="stills-stage-wrap" id="stills-stage-wrap">
-      <button class="stills-nav-btn prev" id="stills-prev-btn" aria-label="Previous Still">
-        <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </button>
-      <div class="stills-main-img-container">
-        <img src="" alt="Project Still" class="stills-main-img" id="stills-main-img">
-      </div>
-      <button class="stills-nav-btn next" id="stills-next-btn" aria-label="Next Still">
-        <svg viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </button>
-    </div>
-
-    <div class="stills-thumbs-bar" id="stills-thumbs-bar"></div>
   </div>
 
 
@@ -1468,10 +1780,10 @@
       availability: "Available for Bookings",
       location: "Mumbai • Worldwide",
       
-      backgroundImageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=2200&q=85",
+      backgroundImageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=75",
       backgroundOpacity: "0.12",
 
-      bio: "Ayan Khan is an acclaimed Director of Photography with over a decade of experience across narrative films, major broadcast promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
+      bio: "Ayan Khan is an acclaimed Director of Photography with extensive experience across narrative films, major broadcast promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
 
       specialties: [
         "Feature Films",
@@ -1482,10 +1794,10 @@
       ],
 
       stats: [
-        { number: "10+ Yrs", label: "Experience" },
+        { number: "4+ Yrs", label: "Experience" },
         { number: "11M+", label: "Broadcast Views" },
         { number: "2+", label: "Awards Won" },
-        { number: "20+", label: "Major Projects" }
+        { number: "5+", label: "Major Projects" }
       ],
 
       instagramHandle: "@ayankhan.dop",
@@ -1499,99 +1811,91 @@
     // 1. SELECTED WORKS, POSTERS & STILLS GALLERY
     //    नियम:
     //    - जिस पोस्टर के अंदर `stills: [ ... ]` में फोटो के लिंक होंगे, उस पोस्टर को क्लिक करने पर
-    //      अंदर शानदार फुल-स्क्रीन Stills Gallery खुलेगी।
-    //    - अगर किसी पोस्टर में `stills: []` खाली है (फोटो अपलोड नहीं की गई है), तो उस पोस्टर को
-    //      क्लिक करने पर कुछ नहीं खुलेगा।
+    //      पहले छोटा पोस्टर + जानकारी + नीचे छोटे Stills दिखेंगे, और फिर किसी भी Still को क्लिक करने पर
+    //      बड़ा स्लाइडर खुलेगा।
+    //    - अगर किसी पोस्टर में `stills: []` खाली है, तो उस पोस्टर को क्लिक करने पर कुछ नहीं खुलेगा।
     // ============================================================================
     const MY_POSTERS = [
       {
-        // आपका श्रीफल (Shreefal) पोस्टर:
-        posterUrl: "signal-2026-10-18-17-45-37-804.jpg",
-        fallbackPosterUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=85",
+        // आपका श्रीफल (Shreefal) पोस्टर का डायरेक्ट GitHub लिंक:
+        posterUrl: "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
+        fallbackPosterUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=75",
         category: "Film & Series",
         year: "Gujarati Short Film • 2026",
         title: "Shreefal (શ્રીફળ)",
         role: "Producer & Director of Photography",
         description: "Written & Directed by Jignesh Mahida and Produced by Ayan Khan, Kartik Parmar & Jignesh Mahida. Captured with soulful golden-hour natural light, intimate character compositions, and evocative rural textures.",
-        // Shreefal के अंदर दिखने वाली Stills तस्वीरें:
+        // Shreefal के अंदर दिखने वाली Stills तस्वीरें (Fast loading optimized):
         stills: [
-          "signal-2026-10-18-17-45-37-804.jpg",
-          "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=85"
+          "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
+          "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1100&q=75"
         ]
       },
       {
-        posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1200&q=85",
+        posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=75",
         category: "Music Video",
         year: "T-Series • 11M+ Views",
         title: "Naman Tula",
         role: "Director of Photography",
         description: "Official T-Series music video crossing over 11 Million+ views, shot on a grand devotional scale with rich cinematic lighting and dynamic camera movement.",
         stills: [
-          "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1600&q=85"
+          "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=75"
         ]
       },
       {
-        posterUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=85",
+        posterUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=75",
         category: "Commercial",
         year: "Automotive Campaign",
         title: "Tata Safari & Hyundai Alcazar",
         role: "DoP / Camera",
         description: "High-speed commercial cinematography capturing dynamic road presence, dramatic terrain tracking shots, and bold automotive lighting.",
         stills: [
-          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1600&q=85"
+          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1100&q=75"
         ]
       },
       {
-        posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1200&q=85",
+        posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=75",
         category: "Film & Series",
         year: "Broadcast Network",
         title: "ZeeTV & StarPlus Promos",
         role: "Cinematographer",
         description: "Prime-time broadcast promos crafted with high-impact dramatic lighting, multi-camera setups, and rich theatrical production value.",
         stills: [
-          "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=1600&q=85"
+          "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=1100&q=75"
         ]
       },
       {
-        posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=85",
+        posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=75",
         category: "Film & Series",
         year: "Narrative Feature",
         title: "Shadows of Mumbai",
         role: "Director of Photography",
         description: "An atmospheric narrative drama exploring the contrast of city nights and intimate human stories through expressive framing.",
         stills: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=85",
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1600&q=85"
+          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1100&q=75",
+          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1100&q=75"
         ]
-      },
-      {
-        posterUrl: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1200&q=85",
-        category: "Commercial",
-        year: "Brand Film",
-        title: "Reliance Digital & Royal Enfield",
-        role: "Director of Photography",
-        description: "National brand campaigns combining crisp modern visuals with authentic storytelling and cinematic scale.",
-        // डेमो: अगर किसी प्रोजेक्ट में stills खाली [] रखेंगे, तो उस पर क्लिक करने से कुछ नहीं खुलेगा:
-        stills: []
       }
     ];
 
 
     // ============================================================================
-    // 2. FILMOGRAPHY & CREDITS (यहाँ से Television हटा दिया गया है)
+    // 2. FILMOGRAPHY & CREDITS
     // ============================================================================
     const MY_EXPERIENCE = [
       {
@@ -1685,7 +1989,7 @@
       `;
     });
 
-    // 2. Render Posters with Conditional Stills Gallery Support
+    // 2. Render Posters with Conditional Stills Support
     const postersContainer = document.getElementById("posters-container");
 
     function renderPosters(selectedCategory) {
@@ -1699,14 +2003,14 @@
           ? item.stills.filter(url => typeof url === "string" && url.trim() !== "")
           : [];
         const hasStills = validStills.length > 0;
-        const fallbackImg = item.fallbackPosterUrl || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80';
+        const fallbackImg = item.fallbackPosterUrl || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=75';
 
         const cardEl = document.createElement("article");
         cardEl.className = `spatial-panel poster-card ${hasStills ? "has-stills" : ""}`;
 
         cardEl.innerHTML = `
           <div class="poster-image-frame">
-            <img src="${item.posterUrl}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='${fallbackImg}';">
+            <img src="${item.posterUrl}" alt="${item.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}';">
             <div class="poster-top-tags">
               <span class="poster-category-badge">${item.category}</span>
               <span class="poster-year-badge">${item.year}</span>
@@ -1729,10 +2033,9 @@
           </div>
         `;
 
-        // केवल तभी क्लिक काम करेगा जब पोस्टर के अंदर Stills अपलोड किए गए हों
         if (hasStills) {
           cardEl.addEventListener("click", () => {
-            openStillsGallery(item, validStills);
+            openProjectOverview(item, validStills);
           });
         }
 
@@ -1753,67 +2056,134 @@
     });
 
     /* ============================================================================
-       STILLS GALLERY LIGHTBOX ENGINE
+       2-STAGE PROJECT OVERVIEW + FULL-SCREEN SLIDER ENGINE (WITH PHONE BACK SUPPORT)
        ============================================================================ */
-    const stillsModal = document.getElementById("stills-modal");
-    const stillsModalTitle = document.getElementById("stills-modal-title");
-    const stillsModalRole = document.getElementById("stills-modal-role");
-    const stillsCounter = document.getElementById("stills-counter");
+    const projectModal = document.getElementById("project-modal");
+    const overviewView = document.getElementById("project-overview-view");
+    const sliderView = document.getElementById("project-slider-view");
+
+    const modalBackBtn = document.getElementById("modal-back-btn");
+    const modalBackText = document.getElementById("modal-back-text");
+    const modalStepIndicator = document.getElementById("modal-step-indicator");
+    const modalCloseAllBtn = document.getElementById("modal-close-all-btn");
+
+    // Overview Elements
+    const overviewMiniPoster = document.getElementById("overview-mini-poster");
+    const overviewCategory = document.getElementById("overview-category");
+    const overviewYear = document.getElementById("overview-year");
+    const overviewTitle = document.getElementById("overview-title");
+    const overviewRole = document.getElementById("overview-role");
+    const overviewDescription = document.getElementById("overview-description");
+    const overviewStillsGrid = document.getElementById("overview-stills-grid");
+
+    // Slider Elements
     const stillsMainImg = document.getElementById("stills-main-img");
     const stillsThumbsBar = document.getElementById("stills-thumbs-bar");
-    const stillsCloseBtn = document.getElementById("stills-close-btn");
     const stillsPrevBtn = document.getElementById("stills-prev-btn");
     const stillsNextBtn = document.getElementById("stills-next-btn");
 
+    let activeProjectItem = null;
     let activeStillsList = [];
     let activeStillIndex = 0;
-    let activeProjectFallback = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85';
+    let activeFallback = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
+    let currentModalStage = 0; // 0 = closed, 1 = overview (mini poster + grid), 2 = fullscreen slider
 
-    function openStillsGallery(projectItem, stillsArray) {
+    // Stage 1: Open Project Overview (Mini Poster + Info + Small Stills Grid)
+    function openProjectOverview(projectItem, stillsArray) {
       if (!stillsArray || stillsArray.length === 0) return;
 
+      activeProjectItem = projectItem;
       activeStillsList = stillsArray;
       activeStillIndex = 0;
-      activeProjectFallback = projectItem.fallbackPosterUrl || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=85';
+      activeFallback = projectItem.fallbackPosterUrl || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
 
-      stillsModalTitle.textContent = projectItem.title;
-      stillsModalRole.textContent = `${projectItem.role} • ${projectItem.category}`;
+      // Populate Mini Poster & Right-side Details
+      overviewMiniPoster.onerror = function() {
+        this.onerror = null;
+        this.src = activeFallback;
+      };
+      overviewMiniPoster.src = projectItem.posterUrl;
+      overviewCategory.textContent = projectItem.category;
+      overviewYear.textContent = projectItem.year;
+      overviewTitle.textContent = projectItem.title;
+      overviewRole.textContent = projectItem.role;
+      overviewDescription.textContent = projectItem.description;
 
-      // Build Thumbnails
+      // Populate Small Stills Grid Below
+      overviewStillsGrid.innerHTML = "";
+      activeStillsList.forEach((stillUrl, idx) => {
+        const gridCard = document.createElement("div");
+        gridCard.className = "still-grid-card";
+        gridCard.innerHTML = `
+          <img src="${stillUrl}" alt="${projectItem.title} Still ${idx + 1}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${activeFallback}';">
+          <span class="still-grid-index-tag">Still ${idx + 1}</span>
+        `;
+        gridCard.addEventListener("click", () => {
+          openFullScreenSlider(idx);
+        });
+        overviewStillsGrid.appendChild(gridCard);
+      });
+
+      // Also build bottom filmstrip for Stage 2 slider
       stillsThumbsBar.innerHTML = "";
       activeStillsList.forEach((stillUrl, idx) => {
         const thumb = document.createElement("div");
         thumb.className = `still-thumb-item ${idx === 0 ? "active" : ""}`;
-        thumb.innerHTML = `<img src="${stillUrl}" alt="Still ${idx + 1}" onerror="this.onerror=null;this.src='${activeProjectFallback}';">`;
+        thumb.innerHTML = `<img src="${stillUrl}" alt="Thumb ${idx + 1}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${activeFallback}';">`;
         thumb.addEventListener("click", (e) => {
           e.stopPropagation();
-          showStillAtIndex(idx);
+          showSlideAtIndex(idx);
         });
         stillsThumbsBar.appendChild(thumb);
       });
 
-      showStillAtIndex(0);
-      stillsModal.classList.add("active");
+      // Show Stage 1 UI
+      currentModalStage = 1;
+      overviewView.classList.remove("hidden");
+      sliderView.classList.remove("active");
+      modalBackText.textContent = "Back to Works";
+      modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
+
+      projectModal.classList.add("active");
       document.body.classList.add("modal-open");
+      overviewView.scrollTop = 0;
+
+      // Push browser history state so phone Back button returns to website instead of exiting
+      try {
+        history.pushState({ modalStage: 1 }, "");
+      } catch (err) {}
     }
 
-    function showStillAtIndex(index) {
+    // Stage 2: Open Full-Screen Slider When a Small Still is Clicked
+    function openFullScreenSlider(startIndex) {
+      currentModalStage = 2;
+      overviewView.classList.add("hidden");
+      sliderView.classList.add("active");
+      modalBackText.textContent = `Back to ${activeProjectItem ? activeProjectItem.title : "Project"}`;
+
+      showSlideAtIndex(startIndex);
+
+      // Push second history state so phone Back button returns from Slider -> Overview
+      try {
+        history.pushState({ modalStage: 2 }, "");
+      } catch (err) {}
+    }
+
+    function showSlideAtIndex(index) {
       if (!activeStillsList.length) return;
       activeStillIndex = (index + activeStillsList.length) % activeStillsList.length;
 
       stillsMainImg.classList.remove("loaded");
-      setTimeout(() => {
-        stillsMainImg.onerror = function() {
-          this.onerror = null;
-          this.src = activeProjectFallback;
-        };
-        stillsMainImg.src = activeStillsList[activeStillIndex];
-        stillsMainImg.onload = () => {
-          stillsMainImg.classList.add("loaded");
-        };
-      }, 60);
+      stillsMainImg.onerror = function() {
+        this.onerror = null;
+        this.src = activeFallback;
+      };
+      stillsMainImg.src = activeStillsList[activeStillIndex];
+      stillsMainImg.onload = () => {
+        stillsMainImg.classList.add("loaded");
+      };
 
-      stillsCounter.textContent = `${activeStillIndex + 1} / ${activeStillsList.length}`;
+      modalStepIndicator.textContent = `Still ${activeStillIndex + 1} of ${activeStillsList.length}`;
 
       const allThumbs = stillsThumbsBar.querySelectorAll(".still-thumb-item");
       allThumbs.forEach((t, i) => {
@@ -1821,45 +2191,94 @@
       });
     }
 
-    function closeStillsGallery() {
-      stillsModal.classList.remove("active");
+    function switchFromSliderToOverviewUI() {
+      currentModalStage = 1;
+      sliderView.classList.remove("active");
+      overviewView.classList.remove("hidden");
+      modalBackText.textContent = "Back to Works";
+      modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
+    }
+
+    function closeModalCompletelyUI() {
+      currentModalStage = 0;
+      projectModal.classList.remove("active");
+      sliderView.classList.remove("active");
+      overviewView.classList.remove("hidden");
       document.body.classList.remove("modal-open");
     }
 
-    stillsCloseBtn.addEventListener("click", closeStillsGallery);
-    stillsPrevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showStillAtIndex(activeStillIndex - 1);
-    });
-    stillsNextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showStillAtIndex(activeStillIndex + 1);
-    });
-
-    stillsModal.addEventListener("click", (e) => {
-      if (e.target === stillsModal || e.target.id === "stills-stage-wrap") {
-        closeStillsGallery();
+    // Back Button Click Handler (Handles Step 2 -> Step 1, and Step 1 -> Main Website)
+    modalBackBtn.addEventListener("click", () => {
+      if (currentModalStage === 2) {
+        if (history.state && history.state.modalStage === 2) {
+          history.back();
+        } else {
+          switchFromSliderToOverviewUI();
+        }
+      } else if (currentModalStage === 1) {
+        if (history.state && history.state.modalStage === 1) {
+          history.back();
+        } else {
+          closeModalCompletelyUI();
+        }
       }
     });
 
-    window.addEventListener("keydown", (e) => {
-      if (!stillsModal.classList.contains("active")) return;
-      if (e.key === "Escape") closeStillsGallery();
-      if (e.key === "ArrowRight") showStillAtIndex(activeStillIndex + 1);
-      if (e.key === "ArrowLeft") showStillAtIndex(activeStillIndex - 1);
+    // Close 'X' Button closes the modal completely
+    modalCloseAllBtn.addEventListener("click", () => {
+      if (currentModalStage === 2 && history.state && history.state.modalStage === 2) {
+        history.go(-2);
+      } else if (currentModalStage === 1 && history.state && history.state.modalStage === 1) {
+        history.back();
+      } else {
+        closeModalCompletelyUI();
+      }
     });
 
-    // Touch Swipe Support Inside Lightbox
+    // Hardware Phone Back Button Listener (popstate)
+    window.addEventListener("popstate", (e) => {
+      if (e.state && e.state.modalStage === 1) {
+        // User pressed Back from Stage 2 (Slider) -> Show Stage 1 (Overview)
+        switchFromSliderToOverviewUI();
+      } else {
+        // User pressed Back from Stage 1 (Overview) -> Return to Website
+        closeModalCompletelyUI();
+      }
+    });
+
+    stillsPrevBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showSlideAtIndex(activeStillIndex - 1);
+    });
+
+    stillsNextBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      showSlideAtIndex(activeStillIndex + 1);
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (currentModalStage === 0) return;
+      if (e.key === "Escape") {
+        modalBackBtn.click();
+      } else if (currentModalStage === 2) {
+        if (e.key === "ArrowRight") showSlideAtIndex(activeStillIndex + 1);
+        if (e.key === "ArrowLeft") showSlideAtIndex(activeStillIndex - 1);
+      }
+    });
+
+    // Touch Swipe Support Inside Full-Screen Slider
     let touchStartX = 0;
-    stillsModal.addEventListener("touchstart", (e) => {
+    const stageWrap = document.getElementById("stills-stage-wrap");
+    stageWrap.addEventListener("touchstart", (e) => {
       touchStartX = e.changedTouches[0].clientX;
     }, { passive: true });
 
-    stillsModal.addEventListener("touchend", (e) => {
+    stageWrap.addEventListener("touchend", (e) => {
+      if (currentModalStage !== 2) return;
       const diff = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(diff) > 50) {
-        if (diff < 0) showStillAtIndex(activeStillIndex + 1);
-        else showStillAtIndex(activeStillIndex - 1);
+      if (Math.abs(diff) > 45) {
+        if (diff < 0) showSlideAtIndex(activeStillIndex + 1);
+        else showSlideAtIndex(activeStillIndex - 1);
       }
     }, { passive: true });
 
@@ -1930,7 +2349,6 @@
       dockLens.style.transform = `translate3d(${offsetLeft}px, 0, 0) scale(${magnify ? 1.05 : 1})`;
     }
 
-    // Continuous butter-smooth finger/mouse tracking during drag
     function moveLensContinuously(clientX) {
       const trackRect = dockTrack.getBoundingClientRect();
       const itemWidth = dockItems[0].getBoundingClientRect().width;
