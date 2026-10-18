@@ -534,10 +534,11 @@
 
     /* =====================================================================
        SECTION 2: FILM POSTERS & INTERACTIVE STILLS GALLERY CARDS
+       (PROPORTIONAL FULL-FIT POSTERS SO NO TEXT EVER GETS CUT OFF)
        ===================================================================== */
     .posters-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 32px;
     }
 
@@ -568,92 +569,99 @@
       box-shadow: 0 28px 65px rgba(0, 0, 0, 0.95), 0 0 30px rgba(229, 9, 20, 0.22);
     }
 
+    /* Smart Poster Frame: Never crops director/producer credits */
     .poster-image-frame {
       position: relative;
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 16 / 11;
       overflow: hidden;
-      background: #060609;
+      background: radial-gradient(circle at center, #14141d 0%, #050508 100%);
       border-bottom: 1px solid rgba(229, 9, 20, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
     }
 
     .poster-image-frame img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
-      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 10px;
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .poster-card:hover .poster-image-frame img {
-      transform: scale(1.04);
+      transform: scale(1.03);
     }
 
     .poster-top-tags {
       position: absolute;
-      top: 16px;
-      left: 16px;
-      right: 16px;
+      top: 14px;
+      left: 14px;
+      right: 14px;
       z-index: 2;
       display: flex;
       justify-content: space-between;
       align-items: center;
       pointer-events: none;
+      gap: 8px;
     }
 
     .poster-category-badge {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
       color: #FFFFFF;
       background: var(--red-key);
       box-shadow: 0 4px 14px rgba(229, 9, 20, 0.5);
-      padding: 6px 13px;
+      padding: 5px 12px;
       border-radius: 100px;
     }
 
     .poster-year-badge {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       color: #FFFFFF;
-      background: rgba(5, 5, 8, 0.85);
+      background: rgba(5, 5, 8, 0.88);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 100px;
     }
 
-    /* Interactive Stills Indicator Overlay (Only shown when stills exist) */
+    /* Interactive Stills Indicator Overlay */
     .stills-trigger-badge {
       position: absolute;
-      bottom: 16px;
-      right: 16px;
+      bottom: 14px;
+      right: 14px;
       z-index: 3;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
       background: rgba(8, 8, 12, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       color: #FFFFFF;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 8px 15px;
+      padding: 7px 14px;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 0.9px;
       text-transform: uppercase;
       transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
     }
 
     .stills-trigger-badge svg {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       stroke: var(--red-key);
       stroke-width: 2;
       transition: stroke 0.28s ease;
@@ -671,7 +679,7 @@
     }
 
     .poster-caption-box {
-      padding: 26px 28px 28px 28px;
+      padding: 24px 26px 26px 26px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -706,13 +714,13 @@
     }
 
     /* =====================================================================
-       2-STAGE PROJECT & STILLS MODAL (OVERVIEW SHEET + FULLSCREEN SLIDER)
+       2-STAGE PROJECT & STILLS MODAL (PROPORTIONAL POSTER + SWIPE VIEWER)
        ===================================================================== */
     .project-modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(4, 4, 7, 0.96);
+      background: rgba(4, 4, 7, 0.97);
       backdrop-filter: blur(28px) saturate(165%);
       -webkit-backdrop-filter: blur(28px) saturate(165%);
       display: flex;
@@ -720,8 +728,8 @@
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.32s ease;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.3s ease;
     }
 
     .project-modal-overlay.active {
@@ -730,53 +738,55 @@
       pointer-events: auto;
     }
 
-    /* Top Sticky Navigation Bar with Prominent Back Button */
+    /* Top Sticky Navigation Bar with Back, Fullscreen, Download & Close */
     .modal-topbar {
       width: 100%;
-      background: rgba(8, 8, 12, 0.9);
+      background: rgba(8, 8, 12, 0.94);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 14px 24px;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 10px;
       flex-shrink: 0;
-      z-index: 10;
+      z-index: 20;
     }
 
     .modal-topbar-inner {
-      max-width: 1200px;
+      max-width: 1240px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .modal-back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
-      padding: 9px 18px;
+      padding: 8px 16px;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       cursor: pointer;
       transition: all 0.22s ease;
+      white-space: nowrap;
     }
 
     .modal-back-btn svg {
-      width: 17px;
-      height: 17px;
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       stroke-width: 2.2;
+      flex-shrink: 0;
       transition: transform 0.22s ease;
     }
 
@@ -793,7 +803,7 @@
     .modal-topbar-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 8px;
     }
 
     .modal-step-indicator {
@@ -803,14 +813,61 @@
       color: var(--text-secondary);
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 14px;
+      padding: 6px 13px;
       border-radius: 100px;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
+    }
+
+    /* Professional Action Buttons (Download & Fullscreen) */
+    .slider-pro-tools {
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slider-pro-tools.visible {
+      display: flex;
+    }
+
+    .pro-tool-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      height: 36px;
+      padding: 0 13px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .pro-tool-btn svg {
+      width: 15px;
+      height: 15px;
+      stroke: currentColor;
+      stroke-width: 2;
+      flex-shrink: 0;
+    }
+
+    .pro-tool-btn:hover {
+      background: var(--red-key);
+      border-color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45);
     }
 
     .modal-close-icon-btn {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       background: rgba(229, 9, 20, 0.2);
       border: 1px solid rgba(229, 9, 20, 0.55);
@@ -819,6 +876,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      flex-shrink: 0;
       transition: all 0.22s ease;
     }
 
@@ -829,57 +887,61 @@
     }
 
     .modal-close-icon-btn svg {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       stroke: currentColor;
       stroke-width: 2.2;
     }
 
-    /* ---------------- VIEW 1: PROJECT OVERVIEW (MINI POSTER + INFO + STILLS GRID) ---------------- */
+    /* ---------------- VIEW 1: PROJECT OVERVIEW (UNCROPPED POSTER + INFO + STILLS) ---------------- */
     .project-overview-view {
       flex: 1;
       overflow-y: auto;
-      padding: 32px 24px 60px 24px;
+      padding: 28px 24px 60px 24px;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      animation: fadeSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: fadeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(14px); }
+      from { opacity: 0; transform: translateY(12px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Compact Poster on Left + Project Details on Right */
+    /* Desktop & Mobile Adaptive Summary Card */
     .project-summary-card {
       display: grid;
-      grid-template-columns: 230px 1fr;
+      grid-template-columns: minmax(260px, 380px) 1fr;
       gap: 32px;
       align-items: center;
-      background: rgba(14, 14, 20, 0.9);
+      background: rgba(14, 14, 20, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-left: 4px solid var(--red-key);
       border-radius: var(--radius-outer);
-      padding: 26px;
+      padding: 28px;
       margin-bottom: 36px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
     }
 
+    /* Uncropped Poster Box: Shows 100% of Poster on Phone & Computer */
     .mini-poster-box {
       width: 100%;
-      aspect-ratio: 4 / 5;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.22);
       background: #07070B;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .mini-poster-box img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
       display: block;
     }
 
@@ -887,6 +949,7 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      min-width: 0;
     }
 
     .summary-badges-row {
@@ -921,28 +984,28 @@
 
     .summary-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 3.5vw, 36px);
+      font-size: clamp(24px, 3.2vw, 36px);
       font-weight: 800;
       color: #FFFFFF;
       margin-bottom: 6px;
-      line-height: 1.15;
+      line-height: 1.18;
     }
 
     .summary-role {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--red-key);
       text-transform: uppercase;
-      letter-spacing: 1.3px;
-      margin-bottom: 16px;
-      padding-bottom: 14px;
+      letter-spacing: 1.2px;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .summary-description {
       font-size: 15px;
-      line-height: 1.75;
+      line-height: 1.72;
       color: var(--text-secondary);
     }
 
@@ -1037,14 +1100,14 @@
       pointer-events: none;
     }
 
-    /* ---------------- VIEW 2: FULL-SCREEN SLIDER VIEW ---------------- */
+    /* ---------------- VIEW 2: FULL-SCREEN TOUCH-SWIPE SLIDER (NO ARROWS) ---------------- */
     .project-slider-view {
       flex: 1;
       display: none;
       flex-direction: column;
       justify-content: space-between;
-      padding: 16px 24px 22px 24px;
-      max-width: 1280px;
+      padding: 12px 18px 18px 18px;
+      max-width: 1360px;
       width: 100%;
       margin: 0 auto;
       min-height: 0;
@@ -1064,11 +1127,19 @@
       flex: 1;
       width: 100%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       min-height: 0;
       user-select: none;
+      -webkit-user-select: none;
+      touch-action: pan-y;
+      cursor: grab;
+    }
+
+    .stills-stage-wrap:active {
+      cursor: grabbing;
     }
 
     .stills-main-img-container {
@@ -1078,78 +1149,61 @@
       align-items: center;
       justify-content: center;
       position: relative;
+      min-height: 0;
     }
 
     .stills-main-img {
       max-width: 100%;
-      max-height: 68vh;
+      max-height: 70vh;
       object-fit: contain;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.95);
-      transform: scale(0.96);
+      transform: scale(0.97) translateX(0);
       opacity: 0;
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
                   opacity 0.24s ease;
+      pointer-events: none;
     }
 
     .stills-main-img.loaded {
-      transform: scale(1);
+      transform: scale(1) translateX(0);
       opacity: 1;
     }
 
-    .stills-nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 10;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(10, 10, 14, 0.88);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #FFFFFF;
-      display: flex;
+    .swipe-gesture-pill {
+      margin-top: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      color: var(--text-tertiary);
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.22s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .stills-nav-btn:hover {
-      background: var(--red-key);
-      border-color: #FFFFFF;
-      transform: translateY(-50%) scale(1.08);
-      box-shadow: 0 8px 25px rgba(229, 9, 20, 0.55);
-    }
-
-    .stills-nav-btn.prev { left: 10px; }
-    .stills-nav-btn.next { right: 10px; }
-
-    .stills-nav-btn svg {
-      width: 22px;
-      height: 22px;
-      stroke: currentColor;
-      stroke-width: 2.2;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 4px 14px;
+      border-radius: 100px;
+      flex-shrink: 0;
     }
 
     /* Bottom Filmstrip inside Slider View */
     .stills-thumbs-bar {
       width: 100%;
-      margin-top: 14px;
+      margin-top: 10px;
       display: flex;
       gap: 10px;
       overflow-x: auto;
-      padding: 8px 4px;
+      padding: 6px 4px;
       justify-content: center;
       scrollbar-width: thin;
       flex-shrink: 0;
     }
 
     .still-thumb-item {
-      width: 82px;
-      height: 54px;
+      width: 80px;
+      height: 52px;
       border-radius: 8px;
       overflow: hidden;
       border: 2px solid rgba(255, 255, 255, 0.2);
@@ -1446,6 +1500,9 @@
       box-shadow: 0 8px 24px rgba(229, 9, 20, 0.45);
     }
 
+    /* =====================================================================
+       RESPONSIVE DESIGN FOR PHONE & TABLET (PERFECT UNCROPPED POSTER FIT)
+       ===================================================================== */
     @media (max-width: 960px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -1462,43 +1519,60 @@
         padding: 44px 22px;
       }
       .project-summary-card {
-        grid-template-columns: 160px 1fr;
-        gap: 22px;
-        padding: 20px;
+        grid-template-columns: 260px 1fr;
+        gap: 24px;
+        padding: 22px;
       }
       .stills-thumbs-bar {
         justify-content: flex-start;
       }
     }
 
-    @media (max-width: 600px) {
+    /* Phone View: Stack Poster cleanly on top of text so NOTHING gets cut off */
+    @media (max-width: 720px) {
       .project-summary-card {
-        grid-template-columns: 115px 1fr;
-        gap: 16px;
-        padding: 16px;
-        align-items: start;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 18px;
+      }
+      .mini-poster-box {
+        max-height: 280px;
+        background: #050508;
+      }
+      .mini-poster-box img {
+        max-height: 270px;
+        width: 100%;
+        object-fit: contain;
       }
       .summary-title {
-        font-size: 20px;
+        font-size: 22px;
       }
       .summary-role {
-        font-size: 11px;
+        font-size: 11.5px;
         margin-bottom: 10px;
-        padding-bottom: 8px;
+        padding-bottom: 10px;
       }
       .summary-description {
-        font-size: 13.5px;
-        line-height: 1.55;
+        font-size: 14px;
+        line-height: 1.62;
       }
       .stills-thumbnails-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
       }
       .modal-topbar {
-        padding: 12px 14px;
+        padding: 10px 12px;
       }
       .project-overview-view {
-        padding: 20px 14px 50px 14px;
+        padding: 18px 14px 50px 14px;
+      }
+      .pro-tool-label {
+        display: none;
+      }
+      .pro-tool-btn {
+        padding: 0 10px;
+        width: 36px;
+        justify-content: center;
       }
     }
 
@@ -1515,9 +1589,13 @@
         letter-spacing: 0.3px;
         padding: 9px 2px;
       }
-      .stills-nav-btn {
-        width: 40px;
-        height: 40px;
+      .modal-step-indicator {
+        font-size: 10.5px;
+        padding: 5px 10px;
+      }
+      .modal-back-btn {
+        padding: 7px 12px;
+        font-size: 10.5px;
       }
     }
   </style>
@@ -1658,7 +1736,7 @@
             <span class="channel-action-hint">Follow &amp; View Latest Work →</span>
           </a>
 
-          <!-- Phone (WhatsApp Removed) -->
+          <!-- Phone -->
           <a id="contact-phone" href="tel:+917722991272" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1698,7 +1776,7 @@
   <!-- ================= 2-STAGE PROJECT & STILLS MODAL ================= -->
   <div class="project-modal-overlay" id="project-modal" role="dialog" aria-modal="true">
 
-    <!-- Top Navigation Bar with Back Button -->
+    <!-- Top Navigation Bar with Back, Fullscreen, Download & Close -->
     <div class="modal-topbar">
       <div class="modal-topbar-inner">
         <button class="modal-back-btn" id="modal-back-btn">
@@ -1710,6 +1788,29 @@
 
         <div class="modal-topbar-right">
           <span class="modal-step-indicator" id="modal-step-indicator">Project Stills</span>
+
+          <!-- Professional Viewer Actions (Shown when viewing a still) -->
+          <div class="slider-pro-tools" id="slider-pro-tools">
+            <button class="pro-tool-btn" id="still-download-btn" title="Download High-Res Still">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span class="pro-tool-label">Download</span>
+            </button>
+
+            <button class="pro-tool-btn" id="still-fullscreen-btn" title="Toggle Fullscreen">
+              <svg viewBox="0 0 24 24" fill="none" id="fullscreen-icon-svg">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+              <span class="pro-tool-label" id="fullscreen-btn-label">Full Screen</span>
+            </button>
+          </div>
+
           <button class="modal-close-icon-btn" id="modal-close-all-btn" aria-label="Close Viewer">
             <svg viewBox="0 0 24 24" fill="none">
               <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -1720,7 +1821,7 @@
       </div>
     </div>
 
-    <!-- STEP 1: OVERVIEW VIEW (COMPACT POSTER + RIGHT SIDE DETAILS + STILLS THUMBNAILS GRID) -->
+    <!-- STEP 1: OVERVIEW VIEW (UNCROPPED POSTER + PROJECT INFO + STILLS GRID) -->
     <div class="project-overview-view" id="project-overview-view">
       <div class="project-summary-card">
         <div class="mini-poster-box">
@@ -1739,24 +1840,21 @@
 
       <div class="stills-grid-section-header">
         <h4 class="stills-grid-heading">Project Stills Gallery</h4>
-        <span class="stills-grid-hint">Click any still below to open full-screen slider →</span>
+        <span class="stills-grid-hint">Tap any still below to open full-screen viewer →</span>
       </div>
 
       <div class="stills-thumbnails-grid" id="overview-stills-grid"></div>
     </div>
 
-    <!-- STEP 2: FULL-SCREEN SLIDER VIEW (WHEN A STILL IS CLICKED) -->
+    <!-- STEP 2: FULL-SCREEN TOUCH-SWIPE SLIDER VIEW (NO LEFT/RIGHT ARROWS) -->
     <div class="project-slider-view" id="project-slider-view">
       <div class="stills-stage-wrap" id="stills-stage-wrap">
-        <button class="stills-nav-btn prev" id="stills-prev-btn" aria-label="Previous Still">
-          <svg viewBox="0 0 24 24" fill="none"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </button>
         <div class="stills-main-img-container">
           <img src="" alt="Project Still" class="stills-main-img" id="stills-main-img">
         </div>
-        <button class="stills-nav-btn next" id="stills-next-btn" aria-label="Next Still">
-          <svg viewBox="0 0 24 24" fill="none"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
+        <div class="swipe-gesture-pill">
+          <span>← Swipe left or right to browse stills →</span>
+        </div>
       </div>
 
       <div class="stills-thumbs-bar" id="stills-thumbs-bar"></div>
@@ -1809,11 +1907,6 @@
 
     // ============================================================================
     // 1. SELECTED WORKS, POSTERS & STILLS GALLERY
-    //    नियम:
-    //    - जिस पोस्टर के अंदर `stills: [ ... ]` में फोटो के लिंक होंगे, उस पोस्टर को क्लिक करने पर
-    //      पहले छोटा पोस्टर + जानकारी + नीचे छोटे Stills दिखेंगे, और फिर किसी भी Still को क्लिक करने पर
-    //      बड़ा स्लाइडर खुलेगा।
-    //    - अगर किसी पोस्टर में `stills: []` खाली है, तो उस पोस्टर को क्लिक करने पर कुछ नहीं खुलेगा।
     // ============================================================================
     const MY_POSTERS = [
       {
@@ -1825,7 +1918,6 @@
         title: "Shreefal (શ્રીફળ)",
         role: "Producer & Director of Photography",
         description: "Written & Directed by Jignesh Mahida and Produced by Ayan Khan, Kartik Parmar & Jignesh Mahida. Captured with soulful golden-hour natural light, intimate character compositions, and evocative rural textures.",
-        // Shreefal के अंदर दिखने वाली Stills तस्वीरें (Fast loading optimized):
         stills: [
           "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
           "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1100&q=75",
@@ -1989,7 +2081,7 @@
       `;
     });
 
-    // 2. Render Posters with Conditional Stills Support
+    // 2. Render Posters with Uncropped Full Fit & Conditional Stills Support
     const postersContainer = document.getElementById("posters-container");
 
     function renderPosters(selectedCategory) {
@@ -2056,7 +2148,7 @@
     });
 
     /* ============================================================================
-       2-STAGE PROJECT OVERVIEW + FULL-SCREEN SLIDER ENGINE (WITH PHONE BACK SUPPORT)
+       2-STAGE PROJECT OVERVIEW + TOUCH-SWIPE SLIDER + FULLSCREEN + DOWNLOAD
        ============================================================================ */
     const projectModal = document.getElementById("project-modal");
     const overviewView = document.getElementById("project-overview-view");
@@ -2066,6 +2158,10 @@
     const modalBackText = document.getElementById("modal-back-text");
     const modalStepIndicator = document.getElementById("modal-step-indicator");
     const modalCloseAllBtn = document.getElementById("modal-close-all-btn");
+    const sliderProTools = document.getElementById("slider-pro-tools");
+    const stillDownloadBtn = document.getElementById("still-download-btn");
+    const stillFullscreenBtn = document.getElementById("still-fullscreen-btn");
+    const fullscreenBtnLabel = document.getElementById("fullscreen-btn-label");
 
     // Overview Elements
     const overviewMiniPoster = document.getElementById("overview-mini-poster");
@@ -2079,16 +2175,14 @@
     // Slider Elements
     const stillsMainImg = document.getElementById("stills-main-img");
     const stillsThumbsBar = document.getElementById("stills-thumbs-bar");
-    const stillsPrevBtn = document.getElementById("stills-prev-btn");
-    const stillsNextBtn = document.getElementById("stills-next-btn");
 
     let activeProjectItem = null;
     let activeStillsList = [];
     let activeStillIndex = 0;
     let activeFallback = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
-    let currentModalStage = 0; // 0 = closed, 1 = overview (mini poster + grid), 2 = fullscreen slider
+    let currentModalStage = 0; // 0 = closed, 1 = overview, 2 = fullscreen slider
 
-    // Stage 1: Open Project Overview (Mini Poster + Info + Small Stills Grid)
+    // Stage 1: Open Project Overview (Uncropped Poster + Details + Stills Grid)
     function openProjectOverview(projectItem, stillsArray) {
       if (!stillsArray || stillsArray.length === 0) return;
 
@@ -2097,7 +2191,6 @@
       activeStillIndex = 0;
       activeFallback = projectItem.fallbackPosterUrl || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
 
-      // Populate Mini Poster & Right-side Details
       overviewMiniPoster.onerror = function() {
         this.onerror = null;
         this.src = activeFallback;
@@ -2124,7 +2217,7 @@
         overviewStillsGrid.appendChild(gridCard);
       });
 
-      // Also build bottom filmstrip for Stage 2 slider
+      // Build bottom filmstrip for Stage 2 slider
       stillsThumbsBar.innerHTML = "";
       activeStillsList.forEach((stillUrl, idx) => {
         const thumb = document.createElement("div");
@@ -2141,6 +2234,7 @@
       currentModalStage = 1;
       overviewView.classList.remove("hidden");
       sliderView.classList.remove("active");
+      sliderProTools.classList.remove("visible");
       modalBackText.textContent = "Back to Works";
       modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
 
@@ -2148,22 +2242,21 @@
       document.body.classList.add("modal-open");
       overviewView.scrollTop = 0;
 
-      // Push browser history state so phone Back button returns to website instead of exiting
       try {
         history.pushState({ modalStage: 1 }, "");
       } catch (err) {}
     }
 
-    // Stage 2: Open Full-Screen Slider When a Small Still is Clicked
+    // Stage 2: Open Full-Screen Slider When a Still is Tapped
     function openFullScreenSlider(startIndex) {
       currentModalStage = 2;
       overviewView.classList.add("hidden");
       sliderView.classList.add("active");
+      sliderProTools.classList.add("visible");
       modalBackText.textContent = `Back to ${activeProjectItem ? activeProjectItem.title : "Project"}`;
 
       showSlideAtIndex(startIndex);
 
-      // Push second history state so phone Back button returns from Slider -> Overview
       try {
         history.pushState({ modalStage: 2 }, "");
       } catch (err) {}
@@ -2183,31 +2276,95 @@
         stillsMainImg.classList.add("loaded");
       };
 
-      modalStepIndicator.textContent = `Still ${activeStillIndex + 1} of ${activeStillsList.length}`;
+      modalStepIndicator.textContent = `${activeStillIndex + 1} / ${activeStillsList.length}`;
 
       const allThumbs = stillsThumbsBar.querySelectorAll(".still-thumb-item");
       allThumbs.forEach((t, i) => {
-        t.classList.toggle("active", i === activeStillIndex);
+        const isActive = i === activeStillIndex;
+        t.classList.toggle("active", isActive);
+        if (isActive) {
+          t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
       });
     }
 
+    // Professional Download Still Handler
+    stillDownloadBtn.addEventListener("click", async () => {
+      const currentImgUrl = activeStillsList[activeStillIndex];
+      if (!currentImgUrl) return;
+      const safeTitle = (activeProjectItem ? activeProjectItem.title : "Project")
+        .replace(/[^a-z0-9]/gi, "_")
+        .toLowerCase();
+      const fileName = `${safeTitle}_still_${activeStillIndex + 1}.jpg`;
+
+      try {
+        const response = await fetch(currentImgUrl, { mode: "cors" });
+        const blob = await response.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 1500);
+      } catch (err) {
+        window.open(currentImgUrl, "_blank", "noopener,noreferrer");
+      }
+    });
+
+    // Professional Fullscreen Toggle Handler
+    stillFullscreenBtn.addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        if (projectModal.requestFullscreen) {
+          projectModal.requestFullscreen().catch(() => {});
+        } else if (projectModal.webkitRequestFullscreen) {
+          projectModal.webkitRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen().catch(() => {});
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        }
+      }
+    });
+
+    document.addEventListener("fullscreenchange", () => {
+      if (document.fullscreenElement) {
+        fullscreenBtnLabel.textContent = "Exit Full";
+      } else {
+        fullscreenBtnLabel.textContent = "Full Screen";
+      }
+    });
+
+    function exitFullscreenIfActive() {
+      if (document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
     function switchFromSliderToOverviewUI() {
+      exitFullscreenIfActive();
       currentModalStage = 1;
       sliderView.classList.remove("active");
+      sliderProTools.classList.remove("visible");
       overviewView.classList.remove("hidden");
       modalBackText.textContent = "Back to Works";
       modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
     }
 
     function closeModalCompletelyUI() {
+      exitFullscreenIfActive();
       currentModalStage = 0;
       projectModal.classList.remove("active");
       sliderView.classList.remove("active");
+      sliderProTools.classList.remove("visible");
       overviewView.classList.remove("hidden");
       document.body.classList.remove("modal-open");
     }
 
-    // Back Button Click Handler (Handles Step 2 -> Step 1, and Step 1 -> Main Website)
+    // Back Button Click Handler
     modalBackBtn.addEventListener("click", () => {
       if (currentModalStage === 2) {
         if (history.state && history.state.modalStage === 2) {
@@ -2238,27 +2395,16 @@
     // Hardware Phone Back Button Listener (popstate)
     window.addEventListener("popstate", (e) => {
       if (e.state && e.state.modalStage === 1) {
-        // User pressed Back from Stage 2 (Slider) -> Show Stage 1 (Overview)
         switchFromSliderToOverviewUI();
       } else {
-        // User pressed Back from Stage 1 (Overview) -> Return to Website
         closeModalCompletelyUI();
       }
     });
 
-    stillsPrevBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showSlideAtIndex(activeStillIndex - 1);
-    });
-
-    stillsNextBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      showSlideAtIndex(activeStillIndex + 1);
-    });
-
+    // Keyboard Support on Desktop
     window.addEventListener("keydown", (e) => {
       if (currentModalStage === 0) return;
-      if (e.key === "Escape") {
+      if (e.key === "Escape" && !document.fullscreenElement) {
         modalBackBtn.click();
       } else if (currentModalStage === 2) {
         if (e.key === "ArrowRight") showSlideAtIndex(activeStillIndex + 1);
@@ -2266,21 +2412,51 @@
       }
     });
 
-    // Touch Swipe Support Inside Full-Screen Slider
-    let touchStartX = 0;
+    // Smooth Touch & Mouse Drag Swipe Inside Full-Screen Slider (No Arrows Needed)
+    let swipeStartX = 0;
+    let swipeCurrentX = 0;
+    let isSwipingStage = false;
     const stageWrap = document.getElementById("stills-stage-wrap");
-    stageWrap.addEventListener("touchstart", (e) => {
-      touchStartX = e.changedTouches[0].clientX;
+
+    stageWrap.addEventListener("pointerdown", (e) => {
+      if (currentModalStage !== 2) return;
+      isSwipingStage = true;
+      swipeStartX = e.clientX;
+      swipeCurrentX = e.clientX;
+    });
+
+    stageWrap.addEventListener("pointermove", (e) => {
+      if (!isSwipingStage || currentModalStage !== 2) return;
+      swipeCurrentX = e.clientX;
+      const deltaX = (swipeCurrentX - swipeStartX) * 0.25;
+      stillsMainImg.style.transform = `scale(1) translateX(${deltaX}px)`;
     }, { passive: true });
 
-    stageWrap.addEventListener("touchend", (e) => {
-      if (currentModalStage !== 2) return;
-      const diff = e.changedTouches[0].clientX - touchStartX;
-      if (Math.abs(diff) > 45) {
+    function finishStageSwipe() {
+      if (!isSwipingStage) return;
+      isSwipingStage = false;
+      const diff = swipeCurrentX - swipeStartX;
+      stillsMainImg.style.transform = "";
+
+      if (Math.abs(diff) > 40) {
         if (diff < 0) showSlideAtIndex(activeStillIndex + 1);
         else showSlideAtIndex(activeStillIndex - 1);
       }
-    }, { passive: true });
+    }
+
+    stageWrap.addEventListener("pointerup", finishStageSwipe);
+    stageWrap.addEventListener("pointercancel", finishStageSwipe);
+    stageWrap.addEventListener("pointerleave", finishStageSwipe);
+
+    // Double-Tap / Double-Click on Still to Toggle Fullscreen
+    let lastTapTime = 0;
+    stageWrap.addEventListener("click", () => {
+      const now = Date.now();
+      if (now - lastTapTime < 280) {
+        stillFullscreenBtn.click();
+      }
+      lastTapTime = now;
+    });
 
     // 3. Render Credits
     const expContainer = document.getElementById("experience-container");
