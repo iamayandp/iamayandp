@@ -1,9 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+<!--
+=======================================================================================
+📘 A-TO-Z MASTER EDITING GUIDE (कोड में बदलाव करने की पूरी गाइड - HINDI & ENGLISH)
+=======================================================================================
+
+⚠️ 3 GOLDEN RULES SO CODE NEVER BREAKS (कोड कभी न टूटे, इसके लिए 3 जरूरी नियम):
+1. DOUBLE QUOTES (" "):
+   - HINDI: हर नाम, रोल या फोटो लिंक को हमेशा डबल कोट्स (" ") के अंदर ही लिखें। कोट्स कभी न हटाएं।
+   - ENGLISH: Always keep text, roles, and image links inside double quotes (" ").
+
+2. COMMA ( , ):
+   - HINDI: जब आप एक के नीचे एक नया नाम या फोटो जोड़ें, तो पिछली लाइन के अंत में कॉमा ( , ) जरूर लगाएं।
+   - ENGLISH: Always put a comma ( , ) at the end of an item before adding a new item below it.
+
+3. BRACKETS ( { } और [ ] ):
+   - HINDI: हर आइटम `{` से शुरू होता है और `}` पर खत्म होता है। इन्हें गलती से डिलीट न करें।
+   - ENGLISH: Every item starts with `{` and ends with `}`. Do not delete them.
+
+---------------------------------------------------------------------------------------
+📍 WHERE TO GO TO EDIT ANYTHING (किस चीज को सुधारने के लिए कहाँ जाएं):
+   (नीचे स्क्रॉल करके <script> टैग के अंदर "MASTER CONFIGURATION" सेक्शन में जाएं)
+
+   👉 SECTION [A] - PROFILE & CONTACT DETAILS (नाम, बायो, फोन नंबर, इंस्टाग्राम, ईमेल):
+      - Search for: `const SITE_CONFIG = {`
+      - यहाँ आप अपना नाम, बायो, अनुभव (Stats), Instagram लिंक, Phone नंबर और Email बदल सकते हैं।
+
+   👉 SECTION [B] - POSTERS & STILLS GALLERY (पोस्टर और उसकी स्टिल्स फोटोज जोड़ने के लिए):
+      - Search for: `const MY_POSTERS = [`
+      - यहाँ आप नया फिल्म पोस्टर जोड़ सकते हैं और `stills: [ ... ]` के अंदर जितनी चाहें उतनी फोटोज के लिंक डाल सकते हैं।
+
+   👉 SECTION [C] - UNLIMITED FILMOGRAPHY & CREDITS (कमर्शियल में 5, म्यूजिक में 6, फिल्म में 7 या अनलिमिटेड जोड़ने के लिए):
+      - Search for: `const MY_EXPERIENCE = [`
+      - यहाँ आप किसी भी बॉक्स में 5, 6, 7 या 50 नाम जोड़ सकते हैं। फोन और कंप्यूटर दोनों पर बॉक्स अपने-आप (Automatically) उस हिसाब से बड़ा-छोटा होकर एडजस्ट हो जाएगा।
+
+   👉 SECTION [D] - AWARDS & HONORS (अवार्ड्स जोड़ने या बदलने के लिए):
+      - Search for: `const MY_AWARDS = [`
+      - यहाँ आप अपने नए अवार्ड्स जोड़ सकते हैं।
+=======================================================================================
+-->
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>AYAN KHAN — Director of Photography</title>
+
   <!-- Clean Luxury Cinema Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,14 +53,14 @@
     :root {
       /* HIGH-CONTRAST BLACK, WHITE & CRIMSON RED THEME */
       --bg-void: #050507;
-      --bg-surface: rgba(14, 14, 18, 0.78);
-      --bg-surface-elevated: rgba(22, 22, 28, 0.92);
+      --bg-surface: rgba(14, 14, 18, 0.82);
+      --bg-surface-elevated: rgba(22, 22, 28, 0.94);
       --border-subtle: rgba(255, 255, 255, 0.12);
       --border-red: rgba(229, 9, 20, 0.55);
       --text-primary: #FFFFFF;
       --text-secondary: rgba(255, 255, 255, 0.76);
       --text-tertiary: rgba(255, 255, 255, 0.50);
-      --red-key: #E50914;         /* Cinema Crimson Red */
+      --red-key: #E50914;
       --red-bright: #FF1F2D;
       --red-soft: rgba(229, 9, 20, 0.15);
       --radius-outer: 20px;
@@ -35,6 +75,7 @@
       padding: 0;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
@@ -47,17 +88,19 @@
       color: var(--text-primary);
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       min-height: 100vh;
+      min-height: 100dvh;
       overflow-x: hidden;
       position: relative;
-      padding-bottom: 130px;
+      padding-bottom: 120px;
     }
 
     body.modal-open {
       overflow: hidden;
+      touch-action: none;
     }
 
     /* =====================================================================
-       CLEAN HOLLYWOOD ATMOSPHERE LAYERS (BLACK, WHITE & RED)
+       CLEAN HOLLYWOOD ATMOSPHERE LAYERS
        ===================================================================== */
     .optical-backdrop {
       position: fixed;
@@ -66,10 +109,10 @@
       background-image: var(--bg-image);
       background-size: cover;
       background-position: center;
-      background-attachment: fixed;
       opacity: var(--bg-opacity);
       filter: contrast(1.25) saturate(0.2) blur(10px);
       transform: scale(1.05);
+      pointer-events: none;
     }
 
     .ambient-lighting {
@@ -88,19 +131,19 @@
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.94);
+      box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.94);
     }
 
     /* Minimalist Glass Panel */
     .spatial-panel {
       position: relative;
       background: var(--bg-surface);
-      backdrop-filter: blur(28px) saturate(160%);
-      -webkit-backdrop-filter: blur(28px) saturate(160%);
+      backdrop-filter: blur(24px) saturate(160%);
+      -webkit-backdrop-filter: blur(24px) saturate(160%);
       border: 1px solid var(--border-subtle);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: var(--radius-outer);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                   border-color 0.3s ease,
                   background 0.3s ease,
@@ -112,40 +155,41 @@
        ===================================================================== */
     .header-wrap {
       max-width: 1280px;
-      margin: 24px auto 40px auto;
-      padding: 0 24px;
+      margin: 16px auto 28px auto;
+      padding: 0 16px;
     }
 
     .top-bar {
-      padding: 16px 30px;
+      padding: 14px 20px;
       border-radius: 100px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
+      gap: 12px;
     }
 
     .brand-identity {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
+      min-width: 0;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       border: 1px solid rgba(229, 9, 20, 0.65);
       background: radial-gradient(circle at 30% 30%, rgba(229, 9, 20, 0.35), rgba(0, 0, 0, 0.9));
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
     }
 
     .brand-mark svg {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       stroke: var(--red-key);
       stroke-width: 1.8;
     }
@@ -153,31 +197,36 @@
     .brand-title-group {
       display: flex;
       flex-direction: column;
+      min-width: 0;
     }
 
     .brand-title-group h1 {
       font-family: 'Syne', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
-      letter-spacing: 2px;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
       color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .brand-title-group span {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 1.8px;
+      letter-spacing: 1.4px;
       color: var(--red-key);
       margin-top: 2px;
+      white-space: nowrap;
     }
 
     .header-status-group {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 12px;
       font-weight: 500;
@@ -211,10 +260,12 @@
       text-decoration: none;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-size: 11px;
+      letter-spacing: 1px;
+      font-size: 10.5px;
       transition: all 0.25s ease;
       box-shadow: 0 4px 16px rgba(229, 9, 20, 0.4);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .header-cta-link:hover {
@@ -223,11 +274,11 @@
     }
 
     /* =====================================================================
-       2. ULTRA-SMOOTH CRYSTAL DOCK (FITS ALL 5 ITEMS ON MOBILE & DESKTOP)
+       2. ULTRA-SMOOTH CRYSTAL DOCK (PHONE & DESKTOP)
        ===================================================================== */
     .spatial-dock-wrap {
       position: fixed;
-      bottom: 18px;
+      bottom: max(14px, env(safe-area-inset-bottom, 14px));
       left: 0;
       width: 100%;
       z-index: 950;
@@ -244,8 +295,8 @@
       grid-template-columns: repeat(5, 1fr);
       align-items: center;
       width: 100%;
-      max-width: 500px;
-      background: rgba(8, 8, 12, 0.9);
+      max-width: 480px;
+      background: rgba(8, 8, 12, 0.92);
       backdrop-filter: blur(28px) saturate(190%);
       -webkit-backdrop-filter: blur(28px) saturate(190%);
       border: 1px solid rgba(255, 255, 255, 0.18);
@@ -266,16 +317,12 @@
       box-shadow: 0 20px 55px rgba(0, 0, 0, 0.98), 0 0 30px rgba(229, 9, 20, 0.28);
     }
 
-    .spatial-dock-track.is-dragging {
-      cursor: grabbing;
-    }
-
     .optical-dock-lens {
       position: absolute;
       top: 5px;
       left: 0;
       height: calc(100% - 10px);
-      width: 90px;
+      width: 85px;
       border-radius: 100px;
       background: linear-gradient(135deg,
                   rgba(255, 255, 255, 0.22) 0%,
@@ -302,10 +349,10 @@
       text-align: center;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       white-space: nowrap;
       user-select: none;
       pointer-events: none;
@@ -324,22 +371,22 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 16px;
     }
 
     section {
-      scroll-margin-top: 32px;
-      margin-bottom: 96px;
+      scroll-margin-top: 24px;
+      margin-bottom: 68px;
     }
 
     /* =====================================================================
        SECTION 1: PROFILE & OVERVIEW
        ===================================================================== */
     .hero-grid {
-      padding: 58px;
+      padding: 48px;
       display: grid;
       grid-template-columns: 1.45fr 1fr;
-      gap: 52px;
+      gap: 44px;
       align-items: center;
       position: relative;
       overflow: hidden;
@@ -357,72 +404,66 @@
 
     .hero-eyebrow {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2.8px;
+      letter-spacing: 2.2px;
       color: var(--red-key);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .hero-eyebrow::before {
       content: "";
-      width: 28px;
+      width: 24px;
       height: 2px;
       background: var(--red-key);
+      flex-shrink: 0;
     }
 
     .hero-name {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(40px, 5.2vw, 64px);
+      font-size: clamp(32px, 5vw, 62px);
       font-weight: 800;
       letter-spacing: -1px;
-      line-height: 1.02;
+      line-height: 1.04;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       color: #FFFFFF;
     }
 
     .hero-statement {
-      font-size: 15.5px;
-      line-height: 1.8;
+      font-size: 15px;
+      line-height: 1.75;
       color: var(--text-secondary);
-      margin-bottom: 30px;
+      margin-bottom: 24px;
     }
 
     .specialties-rack {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .specialty-chip {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
       color: #FFFFFF;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.16);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: 100px;
-      transition: all 0.25s ease;
-    }
-
-    .specialty-chip:hover {
-      border-color: var(--red-key);
-      background: var(--red-soft);
-      color: #FFFFFF;
     }
 
     .stats-matrix {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px;
     }
 
     .stat-box {
@@ -430,60 +471,53 @@
       border: 1px solid var(--border-subtle);
       border-top: 2px solid rgba(229, 9, 20, 0.5);
       border-radius: var(--radius-inner);
-      padding: 28px 24px;
-      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .stat-box:hover {
-      border-color: var(--red-key);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(229, 9, 20, 0.18);
+      padding: 22px 18px;
     }
 
     .stat-value {
       font-family: 'Syne', sans-serif;
-      font-size: 32px;
+      font-size: clamp(24px, 3vw, 32px);
       font-weight: 800;
       color: #FFFFFF;
     }
 
     .stat-label {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--red-key);
       text-transform: uppercase;
-      letter-spacing: 1.4px;
-      margin-top: 6px;
+      letter-spacing: 1.2px;
+      margin-top: 4px;
     }
 
     /* =====================================================================
-       MINIMALIST SECTION HEADERS & FILTER TABS
+       SECTION HEADERS & FILTER TABS
        ===================================================================== */
     .section-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 36px;
-      padding-bottom: 18px;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--border-subtle);
       flex-wrap: wrap;
-      gap: 18px;
+      gap: 14px;
     }
 
     .section-eyebrow {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 2.2px;
+      letter-spacing: 2px;
       color: var(--red-key);
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
 
     .section-heading {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(26px, 3.2vw, 36px);
+      font-size: clamp(22px, 3.2vw, 36px);
       font-weight: 800;
       letter-spacing: -0.5px;
       text-transform: uppercase;
@@ -492,13 +526,12 @@
 
     .section-subtitle {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-secondary);
-      letter-spacing: 1px;
+      letter-spacing: 0.8px;
     }
 
-    /* Interactive Category Filter Buttons */
     .poster-filter-bar {
       display: flex;
       flex-wrap: wrap;
@@ -507,39 +540,33 @@
 
     .filter-tab {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
       text-transform: uppercase;
       color: var(--text-secondary);
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: 100px;
       cursor: pointer;
-      transition: all 0.25s ease;
-    }
-
-    .filter-tab:hover {
-      color: #FFFFFF;
-      border-color: #FFFFFF;
+      transition: all 0.22s ease;
     }
 
     .filter-tab.active {
       background: var(--red-key);
       color: #FFFFFF;
       border-color: var(--red-key);
-      box-shadow: 0 4px 20px rgba(229, 9, 20, 0.45);
+      box-shadow: 0 4px 18px rgba(229, 9, 20, 0.45);
     }
 
     /* =====================================================================
        SECTION 2: FILM POSTERS & INTERACTIVE STILLS GALLERY CARDS
-       (PROPORTIONAL FULL-FIT POSTERS SO NO TEXT EVER GETS CUT OFF)
        ===================================================================== */
     .posters-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 32px;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
     }
 
     .poster-card {
@@ -549,27 +576,20 @@
       border-radius: var(--radius-outer);
       background: rgba(10, 10, 14, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
                   border-color 0.3s ease,
-                  box-shadow 0.4s ease;
+                  box-shadow 0.35s ease;
     }
 
     .poster-card.has-stills {
       cursor: pointer;
     }
 
-    .poster-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.92);
-    }
-
     .poster-card.has-stills:hover {
       border-color: var(--red-key);
-      box-shadow: 0 28px 65px rgba(0, 0, 0, 0.95), 0 0 30px rgba(229, 9, 20, 0.22);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.95), 0 0 28px rgba(229, 9, 20, 0.22);
     }
 
-    /* Smart Poster Frame: Never crops director/producer credits */
     .poster-image-frame {
       position: relative;
       width: 100%;
@@ -580,7 +600,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 8px;
     }
 
     .poster-image-frame img {
@@ -589,18 +609,13 @@
       object-fit: contain;
       display: block;
       border-radius: 10px;
-      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .poster-card:hover .poster-image-frame img {
-      transform: scale(1.03);
     }
 
     .poster-top-tags {
       position: absolute;
-      top: 14px;
-      left: 14px;
-      right: 14px;
+      top: 12px;
+      left: 12px;
+      right: 12px;
       z-index: 2;
       display: flex;
       justify-content: space-between;
@@ -611,75 +626,61 @@
 
     .poster-category-badge {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 700;
-      letter-spacing: 1.1px;
+      letter-spacing: 1px;
       text-transform: uppercase;
       color: #FFFFFF;
       background: var(--red-key);
       box-shadow: 0 4px 14px rgba(229, 9, 20, 0.5);
-      padding: 5px 12px;
+      padding: 5px 11px;
       border-radius: 100px;
     }
 
     .poster-year-badge {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 600;
       color: #FFFFFF;
       background: rgba(5, 5, 8, 0.88);
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      padding: 5px 11px;
+      padding: 5px 10px;
       border-radius: 100px;
     }
 
-    /* Interactive Stills Indicator Overlay */
     .stills-trigger-badge {
       position: absolute;
-      bottom: 14px;
-      right: 14px;
+      bottom: 12px;
+      right: 12px;
       z-index: 3;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
       background: rgba(8, 8, 12, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       color: #FFFFFF;
       border: 1px solid rgba(255, 255, 255, 0.3);
-      padding: 7px 14px;
+      padding: 6px 13px;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.9px;
+      letter-spacing: 0.8px;
       text-transform: uppercase;
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85);
     }
 
     .stills-trigger-badge svg {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       stroke: var(--red-key);
       stroke-width: 2;
-      transition: stroke 0.28s ease;
-    }
-
-    .poster-card.has-stills:hover .stills-trigger-badge {
-      background: var(--red-key);
-      border-color: #FFFFFF;
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 10px 25px rgba(229, 9, 20, 0.55);
-    }
-
-    .poster-card.has-stills:hover .stills-trigger-badge svg {
-      stroke: #FFFFFF;
     }
 
     .poster-caption-box {
-      padding: 24px 26px 26px 26px;
+      padding: 20px 22px 24px 22px;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
@@ -688,48 +689,47 @@
 
     .poster-title {
       font-family: 'Syne', sans-serif;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       color: #FFFFFF;
-      margin-bottom: 6px;
-      letter-spacing: -0.2px;
+      margin-bottom: 5px;
     }
 
     .poster-role-line {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--red-key);
       text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
+      letter-spacing: 0.9px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .poster-description {
-      font-size: 14.5px;
-      line-height: 1.72;
+      font-size: 14px;
+      line-height: 1.68;
       color: var(--text-secondary);
     }
 
     /* =====================================================================
-       2-STAGE PROJECT & STILLS MODAL (PROPORTIONAL POSTER + SWIPE VIEWER)
+       2-STAGE PROJECT & TRUE FULL-SCREEN STILLS VIEWER (ZERO CLUTTER)
        ===================================================================== */
     .project-modal-overlay {
       position: fixed;
       inset: 0;
       z-index: 2000;
-      background: rgba(4, 4, 7, 0.97);
-      backdrop-filter: blur(28px) saturate(165%);
-      -webkit-backdrop-filter: blur(28px) saturate(165%);
+      background: #000000;
       display: flex;
       flex-direction: column;
+      height: 100vh;
+      height: 100dvh;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                  visibility 0.3s ease;
+      transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+                  visibility 0.24s ease;
     }
 
     .project-modal-overlay.active {
@@ -738,92 +738,105 @@
       pointer-events: auto;
     }
 
-    /* Top Sticky Navigation Bar with Back, Fullscreen, Download & Close */
+    /* Top Sticky Navigation Bar */
     .modal-topbar {
       width: 100%;
-      background: rgba(8, 8, 12, 0.94);
+      background: rgba(8, 8, 12, 0.96);
       border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 12px 20px;
+      padding: max(10px, env(safe-area-inset-top, 10px)) 14px 10px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
       z-index: 20;
     }
 
+    /* WHEN TRUE FULLSCREEN IS ACTIVE: HIDE TOP BAR, CROSS BUTTON & EVERYTHING ELSE! */
+    .project-modal-overlay.true-fullscreen-mode .modal-topbar,
+    .project-modal-overlay:fullscreen .modal-topbar,
+    .project-modal-overlay:-webkit-full-screen .modal-topbar {
+      display: none !important;
+    }
+
+    .project-modal-overlay.true-fullscreen-mode .project-slider-view,
+    .project-modal-overlay:fullscreen .project-slider-view,
+    .project-modal-overlay:-webkit-full-screen .project-slider-view {
+      padding: 0 !important;
+      background: #000000 !important;
+    }
+
+    .project-modal-overlay.true-fullscreen-mode .stills-main-img,
+    .project-modal-overlay:fullscreen .stills-main-img,
+    .project-modal-overlay:-webkit-full-screen .stills-main-img {
+      max-width: 100vw !important;
+      max-height: 100dvh !important;
+      border-radius: 0 !important;
+    }
+
     .modal-topbar-inner {
-      max-width: 1240px;
+      max-width: 1280px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .modal-back-btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 100px;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.6px;
       cursor: pointer;
-      transition: all 0.22s ease;
       white-space: nowrap;
+      max-width: 185px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .modal-back-btn svg {
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       stroke: currentColor;
       stroke-width: 2.2;
       flex-shrink: 0;
-      transition: transform 0.22s ease;
-    }
-
-    .modal-back-btn:hover {
-      background: var(--red-key);
-      border-color: #FFFFFF;
-      box-shadow: 0 6px 20px rgba(229, 9, 20, 0.45);
-    }
-
-    .modal-back-btn:hover svg {
-      transform: translateX(-3px);
     }
 
     .modal-topbar-right {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .modal-step-indicator {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
-      color: var(--text-secondary);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      padding: 6px 13px;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 6px 11px;
       border-radius: 100px;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       white-space: nowrap;
     }
 
-    /* Professional Action Buttons (Download & Fullscreen) */
+    /* Action Buttons (Download & Fullscreen) */
     .slider-pro-tools {
       display: none;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .slider-pro-tools.visible {
@@ -833,22 +846,27 @@
     .pro-tool-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       height: 36px;
-      padding: 0 13px;
+      padding: 0 12px;
       border-radius: 100px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: #FFFFFF;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
       cursor: pointer;
-      transition: all 0.22s ease;
-      text-decoration: none;
       white-space: nowrap;
+    }
+
+    .pro-tool-btn:active,
+    .pro-tool-btn:hover {
+      background: var(--red-key);
+      border-color: #FFFFFF;
     }
 
     .pro-tool-btn svg {
@@ -859,79 +877,63 @@
       flex-shrink: 0;
     }
 
-    .pro-tool-btn:hover {
-      background: var(--red-key);
-      border-color: #FFFFFF;
-      box-shadow: 0 4px 16px rgba(229, 9, 20, 0.45);
-    }
-
     .modal-close-icon-btn {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background: rgba(229, 9, 20, 0.2);
-      border: 1px solid rgba(229, 9, 20, 0.55);
+      background: rgba(229, 9, 20, 0.22);
+      border: 1px solid rgba(229, 9, 20, 0.6);
       color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       flex-shrink: 0;
-      transition: all 0.22s ease;
-    }
-
-    .modal-close-icon-btn:hover {
-      background: var(--red-key);
-      border-color: #FFFFFF;
-      transform: scale(1.06);
     }
 
     .modal-close-icon-btn svg {
-      width: 17px;
-      height: 17px;
+      width: 16px;
+      height: 16px;
       stroke: currentColor;
       stroke-width: 2.2;
     }
 
-    /* ---------------- VIEW 1: PROJECT OVERVIEW (UNCROPPED POSTER + INFO + STILLS) ---------------- */
+    /* ---------------- VIEW 1: PROJECT OVERVIEW (POSTER + INFO + STILLS GRID) ---------------- */
     .project-overview-view {
       flex: 1;
       overflow-y: auto;
-      padding: 28px 24px 60px 24px;
+      -webkit-overflow-scrolling: touch;
+      padding: 20px 16px 60px 16px;
       max-width: 1200px;
       width: 100%;
       margin: 0 auto;
-      animation: fadeSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      background: #040407;
     }
 
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    .project-overview-view.hidden {
+      display: none !important;
     }
 
-    /* Desktop & Mobile Adaptive Summary Card */
     .project-summary-card {
       display: grid;
-      grid-template-columns: minmax(260px, 380px) 1fr;
-      gap: 32px;
+      grid-template-columns: minmax(240px, 360px) 1fr;
+      gap: 28px;
       align-items: center;
-      background: rgba(14, 14, 20, 0.92);
+      background: rgba(14, 14, 20, 0.94);
       border: 1px solid rgba(255, 255, 255, 0.14);
       border-left: 4px solid var(--red-key);
       border-radius: var(--radius-outer);
-      padding: 28px;
-      margin-bottom: 36px;
+      padding: 24px;
+      margin-bottom: 30px;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
     }
 
-    /* Uncropped Poster Box: Shows 100% of Poster on Phone & Computer */
     .mini-poster-box {
       width: 100%;
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       background: #07070B;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -940,7 +942,7 @@
     .mini-poster-box img {
       width: 100%;
       height: auto;
-      max-height: 380px;
+      max-height: 350px;
       object-fit: contain;
       display: block;
     }
@@ -955,36 +957,36 @@
     .summary-badges-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     .summary-cat-pill {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
+      letter-spacing: 1px;
       background: var(--red-key);
       color: #FFFFFF;
-      padding: 5px 13px;
+      padding: 4px 12px;
       border-radius: 100px;
     }
 
     .summary-year-pill {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
       color: var(--text-secondary);
       background: rgba(255, 255, 255, 0.07);
       border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 5px 13px;
+      padding: 4px 12px;
       border-radius: 100px;
     }
 
     .summary-title {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(24px, 3.2vw, 36px);
+      font-size: clamp(22px, 3vw, 34px);
       font-weight: 800;
       color: #FFFFFF;
       margin-bottom: 6px;
@@ -993,64 +995,56 @@
 
     .summary-role {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12.5px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--red-key);
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      margin-bottom: 14px;
-      padding-bottom: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .summary-description {
-      font-size: 15px;
-      line-height: 1.72;
+      font-size: 14.5px;
+      line-height: 1.68;
       color: var(--text-secondary);
     }
 
-    /* Stills Thumbnail Grid Below Summary */
     .stills-grid-section-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .stills-grid-heading {
       font-family: 'Syne', sans-serif;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: #FFFFFF;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .stills-grid-heading::before {
       content: "";
-      width: 10px;
-      height: 10px;
+      width: 9px;
+      height: 9px;
       border-radius: 50%;
       background: var(--red-key);
       box-shadow: 0 0 10px var(--red-key);
     }
 
-    .stills-grid-hint {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
     .stills-thumbnails-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
     }
 
     .still-grid-card {
@@ -1061,9 +1055,6 @@
       background: #09090E;
       border: 1px solid rgba(255, 255, 255, 0.16);
       cursor: pointer;
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                  border-color 0.28s ease,
-                  box-shadow 0.28s ease;
     }
 
     .still-grid-card img {
@@ -1071,75 +1062,57 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .still-grid-card:hover {
-      transform: translateY(-4px) scale(1.02);
-      border-color: var(--red-key);
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.9), 0 0 20px rgba(229, 9, 20, 0.35);
-    }
-
-    .still-grid-card:hover img {
-      transform: scale(1.07);
     }
 
     .still-grid-index-tag {
       position: absolute;
       bottom: 8px;
       right: 8px;
-      background: rgba(5, 5, 8, 0.85);
+      background: rgba(5, 5, 8, 0.86);
       backdrop-filter: blur(8px);
       color: #FFFFFF;
       border: 1px solid rgba(255, 255, 255, 0.2);
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 10.5px;
+      font-size: 10px;
       font-weight: 700;
       padding: 3px 9px;
       border-radius: 100px;
       pointer-events: none;
     }
 
-    /* ---------------- VIEW 2: FULL-SCREEN TOUCH-SWIPE SLIDER (NO ARROWS) ---------------- */
+    /* ---------------- VIEW 2: PURE FULL-SCREEN SWIPE SLIDER (NO TEXT, NO STRIP!) ---------------- */
     .project-slider-view {
       flex: 1;
       display: none;
       flex-direction: column;
-      justify-content: space-between;
-      padding: 12px 18px 18px 18px;
-      max-width: 1360px;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      margin: 0 auto;
+      height: 100%;
+      padding: 6px;
+      background: #000000;
+      overflow: hidden;
       min-height: 0;
-      animation: fadeSlideUp 0.25s ease;
     }
 
     .project-slider-view.active {
       display: flex;
     }
 
-    .project-overview-view.hidden {
-      display: none;
-    }
-
     .stills-stage-wrap {
       position: relative;
       flex: 1;
       width: 100%;
+      height: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       min-height: 0;
       user-select: none;
       -webkit-user-select: none;
-      touch-action: pan-y;
+      touch-action: none;
       cursor: grab;
-    }
-
-    .stills-stage-wrap:active {
-      cursor: grabbing;
     }
 
     .stills-main-img-container {
@@ -1150,99 +1123,49 @@
       justify-content: center;
       position: relative;
       min-height: 0;
+      overflow: hidden;
     }
 
     .stills-main-img {
       max-width: 100%;
-      max-height: 70vh;
+      max-height: 100%;
+      width: auto;
+      height: auto;
       object-fit: contain;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.95);
-      transform: scale(0.97) translateX(0);
+      border-radius: 6px;
       opacity: 0;
-      transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-                  opacity 0.24s ease;
+      transform: translate3d(0, 0, 0) scale(0.98);
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity 0.18s ease;
       pointer-events: none;
+      will-change: transform, opacity;
     }
 
     .stills-main-img.loaded {
-      transform: scale(1) translateX(0);
       opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
     }
 
-    .swipe-gesture-pill {
-      margin-top: 10px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.8px;
-      color: var(--text-tertiary);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 4px 14px;
-      border-radius: 100px;
-      flex-shrink: 0;
-    }
-
-    /* Bottom Filmstrip inside Slider View */
-    .stills-thumbs-bar {
-      width: 100%;
-      margin-top: 10px;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 6px 4px;
-      justify-content: center;
-      scrollbar-width: thin;
-      flex-shrink: 0;
-    }
-
-    .still-thumb-item {
-      width: 80px;
-      height: 52px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      cursor: pointer;
-      flex-shrink: 0;
-      opacity: 0.5;
-      transition: all 0.22s ease;
-      background: #09090D;
-    }
-
-    .still-thumb-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .still-thumb-item:hover {
-      opacity: 0.85;
-    }
-
-    .still-thumb-item.active {
-      opacity: 1;
-      border-color: var(--red-key);
-      box-shadow: 0 0 14px rgba(229, 9, 20, 0.7);
-      transform: scale(1.06);
+    .stills-main-img.swiping {
+      transition: none !important;
     }
 
     /* =====================================================================
-       SECTION 3: FILMOGRAPHY & CREDITS
+       SECTION 3: FILMOGRAPHY & CREDITS (AUTO-ADJUSTS FOR 5, 6, 7 OR ANY COUNT)
        ===================================================================== */
     .credits-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 26px;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 22px;
+      /* align-items: start ensures cards with 5, 6, or 7 items each size naturally! */
+      align-items: start;
     }
 
     .credit-panel {
-      padding: 34px;
+      padding: 28px 24px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
     }
 
     .credit-panel:hover {
@@ -1254,25 +1177,28 @@
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1.8px;
+      letter-spacing: 1.6px;
       color: var(--red-key);
-      margin-bottom: 22px;
-      padding-bottom: 14px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .credit-ledger {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 14px;
     }
 
     .credit-ledger li {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 12px;
+      gap: 14px;
       padding-bottom: 12px;
       border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
     }
@@ -1283,17 +1209,20 @@
     }
 
     .work-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 600;
       color: #FFFFFF;
+      line-height: 1.4;
+      word-break: break-word;
     }
 
     .work-role {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 600;
       color: var(--text-secondary);
-      white-space: nowrap;
+      text-align: right;
+      flex-shrink: 0;
     }
 
     /* =====================================================================
@@ -1301,57 +1230,52 @@
        ===================================================================== */
     .laurels-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 18px;
+      align-items: start;
     }
 
     .laurel-card {
-      padding: 28px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 8px;
       border-left: 3px solid var(--red-key);
-    }
-
-    .laurel-card:hover {
-      background: var(--bg-surface-elevated);
-      border-color: var(--red-key);
-      transform: translateY(-4px);
     }
 
     .laurel-year {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--red-key);
-      letter-spacing: 1.5px;
+      letter-spacing: 1.4px;
       text-transform: uppercase;
     }
 
     .laurel-award {
       font-family: 'Syne', sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       color: #FFFFFF;
       line-height: 1.32;
     }
 
     .laurel-festival {
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--text-secondary);
     }
 
     /* =====================================================================
-       SECTION 5: CONTACT (INSTAGRAM, PHONE, EMAIL)
+       SECTION 5: CONTACT (ULTRA-CLEAN CARDS — NO SUBTEXT CLUTTER)
        ===================================================================== */
     .booking-panel {
-      padding: 64px 44px;
+      padding: 48px 28px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 18px;
+      gap: 16px;
       position: relative;
       overflow: hidden;
     }
@@ -1368,7 +1292,7 @@
 
     .booking-panel h2 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(26px, 4vw, 42px);
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: -0.5px;
@@ -1377,44 +1301,46 @@
 
     .booking-subtext {
       color: var(--text-secondary);
-      max-width: 580px;
-      line-height: 1.75;
-      font-size: 15.5px;
+      max-width: 560px;
+      line-height: 1.7;
+      font-size: 14.5px;
     }
 
     .contact-cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
       width: 100%;
-      max-width: 960px;
-      margin-top: 16px;
+      max-width: 920px;
+      margin-top: 12px;
     }
 
     .contact-channel-card {
-      background: rgba(8, 8, 12, 0.88);
+      background: rgba(8, 8, 12, 0.9);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: var(--radius-inner);
-      padding: 28px 22px;
+      padding: 26px 20px;
       text-decoration: none;
       color: #FFFFFF;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      transition: all 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .contact-channel-card:hover {
-      transform: translateY(-5px);
+    .contact-channel-card:hover,
+    .contact-channel-card:active {
+      transform: translateY(-4px);
       border-color: var(--red-key);
       background: rgba(229, 9, 20, 0.1);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(229, 9, 20, 0.22);
+      box-shadow: 0 16px 38px rgba(0, 0, 0, 0.9), 0 0 22px rgba(229, 9, 20, 0.22);
     }
 
     .channel-icon-ring {
-      width: 48px;
-      height: 48px;
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
       background: rgba(229, 9, 20, 0.16);
       border: 1px solid rgba(229, 9, 20, 0.55);
@@ -1422,27 +1348,26 @@
       align-items: center;
       justify-content: center;
       color: var(--red-key);
-      margin-bottom: 4px;
-      transition: all 0.3s ease;
+      margin-bottom: 2px;
+      transition: all 0.28s ease;
     }
 
     .contact-channel-card:hover .channel-icon-ring {
       background: var(--red-key);
       color: #FFFFFF;
       border-color: #FFFFFF;
-      transform: scale(1.08);
     }
 
     .channel-icon-ring svg {
-      width: 22px;
-      height: 22px;
+      width: 21px;
+      height: 21px;
       stroke: currentColor;
       stroke-width: 1.8;
     }
 
     .channel-label {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.6px;
@@ -1451,63 +1376,48 @@
 
     .channel-value {
       font-family: 'Syne', sans-serif;
-      font-size: 16.5px;
+      font-size: 16px;
       font-weight: 700;
       color: #FFFFFF;
       word-break: break-all;
     }
 
-    .channel-action-hint {
-      font-size: 12px;
-      color: var(--text-secondary);
-      margin-top: 2px;
-    }
-
     .return-top-wrap {
-      margin-top: 18px;
+      margin-top: 14px;
     }
 
     .precision-btn {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
-      letter-spacing: 1.2px;
+      letter-spacing: 1.1px;
       text-transform: uppercase;
       color: #FFFFFF;
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      padding: 12px 26px;
+      padding: 11px 24px;
       border-radius: 100px;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      transition: all 0.28s ease;
+      gap: 8px;
     }
 
     .precision-btn svg {
-      width: 15px;
-      height: 15px;
+      width: 14px;
+      height: 14px;
       stroke: currentColor;
       stroke-width: 2;
     }
 
-    .precision-btn:hover {
-      background: var(--red-key);
-      color: #FFFFFF;
-      border-color: #FFFFFF;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(229, 9, 20, 0.45);
-    }
-
     /* =====================================================================
-       RESPONSIVE DESIGN FOR PHONE & TABLET (PERFECT UNCROPPED POSTER FIT)
+       PHONE & COMPUTER RESPONSIVE OPTIMIZATION
        ===================================================================== */
     @media (max-width: 960px) {
       .hero-grid {
         grid-template-columns: 1fr;
-        padding: 36px 26px;
-        gap: 34px;
+        padding: 30px 22px;
+        gap: 28px;
       }
       .header-status-group {
         display: none;
@@ -1515,87 +1425,114 @@
       .posters-grid {
         grid-template-columns: 1fr;
       }
-      .booking-panel {
-        padding: 44px 22px;
-      }
       .project-summary-card {
-        grid-template-columns: 260px 1fr;
-        gap: 24px;
-        padding: 22px;
-      }
-      .stills-thumbs-bar {
-        justify-content: flex-start;
+        grid-template-columns: 240px 1fr;
+        gap: 20px;
+        padding: 20px;
       }
     }
 
-    /* Phone View: Stack Poster cleanly on top of text so NOTHING gets cut off */
     @media (max-width: 720px) {
+      .header-wrap {
+        margin: 12px auto 20px auto;
+        padding: 0 12px;
+      }
+      .top-bar {
+        padding: 11px 14px;
+      }
+      .brand-title-group h1 {
+        font-size: 14.5px;
+      }
+      .brand-title-group span {
+        font-size: 9px;
+      }
+      .header-cta-link {
+        padding: 7px 12px;
+        font-size: 9.5px;
+      }
+      .container {
+        padding: 0 12px;
+      }
+      section {
+        margin-bottom: 52px;
+      }
+      .hero-grid {
+        padding: 24px 18px;
+        gap: 22px;
+      }
+      .stat-box {
+        padding: 18px 14px;
+      }
       .project-summary-card {
         grid-template-columns: 1fr;
-        gap: 18px;
-        padding: 18px;
+        gap: 16px;
+        padding: 16px;
       }
       .mini-poster-box {
-        max-height: 280px;
+        max-height: 260px;
         background: #050508;
       }
       .mini-poster-box img {
-        max-height: 270px;
+        max-height: 250px;
         width: 100%;
         object-fit: contain;
       }
       .summary-title {
-        font-size: 22px;
-      }
-      .summary-role {
-        font-size: 11.5px;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-      }
-      .summary-description {
-        font-size: 14px;
-        line-height: 1.62;
+        font-size: 21px;
       }
       .stills-thumbnails-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .credits-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .credit-panel {
+        padding: 22px 18px;
+      }
+      .booking-panel {
+        padding: 34px 16px;
+      }
+      .contact-cards-grid {
+        grid-template-columns: 1fr;
         gap: 12px;
       }
-      .modal-topbar {
-        padding: 10px 12px;
-      }
-      .project-overview-view {
-        padding: 18px 14px 50px 14px;
+      .contact-channel-card {
+        padding: 20px 16px;
       }
       .pro-tool-label {
         display: none;
       }
       .pro-tool-btn {
-        padding: 0 10px;
         width: 36px;
-        justify-content: center;
+        padding: 0;
       }
     }
 
     @media (max-width: 480px) {
-      .spatial-dock-wrap {
-        bottom: 12px;
-        padding: 0 8px;
-      }
       .spatial-dock-track {
         padding: 4px;
       }
       .dock-item {
-        font-size: 10px;
-        letter-spacing: 0.3px;
+        font-size: 9.8px;
+        letter-spacing: 0.2px;
         padding: 9px 2px;
       }
       .modal-step-indicator {
-        font-size: 10.5px;
-        padding: 5px 10px;
+        font-size: 10px;
+        padding: 5px 9px;
       }
       .modal-back-btn {
-        padding: 7px 12px;
-        font-size: 10.5px;
+        padding: 7px 11px;
+        font-size: 10px;
+        max-width: 145px;
+      }
+      .credit-ledger li {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 10px;
       }
     }
   </style>
@@ -1634,12 +1571,13 @@
           <span id="header-availability">Available for Bookings</span>
         </div>
         <span id="header-location">Mumbai • Worldwide</span>
-        <a href="#contact-section" class="header-cta-link">Get in Touch →</a>
       </div>
+
+      <a href="#contact-section" class="header-cta-link">Get in Touch →</a>
     </div>
   </header>
 
-  <!-- 2. BOTTOM NAVIGATION DOCK (ALL 5 BUTTONS VISIBLE & SMOOTH ON MOBILE) -->
+  <!-- 2. BOTTOM NAVIGATION DOCK -->
   <div class="spatial-dock-wrap" id="spatial-dock-wrap">
     <nav class="spatial-dock-track" id="spatial-dock-track" aria-label="Primary Portfolio Navigation">
       <div class="optical-dock-lens" id="optical-dock-lens"></div>
@@ -1672,11 +1610,11 @@
     <section id="works-section">
       <div class="section-header">
         <div>
-          <div class="section-eyebrow">Portfolio Showcase • Click Poster to Open Project &amp; Stills</div>
+          <div class="section-eyebrow">Portfolio Showcase • Tap Poster to Open Project &amp; Stills</div>
           <h2 class="section-heading">Selected Works &amp; Posters</h2>
         </div>
 
-        <!-- Interactive Category Filter Tabs -->
+        <!-- Category Filter Tabs -->
         <div class="poster-filter-bar" id="poster-filter-bar">
           <button class="filter-tab active" data-filter="All">All Works</button>
           <button class="filter-tab" data-filter="Film & Series">Films &amp; Series</button>
@@ -1695,7 +1633,7 @@
           <div class="section-eyebrow">Career Track Record</div>
           <h2 class="section-heading">Filmography &amp; Credits</h2>
         </div>
-        <div class="section-subtitle">Feature Films • Commercials • Web Series</div>
+        <div class="section-subtitle">Feature Films • Commercials • Music Videos</div>
       </div>
       <div class="credits-grid" id="experience-container"></div>
     </section>
@@ -1712,7 +1650,7 @@
       <div class="laurels-grid" id="awards-container"></div>
     </section>
 
-    <!-- ================= CONTACT (INSTAGRAM + PHONE + EMAIL) ================= -->
+    <!-- ================= CONTACT (CLEAN: ONLY ICON + LABEL + VALUE) ================= -->
     <section id="contact-section">
       <div class="spatial-panel booking-panel">
         <div class="section-eyebrow">Direct Inquiries &amp; Bookings</div>
@@ -1722,7 +1660,7 @@
         </p>
 
         <div class="contact-cards-grid">
-          <!-- Instagram -->
+          <!-- Instagram (Clean - No bottom clutter text) -->
           <a id="contact-instagram" href="https://instagram.com/ayankhan.dop" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1733,10 +1671,9 @@
             </div>
             <span class="channel-label">Instagram</span>
             <span class="channel-value" id="instagram-text">@ayankhan.dop</span>
-            <span class="channel-action-hint">Follow &amp; View Latest Work →</span>
           </a>
 
-          <!-- Phone -->
+          <!-- Phone (Clean - No bottom clutter text) -->
           <a id="contact-phone" href="tel:+917722991272" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1745,10 +1682,9 @@
             </div>
             <span class="channel-label">Phone</span>
             <span class="channel-value" id="phone-text">+91 7722991272</span>
-            <span class="channel-action-hint">Direct Call for Bookings →</span>
           </a>
 
-          <!-- Email -->
+          <!-- Email (Clean - No bottom clutter text) -->
           <a id="contact-email" href="mailto:ayan4040450@gmail.com" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1756,9 +1692,8 @@
                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
               </svg>
             </div>
-            <span class="channel-label">Email Address</span>
+            <span class="channel-label">Email</span>
             <span class="channel-value" id="email-text">ayan4040450@gmail.com</span>
-            <span class="channel-action-hint">Send Project Inquiry →</span>
           </a>
         </div>
 
@@ -1773,11 +1708,11 @@
 
   </main>
 
-  <!-- ================= 2-STAGE PROJECT & STILLS MODAL ================= -->
+  <!-- ================= 2-STAGE PROJECT & TRUE FULL-SCREEN STILLS MODAL ================= -->
   <div class="project-modal-overlay" id="project-modal" role="dialog" aria-modal="true">
 
-    <!-- Top Navigation Bar with Back, Fullscreen, Download & Close -->
-    <div class="modal-topbar">
+    <!-- Top Navigation Bar (Automatically Disappears in True Full Screen Mode!) -->
+    <div class="modal-topbar" id="modal-topbar">
       <div class="modal-topbar-inner">
         <button class="modal-back-btn" id="modal-back-btn">
           <svg viewBox="0 0 24 24" fill="none">
@@ -1789,7 +1724,7 @@
         <div class="modal-topbar-right">
           <span class="modal-step-indicator" id="modal-step-indicator">Project Stills</span>
 
-          <!-- Professional Viewer Actions (Shown when viewing a still) -->
+          <!-- Viewer Actions (Download & Full Screen) -->
           <div class="slider-pro-tools" id="slider-pro-tools">
             <button class="pro-tool-btn" id="still-download-btn" title="Download High-Res Still">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1800,7 +1735,7 @@
               <span class="pro-tool-label">Download</span>
             </button>
 
-            <button class="pro-tool-btn" id="still-fullscreen-btn" title="Toggle Fullscreen">
+            <button class="pro-tool-btn" id="still-fullscreen-btn" title="Enter Full Screen">
               <svg viewBox="0 0 24 24" fill="none" id="fullscreen-icon-svg">
                 <polyline points="15 3 21 3 21 9"></polyline>
                 <polyline points="9 21 3 21 3 15"></polyline>
@@ -1821,7 +1756,7 @@
       </div>
     </div>
 
-    <!-- STEP 1: OVERVIEW VIEW (UNCROPPED POSTER + PROJECT INFO + STILLS GRID) -->
+    <!-- STEP 1: PROJECT OVERVIEW VIEW (POSTER + INFO + STILLS GRID) -->
     <div class="project-overview-view" id="project-overview-view">
       <div class="project-summary-card">
         <div class="mini-poster-box">
@@ -1840,49 +1775,52 @@
 
       <div class="stills-grid-section-header">
         <h4 class="stills-grid-heading">Project Stills Gallery</h4>
-        <span class="stills-grid-hint">Tap any still below to open full-screen viewer →</span>
       </div>
 
       <div class="stills-thumbnails-grid" id="overview-stills-grid"></div>
     </div>
 
-    <!-- STEP 2: FULL-SCREEN TOUCH-SWIPE SLIDER VIEW (NO LEFT/RIGHT ARROWS) -->
+    <!-- STEP 2: PURE FULL-SCREEN SWIPE VIEW (ZERO TEXT, ZERO CLUTTER BELOW) -->
     <div class="project-slider-view" id="project-slider-view">
       <div class="stills-stage-wrap" id="stills-stage-wrap">
         <div class="stills-main-img-container">
           <img src="" alt="Project Still" class="stills-main-img" id="stills-main-img">
         </div>
-        <div class="swipe-gesture-pill">
-          <span>← Swipe left or right to browse stills →</span>
-        </div>
       </div>
-
-      <div class="stills-thumbs-bar" id="stills-thumbs-bar"></div>
     </div>
 
   </div>
 
 
   <!-- ============================================================================
-       MASTER CONFIGURATION (यहाँ से अपने पोस्टर्स, स्टिल्स और डिटेल्स आसानी से बदलें)
+       🛠️ MASTER CONFIGURATION (यहाँ से अपनी वेबसाइट का सारा डेटा आसानी से बदलें)
+       🛠️ MASTER CONFIGURATION (EDIT ALL YOUR WEBSITE DATA EASILY BELOW)
        ============================================================================ -->
   <script>
 
-    // ============================================================================
-    // 0. PROFILE & CONTACT DETAILS
-    // ============================================================================
+    /* ============================================================================
+       📍 SECTION [A]: PROFILE & CONTACT DETAILS (प्रोफाइल और कॉन्टैक्ट की जानकारी)
+       ----------------------------------------------------------------------------
+       HINDI: यहाँ अपना नाम, बायो, अनुभव के नंबर, इंस्टाग्राम, ईमेल और फोन नंबर बदलें।
+              ध्यान रखें कि हर टेक्स्ट डबल कोट्स (" ") के अंदर ही रहे।
+       ENGLISH: Edit your name, bio, stats, Instagram, email, and phone number here.
+                Always keep values inside double quotes (" ").
+       ============================================================================ */
     const SITE_CONFIG = {
       name: "AYAN KHAN",
       role: "Director of Photography",
       eyebrow: "DIRECTOR OF PHOTOGRAPHY // CINEMATOGRAPHER",
       availability: "Available for Bookings",
       location: "Mumbai • Worldwide",
-      
+
+      // वेबसाइट के पीछे की हल्की बैकग्राउंड इमेज (Background Image Link):
       backgroundImageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=75",
       backgroundOpacity: "0.12",
 
+      // आपका बायो (Your Bio):
       bio: "Ayan Khan is an acclaimed Director of Photography with extensive experience across narrative films, major broadcast promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
 
+      // आपके काम की खासियतें (Specialties tags):
       specialties: [
         "Feature Films",
         "Commercial Campaigns",
@@ -1891,6 +1829,7 @@
         "Visual Direction"
       ],
 
+      // आपके 4 मुख्य आंकड़े (Your 4 Stats Boxes):
       stats: [
         { number: "4+ Yrs", label: "Experience" },
         { number: "11M+", label: "Broadcast Views" },
@@ -1898,6 +1837,7 @@
         { number: "5+", label: "Major Projects" }
       ],
 
+      // आपके कॉन्टैक्ट लिंक्स (Your Contact Info):
       instagramHandle: "@ayankhan.dop",
       instagramUrl: "https://www.instagram.com/ayankhan.dop",
       email: "ayan4040450@gmail.com",
@@ -1905,12 +1845,24 @@
     };
 
 
-    // ============================================================================
-    // 1. SELECTED WORKS, POSTERS & STILLS GALLERY
-    // ============================================================================
+    /* ============================================================================
+       📍 SECTION [B]: SELECTED WORKS, POSTERS & STILLS GALLERY (पोस्टर्स और स्टिल्स)
+       ----------------------------------------------------------------------------
+       HINDI:
+       1. नया प्रोजेक्ट पोस्टर जोड़ने के लिए `{ ... },` वाले पूरे ब्लॉक को कॉपी करके नीचे पेस्ट करें।
+       2. `category` में केवल इन 3 में से एक लिखें ताकि फिल्टर बटन सही काम करें:
+          - "Film & Series"
+          - "Commercial"
+          - "Music Video"
+       3. `stills: [ ... ]` के अंदर आप जितनी चाहें उतनी फोटोज के लिंक कोट्स (" ") और कॉमा (,) के साथ डाल सकते हैं।
+
+       ENGLISH:
+       1. To add a new poster card, copy an entire `{ ... },` block and paste it below.
+       2. For `category`, use one of: "Film & Series", "Commercial", or "Music Video".
+       3. Inside `stills: [ ... ]`, add as many photo URLs as you want separated by commas.
+       ============================================================================ */
     const MY_POSTERS = [
       {
-        // आपका श्रीफल (Shreefal) पोस्टर का डायरेक्ट GitHub लिंक:
         posterUrl: "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
         fallbackPosterUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=75",
         category: "Film & Series",
@@ -1986,9 +1938,20 @@
     ];
 
 
-    // ============================================================================
-    // 2. FILMOGRAPHY & CREDITS
-    // ============================================================================
+    /* ============================================================================
+       📍 SECTION [C]: UNLIMITED FILMOGRAPHY & CREDITS (5, 6, 7 या अनलिमिटेड प्रोजेक्ट्स)
+       ----------------------------------------------------------------------------
+       HINDI (क्रेडिट्स बढ़ाने का तरीका):
+       - मान लीजिए आप पहले बॉक्स (Commercials) में 5, दूसरे (Music Videos) में 6 और तीसरे (Films) में 7 नाम डालते हैं,
+         तो वेबसाइट फोन और कंप्यूटर दोनों पर अपने-आप (Automatically) हर बॉक्स की साइज को एडजस्ट कर लेगी!
+       - नया नाम जोड़ने के लिए बस आखिरी `{ name: "...", role: "..." }` के बाद कॉमा `,` लगाएं और नीचे नई लाइन लिख दें:
+         `{ name: "नए प्रोजेक्ट का नाम", role: "आपका रोल" }`
+
+       ENGLISH (How to add 5, 6, 7, or unlimited credits):
+       - Whether you put 5 items in Commercials, 6 in Music Videos, and 7 in Films (or 50+),
+         the layout automatically adjusts each card cleanly on both mobile phones and computers!
+       - Simply add a comma `,` after the last `{ name: "...", role: "..." }` and add a new line below it.
+       ============================================================================ */
     const MY_EXPERIENCE = [
       {
         category: "Commercials & Brands",
@@ -1997,6 +1960,8 @@
           { name: "Hyundai Alcazar Launch", role: "Cinematographer" },
           { name: "Reliance Digital Campaign", role: "Director of Photography" },
           { name: "Royal Enfield Ride Promo", role: "Second Unit DoP" }
+          // यहाँ 5वां, 6वां या जितने चाहें नाम जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
+          // , { name: "New Brand Commercial", role: "DoP" }
         ]
       },
       {
@@ -2006,6 +1971,8 @@
           { name: "ZeeTV Prime Time Promo", role: "Lighting & Camera" },
           { name: "StarPlus Mythological Promo", role: "Cinematographer" },
           { name: "Indie Acoustic Sessions", role: "Visual Director" }
+          // यहाँ और म्यूजिक वीडियो जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
+          // , { name: "New Music Video", role: "Director of Photography" }
         ]
       },
       {
@@ -2015,14 +1982,20 @@
           { name: "Shadows of Mumbai", role: "Director of Photography" },
           { name: "City of Dreams (Schedule)", role: "Additional Photography" },
           { name: "Echoes in the Mist", role: "Lead DoP" }
+          // यहाँ और फिल्में जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
+          // , { name: "New Feature Film", role: "DoP" }
         ]
       }
     ];
 
 
-    // ============================================================================
-    // 3. AWARDS & HONORS
-    // ============================================================================
+    /* ============================================================================
+       📍 SECTION [D]: AWARDS & HONORS (अवार्ड्स जोड़ने या बदलने के लिए)
+       ----------------------------------------------------------------------------
+       HINDI: नया अवार्ड जोड़ने के लिए `{ year: "...", title: "...", festival: "..." }`
+              को कॉपी करके कॉमा (,) के बाद नीचे पेस्ट करें।
+       ENGLISH: To add a new award, copy a `{ ... }` block, add a comma `,` and paste below.
+       ============================================================================ */
     const MY_AWARDS = [
       {
         year: "2024 • WINNER",
@@ -2038,7 +2011,8 @@
 
 
     /* ============================================================================
-       RENDERING & INTERACTION ENGINE
+       ⚙️ ENGINE CODE BELOW (इसके नीचे के कोड में बदलाव करने की जरूरत नहीं है)
+       ⚙️ ENGINE CODE BELOW (DO NOT EDIT BELOW THIS LINE TO KEEP CODE SAFE)
        ============================================================================ */
 
     // 1. Apply Configuration
@@ -2081,7 +2055,7 @@
       `;
     });
 
-    // 2. Render Posters with Uncropped Full Fit & Conditional Stills Support
+    // 2. Render Posters
     const postersContainer = document.getElementById("posters-container");
 
     function renderPosters(selectedCategory) {
@@ -2137,7 +2111,6 @@
 
     renderPosters("All");
 
-    // Filter Buttons Click Handler
     const filterButtons = document.querySelectorAll(".filter-tab");
     filterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -2148,7 +2121,11 @@
     });
 
     /* ============================================================================
-       2-STAGE PROJECT OVERVIEW + TOUCH-SWIPE SLIDER + FULLSCREEN + DOWNLOAD
+       3-STAGE NAVIGATION ENGINE WITH TRUE ZERO-UI FULLSCREEN MODE
+       - Stage 1: Project Overview (Poster + Stills Grid)
+       - Stage 2: Still Viewer (With Top Bar for Download & Full Screen Button)
+       - Stage 3: True 100% Full Screen (NO Top Bar, NO Cross Button, NO Text —
+                  Exit via Phone Back Button / Gesture or Double-Tap!)
        ============================================================================ */
     const projectModal = document.getElementById("project-modal");
     const overviewView = document.getElementById("project-overview-view");
@@ -2161,9 +2138,7 @@
     const sliderProTools = document.getElementById("slider-pro-tools");
     const stillDownloadBtn = document.getElementById("still-download-btn");
     const stillFullscreenBtn = document.getElementById("still-fullscreen-btn");
-    const fullscreenBtnLabel = document.getElementById("fullscreen-btn-label");
 
-    // Overview Elements
     const overviewMiniPoster = document.getElementById("overview-mini-poster");
     const overviewCategory = document.getElementById("overview-category");
     const overviewYear = document.getElementById("overview-year");
@@ -2172,17 +2147,15 @@
     const overviewDescription = document.getElementById("overview-description");
     const overviewStillsGrid = document.getElementById("overview-stills-grid");
 
-    // Slider Elements
     const stillsMainImg = document.getElementById("stills-main-img");
-    const stillsThumbsBar = document.getElementById("stills-thumbs-bar");
 
     let activeProjectItem = null;
     let activeStillsList = [];
     let activeStillIndex = 0;
     let activeFallback = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
-    let currentModalStage = 0; // 0 = closed, 1 = overview, 2 = fullscreen slider
+    let currentModalStage = 0; // 0 = closed, 1 = overview, 2 = slider, 3 = true 100% fullscreen
 
-    // Stage 1: Open Project Overview (Uncropped Poster + Details + Stills Grid)
+    // Stage 1: Open Project Overview
     function openProjectOverview(projectItem, stillsArray) {
       if (!stillsArray || stillsArray.length === 0) return;
 
@@ -2202,7 +2175,6 @@
       overviewRole.textContent = projectItem.role;
       overviewDescription.textContent = projectItem.description;
 
-      // Populate Small Stills Grid Below
       overviewStillsGrid.innerHTML = "";
       activeStillsList.forEach((stillUrl, idx) => {
         const gridCard = document.createElement("div");
@@ -2217,26 +2189,13 @@
         overviewStillsGrid.appendChild(gridCard);
       });
 
-      // Build bottom filmstrip for Stage 2 slider
-      stillsThumbsBar.innerHTML = "";
-      activeStillsList.forEach((stillUrl, idx) => {
-        const thumb = document.createElement("div");
-        thumb.className = `still-thumb-item ${idx === 0 ? "active" : ""}`;
-        thumb.innerHTML = `<img src="${stillUrl}" alt="Thumb ${idx + 1}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${activeFallback}';">`;
-        thumb.addEventListener("click", (e) => {
-          e.stopPropagation();
-          showSlideAtIndex(idx);
-        });
-        stillsThumbsBar.appendChild(thumb);
-      });
-
-      // Show Stage 1 UI
       currentModalStage = 1;
+      projectModal.classList.remove("true-fullscreen-mode");
       overviewView.classList.remove("hidden");
       sliderView.classList.remove("active");
       sliderProTools.classList.remove("visible");
       modalBackText.textContent = "Back to Works";
-      modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
+      modalStepIndicator.textContent = `${activeStillsList.length} Stills`;
 
       projectModal.classList.add("active");
       document.body.classList.add("modal-open");
@@ -2247,13 +2206,14 @@
       } catch (err) {}
     }
 
-    // Stage 2: Open Full-Screen Slider When a Still is Tapped
+    // Stage 2: Open Still Viewer
     function openFullScreenSlider(startIndex) {
       currentModalStage = 2;
+      projectModal.classList.remove("true-fullscreen-mode");
       overviewView.classList.add("hidden");
       sliderView.classList.add("active");
       sliderProTools.classList.add("visible");
-      modalBackText.textContent = `Back to ${activeProjectItem ? activeProjectItem.title : "Project"}`;
+      modalBackText.textContent = "Back to Stills";
 
       showSlideAtIndex(startIndex);
 
@@ -2262,11 +2222,44 @@
       } catch (err) {}
     }
 
+    // Stage 3: Enter True 100% Full Screen (Hides all buttons, cross, and bars)
+    function enterTrueFullScreen() {
+      if (currentModalStage !== 2) return;
+      currentModalStage = 3;
+      projectModal.classList.add("true-fullscreen-mode");
+
+      try {
+        history.pushState({ modalStage: 3 }, "");
+      } catch (err) {}
+
+      const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+      if (!fsElement) {
+        if (projectModal.requestFullscreen) {
+          projectModal.requestFullscreen().catch(() => {});
+        } else if (projectModal.webkitRequestFullscreen) {
+          projectModal.webkitRequestFullscreen();
+        }
+      }
+    }
+
+    // Exit True 100% Full Screen back to Stage 2
+    function exitTrueFullScreenToSliderUI() {
+      projectModal.classList.remove("true-fullscreen-mode");
+      currentModalStage = 2;
+
+      const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+      if (fsElement) {
+        if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    }
+
     function showSlideAtIndex(index) {
       if (!activeStillsList.length) return;
       activeStillIndex = (index + activeStillsList.length) % activeStillsList.length;
 
       stillsMainImg.classList.remove("loaded");
+      stillsMainImg.style.transform = "";
       stillsMainImg.onerror = function() {
         this.onerror = null;
         this.src = activeFallback;
@@ -2277,18 +2270,9 @@
       };
 
       modalStepIndicator.textContent = `${activeStillIndex + 1} / ${activeStillsList.length}`;
-
-      const allThumbs = stillsThumbsBar.querySelectorAll(".still-thumb-item");
-      allThumbs.forEach((t, i) => {
-        const isActive = i === activeStillIndex;
-        t.classList.toggle("active", isActive);
-        if (isActive) {
-          t.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-        }
-      });
     }
 
-    // Professional Download Still Handler
+    // Download Current Still
     stillDownloadBtn.addEventListener("click", async () => {
       const currentImgUrl = activeStillsList[activeStillIndex];
       if (!currentImgUrl) return;
@@ -2313,49 +2297,40 @@
       }
     });
 
-    // Professional Fullscreen Toggle Handler
+    // Clicking "Full Screen" Button Enters Stage 3 (True 100% Full Screen)
     stillFullscreenBtn.addEventListener("click", () => {
-      if (!document.fullscreenElement) {
-        if (projectModal.requestFullscreen) {
-          projectModal.requestFullscreen().catch(() => {});
-        } else if (projectModal.webkitRequestFullscreen) {
-          projectModal.webkitRequestFullscreen();
-        }
-      } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen().catch(() => {});
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        }
+      if (currentModalStage === 2) {
+        enterTrueFullScreen();
       }
     });
 
-    document.addEventListener("fullscreenchange", () => {
-      if (document.fullscreenElement) {
-        fullscreenBtnLabel.textContent = "Exit Full";
-      } else {
-        fullscreenBtnLabel.textContent = "Full Screen";
-      }
-    });
-
-    function exitFullscreenIfActive() {
-      if (document.fullscreenElement && document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
+    // If user exits native OS fullscreen via phone back gesture, sync Stage 3 -> Stage 2
+    function handleNativeFullscreenChange() {
+      const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
+      if (!fsElement && currentModalStage === 3) {
+        projectModal.classList.remove("true-fullscreen-mode");
+        currentModalStage = 2;
+        if (history.state && history.state.modalStage === 3) {
+          history.back();
+        }
       }
     }
 
+    document.addEventListener("fullscreenchange", handleNativeFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleNativeFullscreenChange);
+
     function switchFromSliderToOverviewUI() {
-      exitFullscreenIfActive();
+      exitTrueFullScreenToSliderUI();
       currentModalStage = 1;
       sliderView.classList.remove("active");
       sliderProTools.classList.remove("visible");
       overviewView.classList.remove("hidden");
       modalBackText.textContent = "Back to Works";
-      modalStepIndicator.textContent = `${activeStillsList.length} Stills Available`;
+      modalStepIndicator.textContent = `${activeStillsList.length} Stills`;
     }
 
     function closeModalCompletelyUI() {
-      exitFullscreenIfActive();
+      exitTrueFullScreenToSliderUI();
       currentModalStage = 0;
       projectModal.classList.remove("active");
       sliderView.classList.remove("active");
@@ -2364,7 +2339,6 @@
       document.body.classList.remove("modal-open");
     }
 
-    // Back Button Click Handler
     modalBackBtn.addEventListener("click", () => {
       if (currentModalStage === 2) {
         if (history.state && history.state.modalStage === 2) {
@@ -2381,7 +2355,6 @@
       }
     });
 
-    // Close 'X' Button closes the modal completely
     modalCloseAllBtn.addEventListener("click", () => {
       if (currentModalStage === 2 && history.state && history.state.modalStage === 2) {
         history.go(-2);
@@ -2392,53 +2365,62 @@
       }
     });
 
-    // Hardware Phone Back Button Listener (popstate)
+    // Phone Hardware Back Button / Thumb Back Gesture Handler
     window.addEventListener("popstate", (e) => {
-      if (e.state && e.state.modalStage === 1) {
+      if (e.state && e.state.modalStage === 2) {
+        exitTrueFullScreenToSliderUI();
+      } else if (e.state && e.state.modalStage === 1) {
         switchFromSliderToOverviewUI();
       } else {
         closeModalCompletelyUI();
       }
     });
 
-    // Keyboard Support on Desktop
+    // Keyboard Support for Computer
     window.addEventListener("keydown", (e) => {
       if (currentModalStage === 0) return;
-      if (e.key === "Escape" && !document.fullscreenElement) {
-        modalBackBtn.click();
-      } else if (currentModalStage === 2) {
+      if (e.key === "Escape") {
+        if (currentModalStage === 3) {
+          if (history.state && history.state.modalStage === 3) history.back();
+          else exitTrueFullScreenToSliderUI();
+        } else {
+          modalBackBtn.click();
+        }
+      } else if (currentModalStage === 2 || currentModalStage === 3) {
         if (e.key === "ArrowRight") showSlideAtIndex(activeStillIndex + 1);
         if (e.key === "ArrowLeft") showSlideAtIndex(activeStillIndex - 1);
       }
     });
 
-    // Smooth Touch & Mouse Drag Swipe Inside Full-Screen Slider (No Arrows Needed)
+    // Ultra-Smooth Mobile Touch & Pointer Swipe Engine (Works in both Stage 2 and Stage 3 Full Screen!)
     let swipeStartX = 0;
     let swipeCurrentX = 0;
     let isSwipingStage = false;
     const stageWrap = document.getElementById("stills-stage-wrap");
 
     stageWrap.addEventListener("pointerdown", (e) => {
-      if (currentModalStage !== 2) return;
+      if (currentModalStage !== 2 && currentModalStage !== 3) return;
       isSwipingStage = true;
       swipeStartX = e.clientX;
       swipeCurrentX = e.clientX;
+      stillsMainImg.classList.add("swiping");
     });
 
     stageWrap.addEventListener("pointermove", (e) => {
-      if (!isSwipingStage || currentModalStage !== 2) return;
+      if (!isSwipingStage || (currentModalStage !== 2 && currentModalStage !== 3)) return;
       swipeCurrentX = e.clientX;
-      const deltaX = (swipeCurrentX - swipeStartX) * 0.25;
-      stillsMainImg.style.transform = `scale(1) translateX(${deltaX}px)`;
+      const deltaX = (swipeCurrentX - swipeStartX) * 0.45;
+      stillsMainImg.style.transform = `translate3d(${deltaX}px, 0, 0) scale(0.99)`;
     }, { passive: true });
 
     function finishStageSwipe() {
       if (!isSwipingStage) return;
       isSwipingStage = false;
+      stillsMainImg.classList.remove("swiping");
       const diff = swipeCurrentX - swipeStartX;
       stillsMainImg.style.transform = "";
 
-      if (Math.abs(diff) > 40) {
+      if (Math.abs(diff) > 36) {
         if (diff < 0) showSlideAtIndex(activeStillIndex + 1);
         else showSlideAtIndex(activeStillIndex - 1);
       }
@@ -2448,17 +2430,25 @@
     stageWrap.addEventListener("pointercancel", finishStageSwipe);
     stageWrap.addEventListener("pointerleave", finishStageSwipe);
 
-    // Double-Tap / Double-Click on Still to Toggle Fullscreen
+    // Silent Double-Tap on Image to Enter or Exit True Fullscreen (No visible hint text)
     let lastTapTime = 0;
     stageWrap.addEventListener("click", () => {
       const now = Date.now();
       if (now - lastTapTime < 280) {
-        stillFullscreenBtn.click();
+        if (currentModalStage === 3) {
+          if (history.state && history.state.modalStage === 3) {
+            history.back();
+          } else {
+            exitTrueFullScreenToSliderUI();
+          }
+        } else if (currentModalStage === 2) {
+          enterTrueFullScreen();
+        }
       }
       lastTapTime = now;
     });
 
-    // 3. Render Credits
+    // 3. Render Unlimited Credits (Auto-adjusts whether 5, 6, 7 or any number of items)
     const expContainer = document.getElementById("experience-container");
     MY_EXPERIENCE.forEach(function(group) {
       let projectItems = "";
@@ -2497,7 +2487,7 @@
     }, { passive: true });
 
     /* ============================================================================
-       6. ULTRA-SMOOTH 60FPS CRYSTAL DOCK ENGINE (ZERO STUTTER)
+       6. ULTRA-SMOOTH 60FPS CRYSTAL DOCK ENGINE
        ============================================================================ */
     const dockTrack = document.getElementById("spatial-dock-track");
     const dockLens = document.getElementById("optical-dock-lens");
