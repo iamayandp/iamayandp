@@ -1,57 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-=======================================================================================
-📘 A-TO-Z MASTER EDITING GUIDE (कोड में बदलाव करने की पूरी गाइड - HINDI & ENGLISH)
-=======================================================================================
-
-⚠️ 3 GOLDEN RULES SO CODE NEVER BREAKS (कोड कभी न टूटे, इसके लिए 3 जरूरी नियम):
-1. DOUBLE QUOTES (" "):
-   - HINDI: हर नाम, रोल या फोटो लिंक को हमेशा डबल कोट्स (" ") के अंदर ही लिखें। कोट्स कभी न हटाएं।
-   - ENGLISH: Always keep text, roles, and image links inside double quotes (" ").
-
-2. COMMA ( , ):
-   - HINDI: जब आप एक के नीचे एक नया नाम या फोटो जोड़ें, तो पिछली लाइन के अंत में कॉमा ( , ) जरूर लगाएं।
-   - ENGLISH: Always put a comma ( , ) at the end of an item before adding a new item below it.
-
-3. BRACKETS ( { } और [ ] ):
-   - HINDI: हर आइटम `{` से शुरू होता है और `}` पर खत्म होता है। इन्हें गलती से डिलीट न करें।
-   - ENGLISH: Every item starts with `{` and ends with `}`. Do not delete them.
-
----------------------------------------------------------------------------------------
-📍 WHERE TO GO TO EDIT ANYTHING (किस चीज को सुधारने के लिए कहाँ जाएं):
-   (नीचे स्क्रॉल करके <script> टैग के अंदर "MASTER CONFIGURATION" सेक्शन में जाएं)
-
-   👉 SECTION [A] - PROFILE & CONTACT DETAILS (नाम, बायो, फोन नंबर, इंस्टाग्राम, ईमेल):
-      - Search for: `const SITE_CONFIG = {`
-      - यहाँ आप अपना नाम, बायो, अनुभव (Stats), Instagram लिंक, Phone नंबर और Email बदल सकते हैं।
-
-   👉 SECTION [B] - POSTERS & STILLS GALLERY (पोस्टर और उसकी स्टिल्स फोटोज जोड़ने के लिए):
-      - Search for: `const MY_POSTERS = [`
-      - यहाँ आप नया फिल्म पोस्टर जोड़ सकते हैं और `stills: [ ... ]` के अंदर जितनी चाहें उतनी फोटोज के लिंक डाल सकते हैं।
-
-   👉 SECTION [C] - UNLIMITED FILMOGRAPHY & CREDITS (कमर्शियल में 5, म्यूजिक में 6, फिल्म में 7 या अनलिमिटेड जोड़ने के लिए):
-      - Search for: `const MY_EXPERIENCE = [`
-      - यहाँ आप किसी भी बॉक्स में 5, 6, 7 या 50 नाम जोड़ सकते हैं। फोन और कंप्यूटर दोनों पर बॉक्स अपने-आप (Automatically) उस हिसाब से बड़ा-छोटा होकर एडजस्ट हो जाएगा।
-
-   👉 SECTION [D] - AWARDS & HONORS (अवार्ड्स जोड़ने या बदलने के लिए):
-      - Search for: `const MY_AWARDS = [`
-      - यहाँ आप अपने नए अवार्ड्स जोड़ सकते हैं।
-=======================================================================================
--->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>AYAN KHAN — Director of Photography</title>
+
+  <!-- ===================================================================================
+       🟢 PART 1: ALL EDITABLE SECTIONS (सारा एडिट करने वाला हिस्सा यहाँ सबसे ऊपर एक साथ है!)
+       🟢 (यहाँ 1. ABOUT, 2. WORKS/POSTERS, 3. CREDITS, 4. AWARDS, 5. CONTACT सब अलग-अलग कॉलम में हैं)
+       =================================================================================== -->
+  <script>
+
+    /* ===================================================================================
+       📦 COLUMN 1: ABOUT SECTION (आपका नाम, बायो, अनुभव और टैग्स)
+       =================================================================================== */
+    const EDIT_ABOUT = {
+      name: "AYAN KHAN",
+      role: "Director of Photography",
+      topHeading: "DIRECTOR OF PHOTOGRAPHY // CINEMATOGRAPHER",
+      availability: "Available for Bookings",
+      location: "Mumbai • Worldwide",
+
+      // वेबसाइट के पीछे की हल्की बैकग्राउंड फोटो:
+      backgroundImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=75",
+      backgroundOpacity: "0.12",
+
+      // आपका बायो (About Bio):
+      bio: "Ayan Khan is an acclaimed Director of Photography with extensive experience across narrative films, major broadcast promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
+
+      // आपके काम के टैग्स (Specialties):
+      specialties: [
+        "Feature Films",
+        "Commercial Campaigns",
+        "Music Videos",
+        "Broadcast Promos",
+        "Visual Direction"
+      ],
+
+      // आपके 4 मुख्य बॉक्स (Stats):
+      stats: [
+        { number: "4+ Yrs", label: "Experience" },
+        { number: "11M+",   label: "Broadcast Views" },
+        { number: "2+",     label: "Awards Won" },
+        { number: "5+",     label: "Major Projects" }
+      ]
+    };
+
+
+    /* ===================================================================================
+       🎬 COLUMN 2: SELECTED WORKS & POSTERS (पोस्टर और उसके अंदर अनलिमिटेड Stills)
+       -----------------------------------------------------------------------------------
+       ✨ STILLS डालने का सबसे आसान तरीका (AUTO-STILLS SYSTEM):
+          `stills: ` के अंदर आपको कॉमा (,) या कोट्स (" ") लगाने की भी जरूरत नहीं है!
+          बस बैक-टिक (` `) के अंदर हर नई लाइन में सीधा इमेज का लिंक पेस्ट (Paste) कर दें!
+          - 1 लिंक पेस्ट करेंगे -> अपने-आप "View 1 Still" बनेगा।
+          - 2 लिंक पेस्ट करेंगे -> अपने-आप "View 2 Stills" बनेगा।
+          - 5 लिंक पेस्ट करेंगे -> अपने-आप "View 5 Stills" बनेगा।
+       =================================================================================== */
+    const EDIT_WORKS = [
+
+      // ---------------- PROJECT 1: SHREEFAL (श्रीफल) ----------------
+      {
+        title: "Shreefal (શ્રીફળ)",
+        category: "Film & Series", // ऑप्शन: "Film & Series" या "Commercial" या "Music Video"
+        year: "Gujarati Short Film • 2026",
+        role: "Producer & Director of Photography",
+        description: "Written & Directed by Jignesh Mahida and Produced by Ayan Khan, Kartik Parmar & Jignesh Mahida. Captured with soulful golden-hour natural light, intimate character compositions, and evocative rural textures.",
+        poster: "https://github.com/iamayandp/iamayandp/blob/main/image/signal-2026-10-18-17-45-37-804.jpg?raw=true",
+
+        // 👇 बस नीचे नई लाइन में फोटो का लिंक पेस्ट करें (जितनी लाइन = उतने Stills अपने-आप बन जाएंगे):
+        stills: `
+          https://github.com/iamayandp/iamayandp/blob/main/image/signal-2026-10-18-17-45-37-804.jpg?raw=true
+        `
+      },
+
+      // ---------------- PROJECT 2: ISKA ISKA (इसका इसका) ----------------
+      {
+        title: "Iska Iska",
+        category: "Music Video",
+        year: "Featured Project",
+        role: "Director of Photography",
+        description: "Visually striking cinematography crafted with atmospheric lighting, bold framing, and expressive color palettes.",
+        poster: "https://github.com/iamayandp/iamayandp/blob/main/image/is.jpg?raw=true",
+
+        // 👇 बस नीचे नई लाइन में फोटो का लिंक पेस्ट करें (दूसरा Still डालने के लिए बस Enter दबाकर नीचे लिंक पेस्ट कर दें):
+        stills: `
+          https://github.com/iamayandp/iamayandp/blob/main/image/is%20still.jpg?raw=true
+        `
+      },
+
+      // ---------------- PROJECT 3: NAMAN TULA (T-SERIES) ----------------
+      {
+        title: "Naman Tula",
+        category: "Music Video",
+        year: "T-Series • 11M+ Views",
+        role: "Director of Photography",
+        description: "Official T-Series music video crossing over 11 Million+ views, shot on a grand devotional scale with rich cinematic lighting and dynamic camera movement.",
+        poster: "https://github.com/iamayandp/iamayandp/blob/main/image/T.jpg?raw=true",
+
+        // 👇 बस नीचे नई लाइन में फोटो का लिंक पेस्ट करें (जितने लिंक पेस्ट करेंगे, उतने Stills अपने-आप दिखेंगे):
+        stills: `
+          https://github.com/iamayandp/iamayandp/blob/main/image/signal-2026-10-18-17-45-37-804.jpg?raw=true
+        `
+      }
+
+      // ➕ नया पोस्टर जोड़ने के लिए ऊपर वाले `}` के बाद कॉमा `,` लगाएं और ऊपर जैसा `{ ... }` ब्लॉक पेस्ट कर दें।
+    ];
+
+
+    /* ===================================================================================
+       🎞️ COLUMN 3: FILMOGRAPHY & CREDITS (कमर्शियल, म्यूजिक वीडियो और फिल्मों की लिस्ट)
+       =================================================================================== */
+    const EDIT_CREDITS = [
+      {
+        category: "Commercials & Brands",
+        items: [
+          { name: "Tata Safari Commercial",    role: "DoP / Camera" },
+          { name: "Hyundai Alcazar Launch",    role: "Cinematographer" },
+          { name: "Reliance Digital Campaign", role: "Director of Photography" },
+          { name: "Royal Enfield Ride Promo",  role: "Second Unit DoP" }
+        ]
+      },
+      {
+        category: "Music Videos & Promos",
+        items: [
+          { name: "Naman Tula (T-Series)",       role: "DoP • 11M+ Views" },
+          { name: "Iska Iska",                   role: "Director of Photography" },
+          { name: "ZeeTV Prime Time Promo",      role: "Lighting & Camera" },
+          { name: "StarPlus Mythological Promo", role: "Cinematographer" },
+          { name: "Indie Acoustic Sessions",     role: "Visual Director" }
+        ]
+      },
+      {
+        category: "Films & Web Series",
+        items: [
+          { name: "Shreefal (Gujarati Short Film)", role: "Producer & DoP" },
+          { name: "Shadows of Mumbai",              role: "Director of Photography" },
+          { name: "City of Dreams (Schedule)",      role: "Additional Photography" },
+          { name: "Echoes in the Mist",             role: "Lead DoP" }
+        ]
+      }
+    ];
+
+
+    /* ===================================================================================
+       🏆 COLUMN 4: AWARDS & HONORS (अवार्ड्स और सम्मान)
+       =================================================================================== */
+    const EDIT_AWARDS = [
+      {
+        year: "2024 • WINNER",
+        title: "Best Cinematography (Short Film)",
+        festival: "Mumbai International Film Festival"
+      },
+      {
+        year: "2023 • OFFICIAL SELECTION",
+        title: "Best Visual Storytelling",
+        festival: "Dadasaheb Phalke International Film Festival"
+      }
+    ];
+
+
+    /* ===================================================================================
+       📞 COLUMN 5: CONTACT DETAILS (इंस्टाग्राम, फोन नंबर और ईमेल)
+       =================================================================================== */
+    const EDIT_CONTACT = {
+      headingName: "Ayan Khan",
+      subtext: "Available for feature films, commercial campaigns, music videos, and visual direction across India and internationally.",
+      instagramHandle: "@_iamayan__",
+      instagramLink: "https://www.instagram.com/_iamayan__",
+      phone: "+91 7722991272",
+      email: "ayan50450@gmail.com"
+    };
+
+  </script>
+  <!-- ===================================================================================
+       🛑 END OF EDITABLE PART (एडिट करने वाला हिस्सा यहाँ खत्म होता है!)
+       🛑 नीचे ऐप का डिज़ाइन और इंजन कोड है — उसे छूने की बिल्कुल जरूरत नहीं है।
+       =================================================================================== -->
+
 
   <!-- Clean Luxury Cinema Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
+  <!-- ===================================================================================
+       🔒 PART 2: APP DESIGN & CORE ENGINE (ऐप कैसे दिखेगी और कैसे काम करेगी - DO NOT EDIT)
+       =================================================================================== -->
   <style>
     :root {
-      /* HIGH-CONTRAST BLACK, WHITE & CRIMSON RED THEME */
       --bg-void: #050507;
       --bg-surface: rgba(14, 14, 18, 0.82);
       --bg-surface-elevated: rgba(22, 22, 28, 0.94);
@@ -99,9 +236,6 @@
       touch-action: none;
     }
 
-    /* =====================================================================
-       CLEAN HOLLYWOOD ATMOSPHERE LAYERS
-       ===================================================================== */
     .optical-backdrop {
       position: fixed;
       inset: 0;
@@ -134,7 +268,6 @@
       box-shadow: inset 0 0 140px rgba(0, 0, 0, 0.94);
     }
 
-    /* Minimalist Glass Panel */
     .spatial-panel {
       position: relative;
       background: var(--bg-surface);
@@ -150,9 +283,6 @@
                   box-shadow 0.35s ease;
     }
 
-    /* =====================================================================
-       1. MINIMALIST TOP HEADER BAR
-       ===================================================================== */
     .header-wrap {
       max-width: 1280px;
       margin: 16px auto 28px auto;
@@ -273,9 +403,6 @@
       color: #050507;
     }
 
-    /* =====================================================================
-       2. ULTRA-SMOOTH CRYSTAL DOCK (PHONE & DESKTOP)
-       ===================================================================== */
     .spatial-dock-wrap {
       position: fixed;
       bottom: max(14px, env(safe-area-inset-bottom, 14px));
@@ -365,9 +492,6 @@
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     }
 
-    /* =====================================================================
-       MAIN CONTAINER & SECTIONS
-       ===================================================================== */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -379,9 +503,6 @@
       margin-bottom: 68px;
     }
 
-    /* =====================================================================
-       SECTION 1: PROFILE & OVERVIEW
-       ===================================================================== */
     .hero-grid {
       padding: 48px;
       display: grid;
@@ -491,9 +612,6 @@
       margin-top: 4px;
     }
 
-    /* =====================================================================
-       SECTION HEADERS & FILTER TABS
-       ===================================================================== */
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -560,9 +678,6 @@
       box-shadow: 0 4px 18px rgba(229, 9, 20, 0.45);
     }
 
-    /* =====================================================================
-       SECTION 2: FILM POSTERS & INTERACTIVE STILLS GALLERY CARDS
-       ===================================================================== */
     .posters-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -713,9 +828,6 @@
       color: var(--text-secondary);
     }
 
-    /* =====================================================================
-       2-STAGE PROJECT & TRUE FULL-SCREEN STILLS VIEWER (ZERO CLUTTER)
-       ===================================================================== */
     .project-modal-overlay {
       position: fixed;
       inset: 0;
@@ -738,7 +850,6 @@
       pointer-events: auto;
     }
 
-    /* Top Sticky Navigation Bar */
     .modal-topbar {
       width: 100%;
       background: rgba(8, 8, 12, 0.96);
@@ -752,7 +863,6 @@
       z-index: 20;
     }
 
-    /* WHEN TRUE FULLSCREEN IS ACTIVE: HIDE TOP BAR, CROSS BUTTON & EVERYTHING ELSE! */
     .project-modal-overlay.true-fullscreen-mode .modal-topbar,
     .project-modal-overlay:fullscreen .modal-topbar,
     .project-modal-overlay:-webkit-full-screen .modal-topbar {
@@ -832,7 +942,6 @@
       white-space: nowrap;
     }
 
-    /* Action Buttons (Download & Fullscreen) */
     .slider-pro-tools {
       display: none;
       align-items: center;
@@ -898,7 +1007,6 @@
       stroke-width: 2.2;
     }
 
-    /* ---------------- VIEW 1: PROJECT OVERVIEW (POSTER + INFO + STILLS GRID) ---------------- */
     .project-overview-view {
       flex: 1;
       overflow-y: auto;
@@ -1043,7 +1151,7 @@
 
     .stills-thumbnails-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 14px;
     }
 
@@ -1080,7 +1188,6 @@
       pointer-events: none;
     }
 
-    /* ---------------- VIEW 2: PURE FULL-SCREEN SWIPE SLIDER (NO TEXT, NO STRIP!) ---------------- */
     .project-slider-view {
       flex: 1;
       display: none;
@@ -1150,14 +1257,10 @@
       transition: none !important;
     }
 
-    /* =====================================================================
-       SECTION 3: FILMOGRAPHY & CREDITS (AUTO-ADJUSTS FOR 5, 6, 7 OR ANY COUNT)
-       ===================================================================== */
     .credits-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
       gap: 22px;
-      /* align-items: start ensures cards with 5, 6, or 7 items each size naturally! */
       align-items: start;
     }
 
@@ -1225,9 +1328,6 @@
       flex-shrink: 0;
     }
 
-    /* =====================================================================
-       SECTION 4: AWARDS & RECOGNITION
-       ===================================================================== */
     .laurels-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -1266,9 +1366,6 @@
       color: var(--text-secondary);
     }
 
-    /* =====================================================================
-       SECTION 5: CONTACT (ULTRA-CLEAN CARDS — NO SUBTEXT CLUTTER)
-       ===================================================================== */
     .booking-panel {
       padding: 48px 28px;
       text-align: center;
@@ -1410,9 +1507,6 @@
       stroke-width: 2;
     }
 
-    /* =====================================================================
-       PHONE & COMPUTER RESPONSIVE OPTIMIZATION
-       ===================================================================== */
     @media (max-width: 960px) {
       .hero-grid {
         grid-template-columns: 1fr;
@@ -1592,7 +1686,7 @@
 
   <main class="container">
 
-    <!-- ================= ABOUT / PROFILE ================= -->
+    <!-- ================= 1. ABOUT ================= -->
     <section id="about-section">
       <div class="spatial-panel hero-grid">
         <div>
@@ -1606,7 +1700,7 @@
       </div>
     </section>
 
-    <!-- ================= SELECTED WORKS & FILM POSTERS ================= -->
+    <!-- ================= 2. WORKS & POSTERS ================= -->
     <section id="works-section">
       <div class="section-header">
         <div>
@@ -1614,7 +1708,6 @@
           <h2 class="section-heading">Selected Works &amp; Posters</h2>
         </div>
 
-        <!-- Category Filter Tabs -->
         <div class="poster-filter-bar" id="poster-filter-bar">
           <button class="filter-tab active" data-filter="All">All Works</button>
           <button class="filter-tab" data-filter="Film & Series">Films &amp; Series</button>
@@ -1626,7 +1719,7 @@
       <div class="posters-grid" id="posters-container"></div>
     </section>
 
-    <!-- ================= FILMOGRAPHY & CREDITS ================= -->
+    <!-- ================= 3. CREDITS ================= -->
     <section id="experience-section">
       <div class="section-header">
         <div>
@@ -1638,7 +1731,7 @@
       <div class="credits-grid" id="experience-container"></div>
     </section>
 
-    <!-- ================= AWARDS & RECOGNITION ================= -->
+    <!-- ================= 4. AWARDS ================= -->
     <section id="awards-section">
       <div class="section-header">
         <div>
@@ -1650,18 +1743,15 @@
       <div class="laurels-grid" id="awards-container"></div>
     </section>
 
-    <!-- ================= CONTACT (CLEAN: ONLY ICON + LABEL + VALUE) ================= -->
+    <!-- ================= 5. CONTACT ================= -->
     <section id="contact-section">
       <div class="spatial-panel booking-panel">
         <div class="section-eyebrow">Direct Inquiries &amp; Bookings</div>
         <h2>Work With <span id="contact-name">Ayan Khan</span></h2>
-        <p class="booking-subtext">
-          Available for feature films, commercial campaigns, music videos, and visual direction across India and internationally.
-        </p>
+        <p class="booking-subtext" id="contact-subtext"></p>
 
         <div class="contact-cards-grid">
-          <!-- Instagram (Clean - No bottom clutter text) -->
-          <a id="contact-instagram" href="https://instagram.com/ayankhan.dop" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
+          <a id="contact-instagram" href="#" target="_blank" rel="noopener noreferrer" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
@@ -1670,22 +1760,20 @@
               </svg>
             </div>
             <span class="channel-label">Instagram</span>
-            <span class="channel-value" id="instagram-text">@ayankhan.dop</span>
+            <span class="channel-value" id="instagram-text"></span>
           </a>
 
-          <!-- Phone (Clean - No bottom clutter text) -->
-          <a id="contact-phone" href="tel:+917722991272" class="contact-channel-card">
+          <a id="contact-phone" href="#" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
               </svg>
             </div>
             <span class="channel-label">Phone</span>
-            <span class="channel-value" id="phone-text">+91 7722991272</span>
+            <span class="channel-value" id="phone-text"></span>
           </a>
 
-          <!-- Email (Clean - No bottom clutter text) -->
-          <a id="contact-email" href="mailto:ayan4040450@gmail.com" class="contact-channel-card">
+          <a id="contact-email" href="#" class="contact-channel-card">
             <div class="channel-icon-ring">
               <svg viewBox="0 0 24 24" fill="none">
                 <rect x="2" y="4" width="20" height="16" rx="2"></rect>
@@ -1693,7 +1781,7 @@
               </svg>
             </div>
             <span class="channel-label">Email</span>
-            <span class="channel-value" id="email-text">ayan4040450@gmail.com</span>
+            <span class="channel-value" id="email-text"></span>
           </a>
         </div>
 
@@ -1708,10 +1796,8 @@
 
   </main>
 
-  <!-- ================= 2-STAGE PROJECT & TRUE FULL-SCREEN STILLS MODAL ================= -->
+  <!-- ================= STILLS & PROJECT MODAL ================= -->
   <div class="project-modal-overlay" id="project-modal" role="dialog" aria-modal="true">
-
-    <!-- Top Navigation Bar (Automatically Disappears in True Full Screen Mode!) -->
     <div class="modal-topbar" id="modal-topbar">
       <div class="modal-topbar-inner">
         <button class="modal-back-btn" id="modal-back-btn">
@@ -1724,7 +1810,6 @@
         <div class="modal-topbar-right">
           <span class="modal-step-indicator" id="modal-step-indicator">Project Stills</span>
 
-          <!-- Viewer Actions (Download & Full Screen) -->
           <div class="slider-pro-tools" id="slider-pro-tools">
             <button class="pro-tool-btn" id="still-download-btn" title="Download High-Res Still">
               <svg viewBox="0 0 24 24" fill="none">
@@ -1756,7 +1841,6 @@
       </div>
     </div>
 
-    <!-- STEP 1: PROJECT OVERVIEW VIEW (POSTER + INFO + STILLS GRID) -->
     <div class="project-overview-view" id="project-overview-view">
       <div class="project-summary-card">
         <div class="mini-poster-box">
@@ -1780,7 +1864,6 @@
       <div class="stills-thumbnails-grid" id="overview-stills-grid"></div>
     </div>
 
-    <!-- STEP 2: PURE FULL-SCREEN SWIPE VIEW (ZERO TEXT, ZERO CLUTTER BELOW) -->
     <div class="project-slider-view" id="project-slider-view">
       <div class="stills-stage-wrap" id="stills-stage-wrap">
         <div class="stills-main-img-container">
@@ -1788,265 +1871,56 @@
         </div>
       </div>
     </div>
-
   </div>
 
-
-  <!-- ============================================================================
-       🛠️ MASTER CONFIGURATION (यहाँ से अपनी वेबसाइट का सारा डेटा आसानी से बदलें)
-       🛠️ MASTER CONFIGURATION (EDIT ALL YOUR WEBSITE DATA EASILY BELOW)
-       ============================================================================ -->
+  <!-- ================= CORE APPLICATION ENGINE SCRIPT ================= -->
   <script>
-
-    /* ============================================================================
-       📍 SECTION [A]: PROFILE & CONTACT DETAILS (प्रोफाइल और कॉन्टैक्ट की जानकारी)
-       ----------------------------------------------------------------------------
-       HINDI: यहाँ अपना नाम, बायो, अनुभव के नंबर, इंस्टाग्राम, ईमेल और फोन नंबर बदलें।
-              ध्यान रखें कि हर टेक्स्ट डबल कोट्स (" ") के अंदर ही रहे।
-       ENGLISH: Edit your name, bio, stats, Instagram, email, and phone number here.
-                Always keep values inside double quotes (" ").
-       ============================================================================ */
-    const SITE_CONFIG = {
-      name: "AYAN KHAN",
-      role: "Director of Photography",
-      eyebrow: "DIRECTOR OF PHOTOGRAPHY // CINEMATOGRAPHER",
-      availability: "Available for Bookings",
-      location: "Mumbai • Worldwide",
-
-      // वेबसाइट के पीछे की हल्की बैकग्राउंड इमेज (Background Image Link):
-      backgroundImageUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1400&q=75",
-      backgroundOpacity: "0.12",
-
-      // आपका बायो (Your Bio):
-      bio: "Ayan Khan is an acclaimed Director of Photography with extensive experience across narrative films, major broadcast promos, automotive commercials, and chart-topping music videos. Collaborating with leading directors and production houses, his work brings striking visual depth and memorable atmosphere to every frame.",
-
-      // आपके काम की खासियतें (Specialties tags):
-      specialties: [
-        "Feature Films",
-        "Commercial Campaigns",
-        "Music Videos",
-        "Broadcast Promos",
-        "Visual Direction"
-      ],
-
-      // आपके 4 मुख्य आंकड़े (Your 4 Stats Boxes):
-      stats: [
-        { number: "4+ Yrs", label: "Experience" },
-        { number: "11M+", label: "Broadcast Views" },
-        { number: "2+", label: "Awards Won" },
-        { number: "5+", label: "Major Projects" }
-      ],
-
-      // आपके कॉन्टैक्ट लिंक्स (Your Contact Info):
-      instagramHandle: "@ayankhan.dop",
-      instagramUrl: "https://www.instagram.com/ayankhan.dop",
-      email: "ayan4040450@gmail.com",
-      phone: "+91 7722991272"
-    };
-
-
-    /* ============================================================================
-       📍 SECTION [B]: SELECTED WORKS, POSTERS & STILLS GALLERY (पोस्टर्स और स्टिल्स)
-       ----------------------------------------------------------------------------
-       HINDI:
-       1. नया प्रोजेक्ट पोस्टर जोड़ने के लिए `{ ... },` वाले पूरे ब्लॉक को कॉपी करके नीचे पेस्ट करें।
-       2. `category` में केवल इन 3 में से एक लिखें ताकि फिल्टर बटन सही काम करें:
-          - "Film & Series"
-          - "Commercial"
-          - "Music Video"
-       3. `stills: [ ... ]` के अंदर आप जितनी चाहें उतनी फोटोज के लिंक कोट्स (" ") और कॉमा (,) के साथ डाल सकते हैं।
-
-       ENGLISH:
-       1. To add a new poster card, copy an entire `{ ... },` block and paste it below.
-       2. For `category`, use one of: "Film & Series", "Commercial", or "Music Video".
-       3. Inside `stills: [ ... ]`, add as many photo URLs as you want separated by commas.
-       ============================================================================ */
-    const MY_POSTERS = [
-      {
-        posterUrl: "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
-        fallbackPosterUrl: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=75",
-        category: "Film & Series",
-        year: "Gujarati Short Film • 2026",
-        title: "Shreefal (શ્રીફળ)",
-        role: "Producer & Director of Photography",
-        description: "Written & Directed by Jignesh Mahida and Produced by Ayan Khan, Kartik Parmar & Jignesh Mahida. Captured with soulful golden-hour natural light, intimate character compositions, and evocative rural textures.",
-        stills: [
-          "https://raw.githubusercontent.com/iamayandp/iamayandp/main/image/signal-2026-10-18-17-45-37-804.jpg",
-          "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1100&q=75"
-        ]
-      },
-      {
-        posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=75",
-        category: "Music Video",
-        year: "T-Series • 11M+ Views",
-        title: "Naman Tula",
-        role: "Director of Photography",
-        description: "Official T-Series music video crossing over 11 Million+ views, shot on a grand devotional scale with rich cinematic lighting and dynamic camera movement.",
-        stills: [
-          "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=75"
-        ]
-      },
-      {
-        posterUrl: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=800&q=75",
-        category: "Commercial",
-        year: "Automotive Campaign",
-        title: "Tata Safari & Hyundai Alcazar",
-        role: "DoP / Camera",
-        description: "High-speed commercial cinematography capturing dynamic road presence, dramatic terrain tracking shots, and bold automotive lighting.",
-        stills: [
-          "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1100&q=75"
-        ]
-      },
-      {
-        posterUrl: "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=75",
-        category: "Film & Series",
-        year: "Broadcast Network",
-        title: "ZeeTV & StarPlus Promos",
-        role: "Cinematographer",
-        description: "Prime-time broadcast promos crafted with high-impact dramatic lighting, multi-camera setups, and rich theatrical production value.",
-        stills: [
-          "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1518676590629-3dcbd9c5a5c9?auto=format&fit=crop&w=1100&q=75"
-        ]
-      },
-      {
-        posterUrl: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=75",
-        category: "Film & Series",
-        year: "Narrative Feature",
-        title: "Shadows of Mumbai",
-        role: "Director of Photography",
-        description: "An atmospheric narrative drama exploring the contrast of city nights and intimate human stories through expressive framing.",
-        stills: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1100&q=75",
-          "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1100&q=75"
-        ]
+    // Auto-fix GitHub links & parse simple pasted links automatically
+    function normalizeImageUrl(url) {
+      if (!url || typeof url !== "string") return "";
+      let clean = url.trim().replace(/^["',]+|["',]+$/g, "");
+      if (!clean) return "";
+      if (clean.includes("github.com") && clean.includes("/blob/") && !clean.includes("?raw=true")) {
+        clean += (clean.includes("?") ? "&raw=true" : "?raw=true");
       }
-    ];
+      return clean;
+    }
 
-
-    /* ============================================================================
-       📍 SECTION [C]: UNLIMITED FILMOGRAPHY & CREDITS (5, 6, 7 या अनलिमिटेड प्रोजेक्ट्स)
-       ----------------------------------------------------------------------------
-       HINDI (क्रेडिट्स बढ़ाने का तरीका):
-       - मान लीजिए आप पहले बॉक्स (Commercials) में 5, दूसरे (Music Videos) में 6 और तीसरे (Films) में 7 नाम डालते हैं,
-         तो वेबसाइट फोन और कंप्यूटर दोनों पर अपने-आप (Automatically) हर बॉक्स की साइज को एडजस्ट कर लेगी!
-       - नया नाम जोड़ने के लिए बस आखिरी `{ name: "...", role: "..." }` के बाद कॉमा `,` लगाएं और नीचे नई लाइन लिख दें:
-         `{ name: "नए प्रोजेक्ट का नाम", role: "आपका रोल" }`
-
-       ENGLISH (How to add 5, 6, 7, or unlimited credits):
-       - Whether you put 5 items in Commercials, 6 in Music Videos, and 7 in Films (or 50+),
-         the layout automatically adjusts each card cleanly on both mobile phones and computers!
-       - Simply add a comma `,` after the last `{ name: "...", role: "..." }` and add a new line below it.
-       ============================================================================ */
-    const MY_EXPERIENCE = [
-      {
-        category: "Commercials & Brands",
-        projects: [
-          { name: "Tata Safari Commercial", role: "DoP / Camera" },
-          { name: "Hyundai Alcazar Launch", role: "Cinematographer" },
-          { name: "Reliance Digital Campaign", role: "Director of Photography" },
-          { name: "Royal Enfield Ride Promo", role: "Second Unit DoP" }
-          // यहाँ 5वां, 6वां या जितने चाहें नाम जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
-          // , { name: "New Brand Commercial", role: "DoP" }
-        ]
-      },
-      {
-        category: "Music Videos & Promos",
-        projects: [
-          { name: "Naman Tula (T-Series)", role: "DoP • 11M+ Views" },
-          { name: "ZeeTV Prime Time Promo", role: "Lighting & Camera" },
-          { name: "StarPlus Mythological Promo", role: "Cinematographer" },
-          { name: "Indie Acoustic Sessions", role: "Visual Director" }
-          // यहाँ और म्यूजिक वीडियो जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
-          // , { name: "New Music Video", role: "Director of Photography" }
-        ]
-      },
-      {
-        category: "Films & Web Series",
-        projects: [
-          { name: "Shreefal (Gujarati Short Film)", role: "Producer & DoP" },
-          { name: "Shadows of Mumbai", role: "Director of Photography" },
-          { name: "City of Dreams (Schedule)", role: "Additional Photography" },
-          { name: "Echoes in the Mist", role: "Lead DoP" }
-          // यहाँ और फिल्में जोड़ने के लिए ऊपर कॉमा (,) लगाएं और नीचे लिखें:
-          // , { name: "New Feature Film", role: "DoP" }
-        ]
+    // Smart Stills Parser: Accepts either simple multi-line pasted links OR an array!
+    function extractStillsList(rawStills) {
+      if (!rawStills) return [];
+      if (Array.isArray(rawStills)) {
+        return rawStills.map(normalizeImageUrl).filter(Boolean);
       }
-    ];
-
-
-    /* ============================================================================
-       📍 SECTION [D]: AWARDS & HONORS (अवार्ड्स जोड़ने या बदलने के लिए)
-       ----------------------------------------------------------------------------
-       HINDI: नया अवार्ड जोड़ने के लिए `{ year: "...", title: "...", festival: "..." }`
-              को कॉपी करके कॉमा (,) के बाद नीचे पेस्ट करें।
-       ENGLISH: To add a new award, copy a `{ ... }` block, add a comma `,` and paste below.
-       ============================================================================ */
-    const MY_AWARDS = [
-      {
-        year: "2024 • WINNER",
-        title: "Best Cinematography (Short Film)",
-        festival: "Mumbai International Film Festival"
-      },
-      {
-        year: "2023 • OFFICIAL SELECTION",
-        title: "Best Visual Storytelling",
-        festival: "Dadasaheb Phalke International Film Festival"
+      if (typeof rawStills === "string") {
+        return rawStills
+          .split(/[\n,]+/)
+          .map(line => line.trim())
+          .filter(line => line !== "" && !line.startsWith("//") && !line.startsWith("#"))
+          .map(normalizeImageUrl)
+          .filter(Boolean);
       }
-    ];
+      return [];
+    }
 
-
-    /* ============================================================================
-       ⚙️ ENGINE CODE BELOW (इसके नीचे के कोड में बदलाव करने की जरूरत नहीं है)
-       ⚙️ ENGINE CODE BELOW (DO NOT EDIT BELOW THIS LINE TO KEEP CODE SAFE)
-       ============================================================================ */
-
-    // 1. Apply Configuration
-    document.documentElement.style.setProperty('--bg-image', `url('${SITE_CONFIG.backgroundImageUrl}')`);
-    document.documentElement.style.setProperty('--bg-opacity', SITE_CONFIG.backgroundOpacity);
-    document.getElementById("header-name").textContent = SITE_CONFIG.name;
-    document.getElementById("header-role").textContent = SITE_CONFIG.role;
-    document.getElementById("header-availability").textContent = SITE_CONFIG.availability;
-    document.getElementById("header-location").textContent = SITE_CONFIG.location;
-    document.getElementById("hero-eyebrow").textContent = SITE_CONFIG.eyebrow;
-    document.getElementById("hero-name").textContent = SITE_CONFIG.name;
-    document.getElementById("hero-bio").textContent = SITE_CONFIG.bio;
-    document.getElementById("contact-name").textContent = SITE_CONFIG.name;
-
-    // Contact Links
-    const instaEl = document.getElementById("contact-instagram");
-    instaEl.href = SITE_CONFIG.instagramUrl;
-    document.getElementById("instagram-text").textContent = SITE_CONFIG.instagramHandle;
-
-    const emailEl = document.getElementById("contact-email");
-    emailEl.href = `mailto:${SITE_CONFIG.email}`;
-    document.getElementById("email-text").textContent = SITE_CONFIG.email;
-
-    const phoneEl = document.getElementById("contact-phone");
-    phoneEl.href = `tel:${SITE_CONFIG.phone.replace(/\s+/g, '')}`;
-    document.getElementById("phone-text").textContent = SITE_CONFIG.phone;
+    // 1. Render ABOUT & HEADER
+    document.documentElement.style.setProperty('--bg-image', `url('${normalizeImageUrl(EDIT_ABOUT.backgroundImage)}')`);
+    document.documentElement.style.setProperty('--bg-opacity', EDIT_ABOUT.backgroundOpacity);
+    document.getElementById("header-name").textContent = EDIT_ABOUT.name;
+    document.getElementById("header-role").textContent = EDIT_ABOUT.role;
+    document.getElementById("header-availability").textContent = EDIT_ABOUT.availability;
+    document.getElementById("header-location").textContent = EDIT_ABOUT.location;
+    document.getElementById("hero-eyebrow").textContent = EDIT_ABOUT.topHeading;
+    document.getElementById("hero-name").textContent = EDIT_ABOUT.name;
+    document.getElementById("hero-bio").textContent = EDIT_ABOUT.bio;
 
     const specialtiesContainer = document.getElementById("specialties-container");
-    SITE_CONFIG.specialties.forEach(item => {
+    EDIT_ABOUT.specialties.forEach(item => {
       specialtiesContainer.innerHTML += `<span class="specialty-chip">${item}</span>`;
     });
 
     const statsContainer = document.getElementById("stats-container");
-    SITE_CONFIG.stats.forEach(st => {
+    EDIT_ABOUT.stats.forEach(st => {
       statsContainer.innerHTML += `
         <div class="stat-box">
           <div class="stat-value">${st.number}</div>
@@ -2055,28 +1929,29 @@
       `;
     });
 
-    // 2. Render Posters
+    // 2. Render WORKS & POSTERS
     const postersContainer = document.getElementById("posters-container");
 
     function renderPosters(selectedCategory) {
       postersContainer.innerHTML = "";
       const filtered = selectedCategory === "All"
-        ? MY_POSTERS
-        : MY_POSTERS.filter(p => p.category === selectedCategory);
+        ? EDIT_WORKS
+        : EDIT_WORKS.filter(p => p.category === selectedCategory);
 
       filtered.forEach((item) => {
-        const validStills = Array.isArray(item.stills)
-          ? item.stills.filter(url => typeof url === "string" && url.trim() !== "")
-          : [];
+        const posterImgUrl = normalizeImageUrl(item.poster || item.posterUrl);
+        const validStills = extractStillsList(item.stills);
         const hasStills = validStills.length > 0;
-        const fallbackImg = item.fallbackPosterUrl || 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=75';
+        const fallbackImg = 'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=800&q=75';
 
         const cardEl = document.createElement("article");
         cardEl.className = `spatial-panel poster-card ${hasStills ? "has-stills" : ""}`;
 
+        const stillCountLabel = validStills.length === 1 ? "View 1 Still" : `View ${validStills.length} Stills`;
+
         cardEl.innerHTML = `
           <div class="poster-image-frame">
-            <img src="${item.posterUrl}" alt="${item.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}';">
+            <img src="${posterImgUrl}" alt="${item.title}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='${fallbackImg}';">
             <div class="poster-top-tags">
               <span class="poster-category-badge">${item.category}</span>
               <span class="poster-year-badge">${item.year}</span>
@@ -2088,7 +1963,7 @@
                   <circle cx="8.5" cy="8.5" r="1.5"></circle>
                   <polyline points="21 15 16 10 5 21"></polyline>
                 </svg>
-                <span>View ${validStills.length} Stills</span>
+                <span>${stillCountLabel}</span>
               </div>
             ` : ""}
           </div>
@@ -2101,7 +1976,7 @@
 
         if (hasStills) {
           cardEl.addEventListener("click", () => {
-            openProjectOverview(item, validStills);
+            openProjectOverview(item, validStills, posterImgUrl);
           });
         }
 
@@ -2120,13 +1995,56 @@
       });
     });
 
-    /* ============================================================================
-       3-STAGE NAVIGATION ENGINE WITH TRUE ZERO-UI FULLSCREEN MODE
-       - Stage 1: Project Overview (Poster + Stills Grid)
-       - Stage 2: Still Viewer (With Top Bar for Download & Full Screen Button)
-       - Stage 3: True 100% Full Screen (NO Top Bar, NO Cross Button, NO Text —
-                  Exit via Phone Back Button / Gesture or Double-Tap!)
-       ============================================================================ */
+    // 3. Render CREDITS
+    const expContainer = document.getElementById("experience-container");
+    EDIT_CREDITS.forEach(function(group) {
+      const list = group.items || group.projects || [];
+      let projectItems = "";
+      list.forEach(function(proj) {
+        projectItems += `
+          <li>
+            <span class="work-title">${proj.name}</span>
+            <span class="work-role">${proj.role}</span>
+          </li>
+        `;
+      });
+      expContainer.innerHTML += `
+        <div class="spatial-panel credit-panel">
+          <div class="credit-category-title">${group.category}</div>
+          <ul class="credit-ledger">${projectItems}</ul>
+        </div>
+      `;
+    });
+
+    // 4. Render AWARDS
+    const awardsContainer = document.getElementById("awards-container");
+    EDIT_AWARDS.forEach(function(award) {
+      awardsContainer.innerHTML += `
+        <div class="spatial-panel laurel-card">
+          <div class="laurel-year">${award.year}</div>
+          <div class="laurel-award">${award.title}</div>
+          <div class="laurel-festival">${award.festival}</div>
+        </div>
+      `;
+    });
+
+    // 5. Render CONTACT
+    document.getElementById("contact-name").textContent = EDIT_CONTACT.headingName;
+    document.getElementById("contact-subtext").textContent = EDIT_CONTACT.subtext;
+
+    const instaEl = document.getElementById("contact-instagram");
+    instaEl.href = EDIT_CONTACT.instagramLink;
+    document.getElementById("instagram-text").textContent = EDIT_CONTACT.instagramHandle;
+
+    const phoneEl = document.getElementById("contact-phone");
+    phoneEl.href = `tel:${EDIT_CONTACT.phone.replace(/\s+/g, '')}`;
+    document.getElementById("phone-text").textContent = EDIT_CONTACT.phone;
+
+    const emailEl = document.getElementById("contact-email");
+    emailEl.href = `mailto:${EDIT_CONTACT.email.trim()}`;
+    document.getElementById("email-text").textContent = EDIT_CONTACT.email.trim();
+
+    // 6. Modal & Stills Viewer Engine
     const projectModal = document.getElementById("project-modal");
     const overviewView = document.getElementById("project-overview-view");
     const sliderView = document.getElementById("project-slider-view");
@@ -2153,22 +2071,20 @@
     let activeStillsList = [];
     let activeStillIndex = 0;
     let activeFallback = 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
-    let currentModalStage = 0; // 0 = closed, 1 = overview, 2 = slider, 3 = true 100% fullscreen
+    let currentModalStage = 0;
 
-    // Stage 1: Open Project Overview
-    function openProjectOverview(projectItem, stillsArray) {
+    function openProjectOverview(projectItem, stillsArray, normalizedPosterUrl) {
       if (!stillsArray || stillsArray.length === 0) return;
 
       activeProjectItem = projectItem;
       activeStillsList = stillsArray;
       activeStillIndex = 0;
-      activeFallback = projectItem.fallbackPosterUrl || 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1000&q=75';
 
       overviewMiniPoster.onerror = function() {
         this.onerror = null;
         this.src = activeFallback;
       };
-      overviewMiniPoster.src = projectItem.posterUrl;
+      overviewMiniPoster.src = normalizedPosterUrl;
       overviewCategory.textContent = projectItem.category;
       overviewYear.textContent = projectItem.year;
       overviewTitle.textContent = projectItem.title;
@@ -2195,7 +2111,7 @@
       sliderView.classList.remove("active");
       sliderProTools.classList.remove("visible");
       modalBackText.textContent = "Back to Works";
-      modalStepIndicator.textContent = `${activeStillsList.length} Stills`;
+      modalStepIndicator.textContent = activeStillsList.length === 1 ? "1 Still" : `${activeStillsList.length} Stills`;
 
       projectModal.classList.add("active");
       document.body.classList.add("modal-open");
@@ -2206,7 +2122,6 @@
       } catch (err) {}
     }
 
-    // Stage 2: Open Still Viewer
     function openFullScreenSlider(startIndex) {
       currentModalStage = 2;
       projectModal.classList.remove("true-fullscreen-mode");
@@ -2222,7 +2137,6 @@
       } catch (err) {}
     }
 
-    // Stage 3: Enter True 100% Full Screen (Hides all buttons, cross, and bars)
     function enterTrueFullScreen() {
       if (currentModalStage !== 2) return;
       currentModalStage = 3;
@@ -2242,7 +2156,6 @@
       }
     }
 
-    // Exit True 100% Full Screen back to Stage 2
     function exitTrueFullScreenToSliderUI() {
       projectModal.classList.remove("true-fullscreen-mode");
       currentModalStage = 2;
@@ -2272,7 +2185,6 @@
       modalStepIndicator.textContent = `${activeStillIndex + 1} / ${activeStillsList.length}`;
     }
 
-    // Download Current Still
     stillDownloadBtn.addEventListener("click", async () => {
       const currentImgUrl = activeStillsList[activeStillIndex];
       if (!currentImgUrl) return;
@@ -2297,14 +2209,12 @@
       }
     });
 
-    // Clicking "Full Screen" Button Enters Stage 3 (True 100% Full Screen)
     stillFullscreenBtn.addEventListener("click", () => {
       if (currentModalStage === 2) {
         enterTrueFullScreen();
       }
     });
 
-    // If user exits native OS fullscreen via phone back gesture, sync Stage 3 -> Stage 2
     function handleNativeFullscreenChange() {
       const fsElement = document.fullscreenElement || document.webkitFullscreenElement;
       if (!fsElement && currentModalStage === 3) {
@@ -2326,7 +2236,7 @@
       sliderProTools.classList.remove("visible");
       overviewView.classList.remove("hidden");
       modalBackText.textContent = "Back to Works";
-      modalStepIndicator.textContent = `${activeStillsList.length} Stills`;
+      modalStepIndicator.textContent = activeStillsList.length === 1 ? "1 Still" : `${activeStillsList.length} Stills`;
     }
 
     function closeModalCompletelyUI() {
@@ -2365,7 +2275,6 @@
       }
     });
 
-    // Phone Hardware Back Button / Thumb Back Gesture Handler
     window.addEventListener("popstate", (e) => {
       if (e.state && e.state.modalStage === 2) {
         exitTrueFullScreenToSliderUI();
@@ -2376,7 +2285,6 @@
       }
     });
 
-    // Keyboard Support for Computer
     window.addEventListener("keydown", (e) => {
       if (currentModalStage === 0) return;
       if (e.key === "Escape") {
@@ -2392,7 +2300,6 @@
       }
     });
 
-    // Ultra-Smooth Mobile Touch & Pointer Swipe Engine (Works in both Stage 2 and Stage 3 Full Screen!)
     let swipeStartX = 0;
     let swipeCurrentX = 0;
     let isSwipingStage = false;
@@ -2430,7 +2337,6 @@
     stageWrap.addEventListener("pointercancel", finishStageSwipe);
     stageWrap.addEventListener("pointerleave", finishStageSwipe);
 
-    // Silent Double-Tap on Image to Enter or Exit True Fullscreen (No visible hint text)
     let lastTapTime = 0;
     stageWrap.addEventListener("click", () => {
       const now = Date.now();
@@ -2448,47 +2354,13 @@
       lastTapTime = now;
     });
 
-    // 3. Render Unlimited Credits (Auto-adjusts whether 5, 6, 7 or any number of items)
-    const expContainer = document.getElementById("experience-container");
-    MY_EXPERIENCE.forEach(function(group) {
-      let projectItems = "";
-      group.projects.forEach(function(proj) {
-        projectItems += `
-          <li>
-            <span class="work-title">${proj.name}</span>
-            <span class="work-role">${proj.role}</span>
-          </li>
-        `;
-      });
-      expContainer.innerHTML += `
-        <div class="spatial-panel credit-panel">
-          <div class="credit-category-title">${group.category}</div>
-          <ul class="credit-ledger">${projectItems}</ul>
-        </div>
-      `;
-    });
-
-    // 4. Render Awards
-    const awardsContainer = document.getElementById("awards-container");
-    MY_AWARDS.forEach(function(award) {
-      awardsContainer.innerHTML += `
-        <div class="spatial-panel laurel-card">
-          <div class="laurel-year">${award.year}</div>
-          <div class="laurel-award">${award.title}</div>
-          <div class="laurel-festival">${award.festival}</div>
-        </div>
-      `;
-    });
-
-    // 5. Subtle Cursor Ambient Glow
+    // Subtle Cursor Ambient Glow
     window.addEventListener("pointermove", (e) => {
       document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
       document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
     }, { passive: true });
 
-    /* ============================================================================
-       6. ULTRA-SMOOTH 60FPS CRYSTAL DOCK ENGINE
-       ============================================================================ */
+    // Crystal Dock Navigation Engine
     const dockTrack = document.getElementById("spatial-dock-track");
     const dockLens = document.getElementById("optical-dock-lens");
     const dockItems = Array.from(document.querySelectorAll(".dock-item"));
